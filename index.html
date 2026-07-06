@@ -119,14 +119,24 @@ nav {
 }
 .btn-primary:hover { background: var(--green-dk); transform: translateY(-1px); }
 
-.btn-secondary {
-  font-size: 14px; color: var(--ink-3);
-  text-decoration: none; font-weight: 500;
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 2px;
-  transition: color 0.15s, border-color 0.15s;
+.hero-form {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  max-width: 460px;
 }
-.btn-secondary:hover { color: var(--green); border-color: var(--green); }
+.hero-input {
+  flex: 1; min-width: 200px;
+  padding: 13px 16px;
+  border: 1px solid var(--rule); border-radius: 10px;
+  font-size: 14px; font-family: var(--sans);
+  color: var(--ink); outline: none;
+  transition: border-color 0.15s;
+}
+.hero-input:focus { border-color: var(--green); }
+.hero-input::placeholder { color: var(--ink-3); }
+.hero-note {
+  font-size: 12px; color: var(--ink-3);
+  margin-top: 10px; width: 100%;
+}
 
 /* Hero visual */
 .hero-visual {
@@ -449,7 +459,7 @@ footer {
     </div>
     <span class="nav-name">ClarityIQ</span>
   </a>
-  <a href="https://app.clarityiq.ai" class="nav-cta">See the demo →</a>
+  <a href="#early-access" class="nav-cta">Request early access</a>
 </nav>
 
 <!-- HERO -->
@@ -459,8 +469,11 @@ footer {
     <h1 class="hero-headline">Patients don't choose premium IOLs because they don't <em>understand</em> them.</h1>
     <p class="hero-body">ClarityIQ closes the patient understanding gap before the surgical consultation. Patients arrive knowing their options — surgeons confirm a preference, not build one from scratch.</p>
     <div class="hero-actions">
-      <a href="https://app.clarityiq.ai" class="btn-primary">Experience it yourself →</a>
-      <a href="#how" class="btn-secondary">How it works</a>
+      <form class="hero-form" action="https://formspree.io/f/https://formspree.io/f/xaqgkwwq" method="POST">
+        <input type="email" name="email" class="hero-input" placeholder="your@practice.com" required>
+        <button type="submit" class="btn-primary">Request early access</button>
+      </form>
+      <p class="hero-note">For ophthalmology practices only. No commitment.</p>
     </div>
   </div>
 
@@ -615,15 +628,15 @@ footer {
 </section>
 
 <!-- CTA -->
-<section class="cta-section">
+<section class="cta-section" id="early-access">
   <div class="cta-inner">
-    <h2 class="cta-headline">Interested in a trial at your practice?</h2>
-    <p class="cta-body">We're working with a small number of ophthalmology practices to run the first trials. If you'd like to be considered, leave your email and we'll be in touch.</p>
-    <form class="cta-form" onsubmit="handleSubmit(event)">
-      <input type="email" class="cta-input" placeholder="your@practice.com" required>
-      <button type="submit" class="cta-submit">Request trial</button>
+    <h2 class="cta-headline">Request early access for your practice.</h2>
+    <p class="cta-body">We're working with a small number of ophthalmology practices for the first trials. Leave your email and we'll reach out to discuss fit.</p>
+    <form class="cta-form" action="https://formspree.io/f/https://formspree.io/f/xaqgkwwq" method="POST">
+      <input type="email" name="email" class="cta-input" placeholder="your@practice.com" required>
+      <button type="submit" class="cta-submit">Request access</button>
     </form>
-    <p class="cta-note">No commitment. No pitch. Just a conversation.</p>
+    <p class="cta-note">For ophthalmology practices only. No commitment. No pitch. Just a conversation.</p>
   </div>
 </section>
 
@@ -642,11 +655,7 @@ footer {
 </footer>
 
 <script>
-function handleSubmit(e) {
-  e.preventDefault();
-  const email = e.target.querySelector('input').value;
-  e.target.innerHTML = '<p style="color:#1D9E75;font-weight:500;font-size:14px;">✓ Thanks — we\'ll be in touch at ' + email + '</p>';
-}
+// Forms powered by Formspree — replace https://formspree.io/f/xaqgkwwq with your actual Formspree form ID
 </script>
 
 </body>
