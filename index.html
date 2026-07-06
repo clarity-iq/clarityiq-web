@@ -119,20 +119,6 @@ nav {
 }
 .btn-primary:hover { background: var(--green-dk); transform: translateY(-1px); }
 
-.hero-form {
-  display: flex; gap: 10px; flex-wrap: wrap;
-  max-width: 460px;
-}
-.hero-input {
-  flex: 1; min-width: 200px;
-  padding: 13px 16px;
-  border: 1px solid var(--rule); border-radius: 10px;
-  font-size: 14px; font-family: var(--sans);
-  color: var(--ink); outline: none;
-  transition: border-color 0.15s;
-}
-.hero-input:focus { border-color: var(--green); }
-.hero-input::placeholder { color: var(--ink-3); }
 .hero-note {
   font-size: 12px; color: var(--ink-3);
   margin-top: 10px; width: 100%;
@@ -397,9 +383,13 @@ nav {
   line-height: 1.7; margin-bottom: 36px;
 }
 
-.cta-form {
-  display: flex; gap: 10px; max-width: 440px; margin: 0 auto;
-}
+.cta-form-full { display:flex; flex-direction:column; gap:0; margin-bottom:16px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+.form-group { display:flex; flex-direction:column; gap:5px; }
+.form-label { font-size:12px; font-weight:500; color:var(--ink-2); }
+.cta-select { appearance:none; cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b6b68' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; padding-right:32px; }
+.cta-textarea { resize:vertical; min-height:80px; line-height:1.5; }
+@media(max-width:600px){ .form-row{ grid-template-columns:1fr; } }
 .cta-input {
   flex: 1; padding: 13px 16px;
   border: 1px solid var(--rule); border-radius: 10px;
@@ -469,10 +459,7 @@ footer {
     <h1 class="hero-headline">Patients don't choose premium IOLs because they don't <em>understand</em> them.</h1>
     <p class="hero-body">ClarityIQ closes the patient understanding gap before the surgical consultation. Patients arrive knowing their options — surgeons confirm a preference, not build one from scratch.</p>
     <div class="hero-actions">
-      <form class="hero-form" action="https://formspree.io/f/xaqgkwwq" method="POST">
-        <input type="email" name="email" class="hero-input" placeholder="your@practice.com" required>
-        <button type="submit" class="btn-primary">Request early access</button>
-      </form>
+      <a href="#early-access" class="btn-primary">Request early access →</a>
       <p class="hero-note">For ophthalmology practices only. No commitment.</p>
     </div>
   </div>
@@ -629,12 +616,41 @@ footer {
 
 <!-- CTA -->
 <section class="cta-section" id="early-access">
-  <div class="cta-inner">
+  <div class="cta-inner" style="max-width:520px">
     <h2 class="cta-headline">Request early access for your practice.</h2>
-    <p class="cta-body">We're working with a small number of ophthalmology practices for the first trials. Leave your email and we'll reach out to discuss fit.</p>
-    <form class="cta-form" action="https://formspree.io/f/xaqgkwwq" method="POST">
-      <input type="email" name="email" class="cta-input" placeholder="your@practice.com" required>
-      <button type="submit" class="cta-submit">Request access</button>
+    <p class="cta-body">We're working with a small number of ophthalmology practices for the first trials. Tell us about your practice and we'll reach out to discuss fit.</p>
+    <form class="cta-form-full" action="https://formspree.io/f/xaqgkwwq" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Full name *</label>
+          <input type="text" name="name" class="cta-input" placeholder="Dr. Jane Smith" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Practice name *</label>
+          <input type="text" name="practice" class="cta-input" placeholder="Smith Eye Center" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Your role *</label>
+          <select name="role" class="cta-input cta-select" required>
+            <option value="" disabled selected>Select your role</option>
+            <option value="surgeon">Surgeon</option>
+            <option value="administrator">Practice Administrator</option>
+            <option value="owner">Practice Owner</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email *</label>
+          <input type="email" name="email" class="cta-input" placeholder="your@practice.com" required>
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:16px">
+        <label class="form-label">What interests you about ClarityIQ?</label>
+        <textarea name="message" class="cta-input cta-textarea" placeholder="Tell us about your practice and what you're hoping to achieve..." rows="3"></textarea>
+      </div>
+      <button type="submit" class="cta-submit" style="width:100%;padding:14px">Request early access</button>
     </form>
     <p class="cta-note">For ophthalmology practices only. No commitment. No pitch. Just a conversation.</p>
   </div>
