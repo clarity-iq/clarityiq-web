@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /ai-disclosure.html
+Disallow: /disclaimer.html
+Disallow: /terms.html
+Disallow: /privacy.html
