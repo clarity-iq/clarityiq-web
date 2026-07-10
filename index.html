@@ -422,6 +422,9 @@ footer {
 }
 .footer-name { font-size: 14px; font-weight: 600; color: var(--ink); }
 .footer-copy { font-size: 12px; color: var(--ink-3); }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-size: 12.5px; color: var(--ink-3); text-decoration: none; }
+.footer-links a:hover { color: var(--green-dk); }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
@@ -433,6 +436,7 @@ footer {
   .practices-inner { grid-template-columns: 1fr; gap: 48px; }
   .cta-form { flex-direction: column; }
   footer { flex-direction: column; gap: 12px; text-align: center; }
+  .footer-links { justify-content: center; flex-wrap: wrap; }
 }
 </style>
 </head>
@@ -667,6 +671,12 @@ footer {
     </div>
     <span class="footer-name">ClarityIQ</span>
   </a>
+  <div class="footer-links">
+    <a href="/ai-disclosure.html">AI Disclosure</a>
+    <a href="/disclaimer.html">Educational Disclaimer</a>
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/privacy.html">Privacy Policy</a>
+  </div>
   <p class="footer-copy">© 2026 ClarityIQ. All rights reserved.</p>
 </footer>
 
