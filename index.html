@@ -324,48 +324,6 @@ nav {
 }
 
 /* ── FOR PRACTICES ── */
-/* ── ABOUT / FOUNDER ── */
-.about {
-  padding: 100px 5vw;
-  max-width: 1100px; margin: 0 auto;
-}
-.about-grid {
-  display: grid; grid-template-columns: 300px 1fr; gap: 72px;
-  align-items: start;
-}
-.about-photo {
-  width: 100%; aspect-ratio: 1 / 1; border-radius: 20px;
-  background: var(--green-lt); overflow: hidden;
-  border: 1px solid var(--rule); margin-bottom: 24px;
-}
-.about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.about-photo-empty { display: flex; align-items: center; justify-content: center; }
-.about-photo-empty::after {
-  content: 'Photo'; font-size: 13px; color: var(--green-dk);
-  font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
-}
-.credential-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-.credential-list li {
-  font-size: 13.5px; color: var(--ink-2); line-height: 1.45;
-  padding-left: 20px; position: relative;
-}
-.credential-list li::before {
-  content: ''; position: absolute; left: 0; top: 7px;
-  width: 6px; height: 6px; border-radius: 50%; background: var(--green);
-}
-.about-headline {
-  font-family: var(--serif); font-weight: 400;
-  font-size: clamp(22px, 2.4vw, 28px); line-height: 1.35;
-  color: var(--ink); margin-bottom: 32px;
-}
-.about-p { font-size: 15.5px; color: var(--ink-2); line-height: 1.75; margin-bottom: 22px; max-width: 620px; }
-.about-pivot {
-  font-family: var(--serif); font-weight: 400;
-  font-size: 22px; color: var(--green-dk); line-height: 1.5;
-  margin: 36px 0; max-width: 480px;
-}
-.about-close { color: var(--ink); font-weight: 500; }
-
 .practices {
   background: var(--surface);
   border-top: 1px solid var(--rule);
@@ -476,8 +434,6 @@ footer {
   .steps { grid-template-columns: 1fr; }
   .step-connector { display: none; }
   .practices-inner { grid-template-columns: 1fr; gap: 48px; }
-  .about-grid { grid-template-columns: 1fr; gap: 32px; }
-  .about-photo { max-width: 220px; }
   .cta-form { flex-direction: column; }
   footer { flex-direction: column; gap: 12px; text-align: center; }
   .footer-links { justify-content: center; flex-wrap: wrap; }
@@ -658,40 +614,6 @@ footer {
       <div class="quote-bar"></div>
       <p class="quote-text">"The goal isn't to sell a lens. The goal is to make sure the patient understands what they're choosing — and what they're choosing not to pursue."</p>
       <p class="quote-attr">ClarityIQ design principle</p>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT / FOUNDER (Batch 3.4) -->
-<section class="about" id="about">
-  <p class="section-eyebrow">Who built this</p>
-  <div class="about-grid">
-    <div class="about-photo-col">
-      <!-- Martin's professional headshot goes here — replace src once the
-           file is provided. Placeholder keeps layout correct until then. -->
-      <div class="about-photo">
-        <img src="/founder-photo.jpg" alt="Dr. Martin de la Presa" onerror="this.style.display='none'; this.parentElement.classList.add('about-photo-empty');">
-      </div>
-      <ul class="credential-list">
-        <li>Board-certified ophthalmic surgeon</li>
-        <li>Fellowship-trained — cornea, cataract &amp; refractive surgery</li>
-        <li>12,000+ cataract procedures performed</li>
-        <li>Primary Investigator, active IOL clinical research</li>
-      </ul>
-    </div>
-
-    <div class="about-story-col">
-      <h2 class="about-headline">&ldquo;You shouldn't have to make this decision with fifteen minutes and a list of unfamiliar words.&rdquo;</h2>
-
-      <p class="about-p">Choosing your lens isn't like choosing glasses. Once it's in, it's in — for the rest of your life. Most people are asked to make that call in a rushed fifteen-minute window at their surgical consult, often hearing about their options for the very first time.</p>
-
-      <p class="about-p">I'm Dr. Martin de la Presa, a board-certified, fellowship-trained cornea, cataract, and refractive surgeon who has performed more than 12,000 cataract procedures. Over those years, I kept watching the same thing happen: a patient, dilated and a little anxious, hearing words like &ldquo;trifocal&rdquo; or &ldquo;toric&rdquo; for the first time — and being expected to weigh a permanent decision in that same moment.</p>
-
-      <p class="about-pivot">I built ClarityIQ so that moment doesn't have to be the first time.</p>
-
-      <p class="about-p">Today, I'm also a Primary Investigator on active clinical research into next-generation lens technology — so what you'll hear here reflects what's actually being studied and refined right now, not something written once and left on a shelf.</p>
-
-      <p class="about-p about-close">You shouldn't have to make this decision with fifteen minutes and a list of unfamiliar words. Now you don't have to.</p>
     </div>
   </div>
 </section>
