@@ -3,684 +3,690 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClarityIQ — Patient Lens Education for Ophthalmology Practices</title>
-<meta name="description" content="ClarityIQ closes the patient understanding gap that suppresses premium IOL adoption. Patients arrive at their consultation with a lens preference — surgeons confirm, not convince.">
+<title>ClarityIQ — Understand Your IOL Options Before Your Consult</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
-  --green:     #1D9E75;
-  --green-dk:  #0f6e56;
-  --green-lt:  #e1f5ee;
-  --ink:       #0f0f0e;
-  --ink-2:     #3a3a38;
-  --ink-3:     #6b6b68;
-  --rule:      #e4e2da;
-  --surface:   #fafaf7;
-  --white:     #ffffff;
-  --serif:     'DM Serif Display', Georgia, serif;
-  --sans:      'Inter', -apple-system, sans-serif;
-}
+  :root {
+    --green:      #1D9E75;
+    --green-dk:   #0f6e56;
+    --green-lt:   #e1f5ee;
+    --ink:        #0f0f0e;
+    --ink-2:      #3a3a38;
+    --ink-3:      #6b6b68;
+    --ink-4:      #a0a09a;
+    --rule:       #e4e2da;
+    --surface:    #fafaf7;
+    --surface-2:  #f0ede8;
+    --white:      #ffffff;
+    --serif:      'DM Serif Display', Georgia, serif;
+    --sans:       'Inter', -apple-system, sans-serif;
+    --max: 1080px;
+  }
 
-html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    font-size: 17px;
+    color: var(--ink-2);
+    background: var(--white);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
 
-body {
-  font-family: var(--sans);
-  color: var(--ink);
-  background: var(--white);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
+  a { color: inherit; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  section { padding: 88px 0; }
+  @media (max-width: 640px) { section { padding: 56px 0; } }
 
-/* ── NAV ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 5vw;
-  height: 64px;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--rule);
-}
+  .eyebrow {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--green-dk); margin-bottom: 14px; display: block;
+  }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--ink); letter-spacing: -0.01em; }
+  h1 { font-size: clamp(34px, 5vw, 56px); line-height: 1.12; }
+  h2 { font-size: clamp(28px, 3.6vw, 42px); line-height: 1.18; }
+  h3 { font-size: clamp(20px, 2.4vw, 26px); line-height: 1.3; }
+  p.lead { font-size: 18px; color: var(--ink-2); max-width: 620px; }
 
-.nav-logo {
-  display: flex; align-items: center; gap: 10px;
-  text-decoration: none;
-}
-.nav-mark {
-  width: 30px; height: 30px; border-radius: 8px;
-  background: var(--green);
-  display: flex; align-items: center; justify-content: center;
-}
-.nav-mark svg { width: 16px; height: 16px; }
-.nav-name {
-  font-size: 15px; font-weight: 600; color: var(--ink);
-  letter-spacing: -0.02em;
-}
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--sans); font-weight: 600; font-size: 16px;
+    padding: 16px 30px; border-radius: 8px; border: none; cursor: pointer;
+    text-decoration: none; transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:focus-visible { outline: 3px solid var(--green-dk); outline-offset: 3px; }
+  .btn-primary { background: var(--green-dk); color: var(--white); box-shadow: 0 1px 2px rgba(15,110,86,0.15); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(15,110,86,0.25); }
+  .btn-secondary { background: var(--white); color: var(--green-dk); border: 1.5px solid var(--green-dk); }
+  .btn-secondary:hover { background: var(--green-lt); }
+  .btn-small { padding: 12px 22px; font-size: 14.5px; }
 
-.nav-cta {
-  display: inline-flex; align-items: center;
-  padding: 8px 18px;
-  background: var(--green); color: var(--white);
-  border-radius: 8px; text-decoration: none;
-  font-size: 13px; font-weight: 500;
-  transition: background 0.15s;
-}
-.nav-cta:hover { background: var(--green-dk); }
+  /* ── NAV ── */
+  header.nav {
+    padding: 22px 0; border-bottom: 1px solid var(--rule); background: var(--white);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: var(--serif); font-size: 22px; color: var(--ink); letter-spacing: -0.01em; }
 
-/* ── HERO ── */
-.hero {
-  padding: 140px 5vw 100px;
-  max-width: 1100px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-  align-items: center;
-}
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(180deg, var(--surface) 0%, var(--white) 100%);
+    padding: 84px 0 96px;
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: center; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .hero h1 { margin-bottom: 22px; }
+  .hero .lead { margin-bottom: 32px; }
+  .trust-line {
+    margin-top: 20px; font-size: 13.5px; color: var(--ink-3);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .trust-line svg { flex-shrink: 0; }
 
-.hero-eyebrow {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--green);
-  margin-bottom: 20px;
-}
+  /* signature arc dial */
+  .dial-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .dial { position: relative; width: 260px; height: 260px; }
+  .dial svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .dial-track { fill: none; stroke: var(--rule); stroke-width: 14; }
+  .dial-fill { fill: none; stroke: var(--green); stroke-width: 14; stroke-linecap: round;
+    stroke-dasharray: 628; stroke-dashoffset: 628; animation: dial-in 1.6s ease 0.3s forwards; }
+  @keyframes dial-in { to { stroke-dashoffset: 63; } }
+  .dial-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .dial-num { font-family: var(--serif); font-size: 44px; color: var(--ink); line-height: 1; }
+  .dial-label { font-size: 12px; color: var(--ink-3); margin-top: 6px; text-align: center; max-width: 140px; }
+  .dial-caption { margin-top: 18px; font-size: 13.5px; color: var(--ink-3); text-align: center; max-width: 220px; }
 
-.hero-headline {
-  font-family: var(--serif);
-  font-size: clamp(36px, 4.5vw, 54px);
-  line-height: 1.12;
-  color: var(--ink);
-  margin-bottom: 24px;
-  letter-spacing: -0.01em;
-}
+  /* ── PROBLEM ── */
+  .problem { background: var(--white); }
+  .problem-inner { max-width: 720px; }
+  .problem p { margin-top: 18px; font-size: 17.5px; }
+  .problem p.pivot { font-family: var(--serif); font-size: 22px; color: var(--ink); margin-top: 32px; }
+  .pain-list { list-style: none; margin: 26px 0; display: flex; flex-direction: column; gap: 14px; }
+  .pain-list li { display: flex; gap: 14px; align-items: flex-start; font-size: 17px; color: var(--ink-2); }
+  .pain-list li svg { flex-shrink: 0; margin-top: 4px; }
 
-.hero-headline em {
-  font-style: italic;
-  color: var(--green);
-}
+  /* ── VALUE (2.5) ── */
+  .value { background: var(--surface-2); }
+  .value-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 44px; }
+  @media (max-width: 760px) { .value-grid { grid-template-columns: 1fr; } }
+  .value-card { background: var(--white); border: 1px solid var(--rule); border-radius: 14px; padding: 32px; }
+  .value-card .num { font-family: var(--serif); font-size: 15px; color: var(--green-dk); margin-bottom: 10px; display: block; }
+  .value-card p { font-size: 15.5px; margin-top: 10px; }
 
-.hero-body {
-  font-size: 17px; color: var(--ink-2);
-  line-height: 1.7; margin-bottom: 36px;
-  max-width: 480px;
-}
+  /* ── HOW IT WORKS ── */
+  .how { background: var(--white); }
+  .how-inner { max-width: 720px; }
+  .how-inner p { margin-top: 18px; font-size: 17.5px; }
+  .how-callout {
+    margin-top: 30px; background: var(--surface-2); border: 1px solid var(--rule); border-radius: 14px;
+    padding: 26px 30px; display: flex; gap: 14px; align-items: flex-start;
+  }
+  .how-callout svg { flex-shrink: 0; margin-top: 3px; }
+  .how-callout p { margin-top: 0; font-size: 16px; color: var(--ink-2); }
 
-.hero-actions {
-  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
-}
+  /* ── OFFER (3) ── */
+  .offer { background: var(--white); }
+  .offer-panel {
+    background: var(--ink); color: var(--surface); border-radius: 20px; padding: 52px;
+    display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 48px; align-items: start;
+  }
+  @media (max-width: 780px) { .offer-panel { grid-template-columns: 1fr; padding: 36px 26px; } }
+  .offer-panel .eyebrow { color: var(--green); }
+  .offer-panel h2 { color: var(--white); margin-bottom: 20px; }
+  .offer-list { list-style: none; margin-top: 24px; }
+  .offer-list li { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 15.5px; color: #dcdad2; }
+  .offer-list li:last-child { border-bottom: none; }
+  .offer-list svg { flex-shrink: 0; margin-top: 3px; }
+  .price-box { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; padding: 30px; text-align: center; position: relative; overflow: hidden; }
+  .price-box .price { font-family: var(--serif); font-size: 48px; color: var(--white); }
+  .price-box .price-note { font-size: 13px; color: #b8b6ae; margin: 6px 0 22px; }
+  .price-box .btn-primary { width: 100%; justify-content: center; }
+  .lens-motif { position: absolute; top: -40px; right: -60px; opacity: 0.5; pointer-events: none; }
+  .trust-mini { list-style: none; margin-top: 22px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12);
+    display: flex; flex-direction: column; gap: 9px; text-align: left; }
+  .trust-mini li { font-size: 13px; color: #c7c5bd; display: flex; gap: 8px; align-items: center; }
+  .trust-mini svg { flex-shrink: 0; }
 
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 13px 26px;
-  background: var(--green); color: var(--white);
-  border-radius: 10px; text-decoration: none;
-  font-size: 14px; font-weight: 500;
-  transition: background 0.15s, transform 0.1s;
-}
-.btn-primary:hover { background: var(--green-dk); transform: translateY(-1px); }
+  .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 26px; }
+  @media (max-width: 480px) { .feature-grid { grid-template-columns: 1fr; } }
+  .feature-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.13); border-radius: 12px; padding: 18px; }
+  .feature-card .f-icon { margin-bottom: 12px; }
+  .feature-card .f-title { font-weight: 600; color: var(--white); font-size: 15px; margin-bottom: 6px; }
+  .feature-card .f-desc { font-size: 13.5px; color: #c7c5bd; line-height: 1.55; }
 
-.hero-note {
-  font-size: 12px; color: var(--ink-3);
-  margin-top: 10px; width: 100%;
-}
+  .offer-guarantee {
+    max-width: 940px; margin: 28px auto 0; background: var(--green-lt); border: 1px solid var(--green);
+    border-radius: 14px; padding: 26px 30px; display: flex; gap: 16px; align-items: flex-start;
+  }
+  .offer-guarantee svg { flex-shrink: 0; margin-top: 3px; }
+  .offer-guarantee p { font-size: 15.5px; color: var(--ink-2); }
+  .offer-guarantee strong { color: var(--green-dk); }
 
-/* Hero visual */
-.hero-visual {
-  position: relative;
-}
+  /* ── SAMPLE (4) ── */
+  .sample { background: var(--surface); }
+  .sample-grid { display: grid; grid-template-columns: 1.5fr 0.7fr; gap: 48px; align-items: start; margin-top: 44px; text-align: left; }
+  @media (max-width: 780px) { .sample-grid { grid-template-columns: 1fr; } .device-frame { margin: 0 auto; } }
+  .inventory-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+  .inventory-list li { display: flex; gap: 14px; align-items: flex-start; font-size: 17px; color: var(--ink-2); }
+  .inventory-list li svg { flex-shrink: 0; margin-top: 3px; }
+  .inventory-closer {
+    margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--rule);
+    font-family: var(--serif); font-size: 21px; color: var(--ink); line-height: 1.4;
+  }
 
-.phone-frame {
-  width: 260px; margin: 0 auto;
-  background: var(--white);
-  border-radius: 32px;
-  border: 1px solid var(--rule);
-  box-shadow: 0 32px 64px rgba(0,0,0,0.10), 0 8px 16px rgba(0,0,0,0.06);
-  overflow: hidden;
-  position: relative;
-}
+  /* screenshot-style device mockup, deliberately tiny/unreadable — reads as a photographed screen, not real page content */
+  .device-frame {
+    max-width: 230px; background: var(--white); border-radius: 14px; overflow: hidden;
+    box-shadow: 0 20px 44px rgba(15,15,14,0.14), 0 2px 8px rgba(15,15,14,0.08);
+    transform: rotate(1.8deg); border: 1px solid var(--rule);
+  }
+  .device-bar { background: #eae8e0; padding: 7px 10px; display: flex; gap: 5px; align-items: center; }
+  .device-dot { width: 6px; height: 6px; border-radius: 50%; background: #c7c5bd; }
+  .sample-doc {
+    padding: 14px 15px 16px; font-size: 6.6px; line-height: 1.35; color: var(--ink-2);
+  }
+  .sample-doc .sample-flag {
+    display: inline-block; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+    background: var(--green-lt); color: var(--green-dk); border-radius: 999px;
+    font-size: 5.2px; padding: 2px 6px; margin-bottom: 7px;
+  }
+  .sample-doc .doc-title { font-family: var(--serif); font-size: 9.5px; color: var(--ink); margin-bottom: 2px; }
+  .sample-doc .doc-sub { font-size: 5px; color: var(--ink-4); margin-bottom: 9px; }
+  .sample-field { margin-bottom: 8px; }
+  .sample-field .f-label { font-size: 5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 2px; }
+  .sample-field .f-body { font-size: 6.6px; color: var(--ink-2); }
+  .sample-field ul { margin-top: 2px; padding-left: 9px; }
+  .sample-field li { margin-bottom: 1.5px; font-size: 6.6px; }
+  .confidence-row { display: flex; align-items: center; gap: 8px; margin-top: 9px; padding-top: 8px; border-top: 1px solid var(--rule); }
+  .mini-dial { width: 26px; height: 26px; position: relative; flex-shrink: 0; }
+  .mini-dial svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .mini-dial .track { fill: none; stroke: var(--rule); stroke-width: 8; }
+  .mini-dial .fill { fill: none; stroke: var(--green); stroke-width: 8; stroke-linecap: round; stroke-dasharray: 220; stroke-dashoffset: 22; }
+  .mini-dial-num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 6px; color: var(--ink); }
+  .device-caption { text-align: center; font-size: 12px; color: var(--ink-4); margin-top: 14px; }
 
-.phone-header {
-  padding: 16px 18px 12px;
-  border-bottom: 1px solid var(--rule);
-  display: flex; align-items: center; gap: 8px;
-}
-.phone-logo {
-  width: 26px; height: 26px; border-radius: 7px;
-  background: var(--green);
-  display: flex; align-items: center; justify-content: center;
-}
-.phone-logo svg { width: 14px; height: 14px; }
-.phone-title { font-size: 13px; font-weight: 600; color: var(--ink); }
-.phone-sub { font-size: 11px; color: var(--ink-3); margin-left: auto; }
+  /* ── GUARANTEE (5) ── */
+  .guarantee { background: var(--green-lt); text-align: center; }
+  .guarantee-inner { max-width: 640px; margin: 0 auto; }
+  .guarantee svg.seal { margin-bottom: 20px; }
+  .guarantee p { font-size: 17px; margin-top: 16px; }
 
-.phone-progress {
-  padding: 10px 18px 8px;
-  border-bottom: 1px solid #f5f5f0;
-}
-.phone-progress-meta {
-  display: flex; justify-content: space-between;
-  font-size: 10px; color: var(--ink-3); margin-bottom: 5px;
-}
-.phone-bar-track {
-  height: 3px; background: #f0ede8; border-radius: 99px;
-}
-.phone-bar-fill {
-  height: 100%; background: var(--green);
-  border-radius: 99px; width: 60%;
-}
+  /* ── CTA REPEAT (6) ── */
+  .cta-repeat { background: var(--white); text-align: center; }
+  .cta-repeat h2 { margin-bottom: 14px; }
+  .cta-repeat p { max-width: 520px; margin: 0 auto 30px; font-size: 16px; color: var(--ink-3); }
 
-.phone-dots {
-  padding: 8px 18px;
-  border-bottom: 1px solid #f5f5f0;
-  display: flex; align-items: center; justify-content: center; gap: 0;
-}
-.pdot {
-  width: 16px; height: 16px; border-radius: 50%;
-  background: #f0ede8; border: 1px solid #d8d6ce;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 7px; font-weight: 700; color: #a0a09a;
-}
-.pdot.done { background: #e1f5ee; border-color: var(--green); color: var(--green); }
-.pdot.active { background: var(--green); border-color: var(--green); color: #fff; }
-.pcon { height: 1px; background: #e4e2da; flex: 1; max-width: 24px; }
-.pcon.done { background: var(--green); }
+  /* ── DOWNSELL (7) ── */
+  .downsell { background: var(--surface-2); }
+  .downsell-panel {
+    max-width: 640px; margin: 0 auto; background: var(--white); border: 1px solid var(--rule);
+    border-radius: 16px; padding: 40px; text-align: center;
+  }
+  .downsell-panel h3 { margin-bottom: 12px; }
+  .downsell-panel p { font-size: 15px; margin-bottom: 20px; }
+  .downsell-panel ul { list-style: none; text-align: left; max-width: 320px; margin: 0 auto 26px; }
+  .downsell-panel li { font-size: 14.5px; padding: 8px 0; color: var(--ink-2); display: flex; gap: 10px; }
 
-.phone-body {
-  padding: 14px 16px; display: flex; flex-direction: column; gap: 8px;
-  min-height: 200px;
-}
-.chat-agent {
-  background: #f5f5f0; border: 1px solid #e8e6de;
-  border-radius: 4px 10px 10px 10px;
-  padding: 8px 10px; font-size: 11px; color: var(--ink);
-  line-height: 1.5; max-width: 85%; align-self: flex-start;
-}
-.chat-user {
-  background: var(--green); color: #fff;
-  border-radius: 10px 4px 10px 10px;
-  padding: 8px 10px; font-size: 11px;
-  line-height: 1.5; max-width: 75%; align-self: flex-end;
-}
+  /* ── OBJECTIONS (8) ── */
+  .faq { background: var(--white); }
+  .faq-list { max-width: 720px; margin: 44px auto 0; }
+  .faq-item { border-bottom: 1px solid var(--rule); padding: 22px 0; }
+  .faq-item summary { font-weight: 600; color: var(--ink); font-size: 16px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary .chev { transition: transform 0.2s ease; flex-shrink: 0; color: var(--ink-3); }
+  .faq-item[open] summary .chev { transform: rotate(45deg); }
+  .faq-item p { margin-top: 12px; font-size: 15px; color: var(--ink-2); max-width: 640px; }
 
-.phone-action {
-  padding: 10px 14px;
-  border-top: 1px solid var(--rule);
-  background: var(--white);
-}
-.phone-btn {
-  width: 100%; padding: 10px;
-  background: var(--green); color: #fff;
-  border-radius: 8px; font-size: 11px; font-weight: 600;
-  text-align: center;
-}
+  /* ── FOUNDER (9) ── */
+  .founder { background: var(--surface); }
+  .founder-grid { display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: start; }
+  @media (max-width: 720px) { .founder-grid { grid-template-columns: 1fr; } }
+  .founder-photo { width: 100%; aspect-ratio: 1; border-radius: 16px; background: var(--surface-2); border: 1px solid var(--rule);
+    object-fit: cover; display: block; }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .badge { font-size: 12px; background: var(--white); border: 1px solid var(--rule); color: var(--ink-2); padding: 6px 12px; border-radius: 999px; }
+  .founder-copy p { font-size: 16px; margin-bottom: 18px; max-width: 600px; }
+  .founder-copy p.pivot { font-family: var(--serif); font-size: 24px; color: var(--ink); margin: 26px 0; }
 
-/* Floating stat cards */
-.stat-card {
-  position: absolute;
-  background: var(--white);
-  border: 1px solid var(--rule);
-  border-radius: 12px;
-  padding: 10px 14px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-}
-.stat-card.left {
-  left: -20px; bottom: 80px;
-}
-.stat-card.right {
-  right: -20px; top: 80px;
-}
-.stat-num { font-family: var(--serif); font-size: 22px; color: var(--green); }
-.stat-label { font-size: 10px; color: var(--ink-3); white-space: nowrap; margin-top: 2px; }
+  /* ── COMPARE (11) ── */
+  .compare { background: var(--surface-2); }
+  .compare-table-wrap { margin-top: 40px; overflow-x: auto; }
+  table.compare-table { width: 100%; border-collapse: collapse; min-width: 560px; background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 1px 2px rgba(15,15,14,0.04); }
+  table.compare-table th, table.compare-table td { padding: 14px 16px; text-align: center; border-bottom: 1px solid var(--rule); font-size: 14.5px; }
+  table.compare-table th { font-family: var(--sans); font-weight: 600; font-size: 13px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.05em; background: var(--surface); }
+  table.compare-table td:first-child, table.compare-table th:first-child { text-align: left; font-weight: 600; color: var(--ink); background: var(--surface); }
+  table.compare-table tr:last-child td { border-bottom: none; }
+  table.compare-table .col-premium { background: var(--green-lt); }
+  table.compare-table th.col-premium { background: var(--green); color: var(--white); position: relative; }
+  table.compare-table .tier-price { font-family: var(--serif); font-size: 20px; color: var(--ink); }
+  table.compare-table .check { color: var(--green-dk); }
+  table.compare-table .dash { color: var(--ink-4); }
+  .ribbon { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 2px; }
+  table.compare-table th.col-premium .ribbon { color: #d6f3e6; }
 
-/* ── PROBLEM ── */
-.problem {
-  background: var(--ink);
-  padding: 80px 5vw;
-}
-.problem-inner {
-  max-width: 900px; margin: 0 auto; text-align: center;
-}
-.problem-eyebrow {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--green);
-  margin-bottom: 20px;
-}
-.problem-headline {
-  font-family: var(--serif);
-  font-size: clamp(28px, 3.5vw, 44px);
-  color: var(--white); line-height: 1.2; margin-bottom: 20px;
-}
-.problem-body {
-  font-size: 17px; color: rgba(255,255,255,0.65);
-  line-height: 1.7; max-width: 640px; margin: 0 auto 48px;
-}
-.stats-row {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px; background: rgba(255,255,255,0.08);
-  border-radius: 12px; overflow: hidden;
-}
-.stat-block {
-  padding: 32px 24px; background: rgba(255,255,255,0.04);
-  text-align: center;
-}
-.stat-block-num {
-  font-family: var(--serif); font-size: 44px;
-  color: var(--green); line-height: 1; margin-bottom: 8px;
-}
-.stat-block-label {
-  font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5;
-}
+  /* ── EXIT CAPTURE (10) ── */
+  .exit { background: var(--ink); color: var(--surface); text-align: center; }
+  .exit h2 { color: var(--white); margin-bottom: 12px; }
+  .exit p { color: #c7c5bd; max-width: 480px; margin: 0 auto 30px; }
+  .exit-form { display: flex; gap: 10px; max-width: 420px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+  .exit-form input[type=email] {
+    flex: 1; min-width: 220px; padding: 14px 16px; border-radius: 8px; border: 1px solid #3a3a38;
+    background: #1c1c1a; color: var(--white); font-family: var(--sans); font-size: 15px;
+  }
+  .exit-form input[type=email]::placeholder { color: #8a887f; }
+  .exit-form input[type=email]:focus-visible { outline: 2px solid var(--green); }
 
-/* ── HOW IT WORKS ── */
-.how {
-  padding: 100px 5vw;
-  max-width: 1100px; margin: 0 auto;
-}
-.section-eyebrow {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--green);
-  margin-bottom: 14px;
-}
-.section-headline {
-  font-family: var(--serif);
-  font-size: clamp(28px, 3vw, 40px);
-  color: var(--ink); line-height: 1.2; margin-bottom: 16px;
-}
-.section-body {
-  font-size: 16px; color: var(--ink-3);
-  line-height: 1.7; max-width: 560px; margin-bottom: 56px;
-}
-
-.steps {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
-}
-.step {
-  padding: 32px; background: var(--surface);
-  border: 1px solid var(--rule); border-radius: 16px;
-  position: relative;
-}
-.step-num {
-  font-family: var(--serif); font-size: 40px;
-  color: var(--green-lt); line-height: 1;
-  margin-bottom: 20px;
-}
-.step-title {
-  font-size: 16px; font-weight: 600; color: var(--ink);
-  margin-bottom: 10px; letter-spacing: -0.01em;
-}
-.step-body {
-  font-size: 14px; color: var(--ink-3); line-height: 1.65;
-}
-.step-connector {
-  position: absolute; right: -17px; top: 50%;
-  transform: translateY(-50%);
-  width: 34px; height: 2px; background: var(--rule);
-  display: flex; align-items: center; justify-content: center;
-}
-.step-connector::after {
-  content: '→'; color: var(--ink-3); font-size: 14px;
-  position: absolute; right: -4px;
-  background: var(--white); padding: 0 2px;
-}
-
-/* ── FOR PRACTICES ── */
-.practices {
-  background: var(--surface);
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  padding: 100px 5vw;
-}
-.practices-inner {
-  max-width: 1100px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-  align-items: center;
-}
-.benefits {
-  display: flex; flex-direction: column; gap: 24px; margin-top: 32px;
-}
-.benefit {
-  display: flex; gap: 16px; align-items: flex-start;
-}
-.benefit-icon {
-  width: 36px; height: 36px; border-radius: 10px;
-  background: var(--green-lt); flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-}
-.benefit-icon svg { width: 18px; height: 18px; }
-.benefit-title {
-  font-size: 15px; font-weight: 600; color: var(--ink);
-  margin-bottom: 4px; letter-spacing: -0.01em;
-}
-.benefit-body { font-size: 13px; color: var(--ink-3); line-height: 1.6; }
-
-.practices-quote {
-  background: var(--white); border: 1px solid var(--rule);
-  border-radius: 16px; padding: 40px;
-}
-.quote-text {
-  font-family: var(--serif); font-size: 22px;
-  color: var(--ink); line-height: 1.5; margin-bottom: 24px;
-  font-style: italic;
-}
-.quote-bar {
-  width: 40px; height: 2px; background: var(--green); margin-bottom: 16px;
-}
-.quote-attr { font-size: 13px; color: var(--ink-3); }
-
-/* ── CTA ── */
-.cta-section {
-  padding: 100px 5vw;
-  text-align: center;
-}
-.cta-inner { max-width: 600px; margin: 0 auto; }
-.cta-headline {
-  font-family: var(--serif);
-  font-size: clamp(28px, 3.5vw, 42px);
-  color: var(--ink); line-height: 1.2; margin-bottom: 16px;
-}
-.cta-body {
-  font-size: 16px; color: var(--ink-3);
-  line-height: 1.7; margin-bottom: 36px;
-}
-
-.cta-form-full { display:flex; flex-direction:column; gap:0; margin-bottom:16px; }
-.form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
-.form-group { display:flex; flex-direction:column; gap:5px; }
-.form-label { font-size:12px; font-weight:500; color:var(--ink-2); }
-.cta-select { appearance:none; cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b6b68' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; padding-right:32px; }
-.cta-textarea { resize:vertical; min-height:80px; line-height:1.5; }
-@media(max-width:600px){ .form-row{ grid-template-columns:1fr; } }
-.cta-input {
-  flex: 1; padding: 13px 16px;
-  border: 1px solid var(--rule); border-radius: 10px;
-  font-size: 14px; font-family: var(--sans);
-  color: var(--ink); outline: none;
-  transition: border-color 0.15s;
-}
-.cta-input:focus { border-color: var(--green); }
-.cta-input::placeholder { color: var(--ink-3); }
-.cta-submit {
-  padding: 13px 22px;
-  background: var(--green); color: var(--white);
-  border: none; border-radius: 10px;
-  font-size: 14px; font-weight: 500; font-family: var(--sans);
-  cursor: pointer; transition: background 0.15s;
-  white-space: nowrap;
-}
-.cta-submit:hover { background: var(--green-dk); }
-.cta-note { font-size: 12px; color: var(--ink-3); margin-top: 12px; }
-
-/* ── FOOTER ── */
-footer {
-  border-top: 1px solid var(--rule);
-  padding: 28px 5vw;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.footer-logo {
-  display: flex; align-items: center; gap: 8px;
-  text-decoration: none;
-}
-.footer-name { font-size: 14px; font-weight: 600; color: var(--ink); }
-.footer-copy { font-size: 12px; color: var(--ink-3); }
-.footer-links { display: flex; gap: 20px; }
-.footer-links a { font-size: 12.5px; color: var(--ink-3); text-decoration: none; }
-.footer-links a:hover { color: var(--green-dk); }
-
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-  .hero { grid-template-columns: 1fr; gap: 48px; padding: 100px 5vw 60px; }
-  .hero-visual { display: none; }
-  .stats-row { grid-template-columns: 1fr; }
-  .steps { grid-template-columns: 1fr; }
-  .step-connector { display: none; }
-  .practices-inner { grid-template-columns: 1fr; gap: 48px; }
-  .cta-form { flex-direction: column; }
-  footer { flex-direction: column; gap: 12px; text-align: center; }
-  .footer-links { justify-content: center; flex-wrap: wrap; }
-}
+  footer.site-footer { background: var(--ink); color: #8a887f; padding: 28px 0; text-align: center; font-size: 12.5px; border-top: 1px solid #2a2a28; }
+  footer.site-footer a { color: #b8b6ae; text-decoration: underline; }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="/" class="nav-logo">
-    <div class="nav-mark">
-      <svg viewBox="0 0 16 16" fill="none">
-        <circle cx="8" cy="8" r="3" fill="white"/>
-        <path d="M8 2V4M8 12V14M2 8H4M12 8H14" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-    </div>
-    <span class="nav-name">ClarityIQ</span>
-  </a>
-  <a href="#early-access" class="nav-cta">Request early access</a>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <p class="hero-eyebrow">For ophthalmology practices</p>
-    <h1 class="hero-headline">Patients don't choose premium IOLs because they don't <em>understand</em> them.</h1>
-    <p class="hero-body">ClarityIQ closes the patient understanding gap before the surgical consultation. Patients arrive knowing their options — surgeons confirm a preference, not build one from scratch.</p>
-    <div class="hero-actions">
-      <a href="#early-access" class="btn-primary">Request early access →</a>
-      <p class="hero-note">For ophthalmology practices only. No commitment.</p>
-    </div>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="logo">ClarityIQ</div>
+    <a href="#offer" class="btn btn-secondary btn-small">Begin Your Session</a>
   </div>
+</header>
 
-  <div class="hero-visual">
-    <div class="stat-card right">
-      <div class="stat-num">9 in 10</div>
-      <div class="stat-label">trifocal patients glasses-free</div>
+<!-- 1. HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>You Don't Get a Do-Over on This Decision</h1>
+      <p class="lead">Once your natural lens is replaced, that choice is permanent — no six-month exchange like a bad pair of glasses. Most patients hear terms like "toric" and "multifocal" for the first time in a rushed fifteen-minute consult, then have to decide. ClarityIQ gives you a private, guided conversation first — on your own time, at your own pace — so you walk into that appointment already understanding what you're choosing between.</p>
+      <a href="#offer" class="btn btn-primary">Begin Your IOL Clarity Session — $499</a>
+      <div class="trust-line">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+        Built by a board-certified cataract surgeon with no financial stake in which lens you choose. No audio or transcript is ever stored.
+      </div>
     </div>
-
-    <div class="phone-frame">
-      <div class="phone-header">
-        <div class="phone-logo">
-          <svg viewBox="0 0 16 16" fill="none">
-            <circle cx="8" cy="8" r="3" fill="white"/>
-            <path d="M8 2V4M8 12V14M2 8H4M12 8H14" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
+    <div class="dial-wrap">
+      <div class="dial">
+        <svg viewBox="0 0 220 220">
+          <circle class="dial-track" cx="110" cy="110" r="100"/>
+          <circle class="dial-fill" cx="110" cy="110" r="100"/>
+        </svg>
+        <div class="dial-center">
+          <div class="dial-num">9/10</div>
+          <div class="dial-label">confidence after one session</div>
         </div>
-        <span class="phone-title">ClarityIQ</span>
-        <span class="phone-sub">Lens education</span>
       </div>
-      <div class="phone-progress">
-        <div class="phone-progress-meta"><span>Lens Options</span><span>60%</span></div>
-        <div class="phone-bar-track"><div class="phone-bar-fill"></div></div>
-      </div>
-      <div class="phone-dots">
-        <div class="pdot done">✓</div><div class="pcon done"></div>
-        <div class="pdot done">✓</div><div class="pcon done"></div>
-        <div class="pdot done">✓</div><div class="pcon done"></div>
-        <div class="pdot active">4</div><div class="pcon"></div>
-        <div class="pdot">5</div><div class="pcon"></div>
-        <div class="pdot">6</div>
-      </div>
-      <div class="phone-body">
-        <div class="chat-agent">Based on what you've shared, let's talk about your lens options. The trifocal lens is designed to give you clear vision at all distances...</div>
-        <div class="chat-user">Will I really not need glasses?</div>
-        <div class="chat-agent">In clinical studies, about 9 in 10 patients with this lens no longer need glasses for any activity. There is a short adaptation period worth knowing about...</div>
-      </div>
-      <div class="phone-action">
-        <div class="phone-btn">📋 Generate my summary</div>
-      </div>
-    </div>
-
-    <div class="stat-card left">
-      <div class="stat-num">&lt;15%</div>
-      <div class="stat-label">avg. premium adoption rate</div>
+      <div class="dial-caption">The average patient starts at 3/10 confidence in understanding their options. This is where they end.</div>
     </div>
   </div>
 </section>
 
-<!-- PROBLEM -->
+<!-- 2. PROBLEM -->
 <section class="problem">
-  <div class="problem-inner">
-    <p class="problem-eyebrow">The understanding gap</p>
-    <h2 class="problem-headline">Eligible patients default to the standard lens — not by choice, but by default.</h2>
-    <p class="problem-body">Most cataract patients have never been told that restoring full range vision without glasses is an option. By the time they reach the consultation, they've already anchored on the familiar. The surgeon's job becomes convincing instead of confirming.</p>
-    <div class="stats-row">
-      <div class="stat-block">
-        <div class="stat-block-num">85%</div>
-        <div class="stat-block-label">of eligible patients choose the standard lens</div>
+  <div class="wrap problem-inner">
+    <span class="eyebrow">The Real Problem</span>
+    <h2>It Isn't the Surgery. It's the Fifteen Minutes Before It.</h2>
+    <p>Cataract surgery itself is one of the most common, most refined procedures in medicine.</p>
+    <p>What trips people up is the lens decision that comes with it — and it's permanent. Here's what that can look like:</p>
+    <ul class="pain-list">
+      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>More nighttime glare and halos than you expected</li>
+      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>Still reaching for reading glasses you were told you might not need</li>
+      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>Never knowing which questions to ask, because you'd never heard the terms before</li>
+    </ul>
+    <p>That's usually nobody's fault. It's a math problem.</p>
+    <p>Fifteen minutes is not enough time to absorb words like "toric" and "extended depth of focus" for the first time — and make a decision you'll live with for the rest of your life.</p>
+    <p class="pivot">That's the gap ClarityIQ closes — not by telling you what to choose, but by making sure you understand what you're choosing between, before that conversation happens.</p>
+  </div>
+</section>
+
+<!-- 2.5 VALUE -->
+<section class="value">
+  <div class="wrap">
+    <span class="eyebrow">The ClarityIQ Difference</span>
+    <h2>What Changes the Moment You Begin</h2>
+    <div class="value-grid">
+      <div class="value-card">
+        <span class="num">No More Midnight Googling</span>
+        <h3>Every scattered search, replaced by one real conversation</h3>
+        <p>No more sorting through contradictory forum threads at 11pm, wondering what you're missing. One guided conversation, built around your specific goals — not a generic search result — leaves you with real answers instead of more open tabs.</p>
       </div>
-      <div class="stat-block">
-        <div class="stat-block-num">10 min</div>
-        <div class="stat-block-label">average surgical consultation time</div>
-      </div>
-      <div class="stat-block">
-        <div class="stat-block-num">$0</div>
-        <div class="stat-block-label">additional staff cost to educate with ClarityIQ</div>
+      <div class="value-card">
+        <span class="num">No Stake in Which Lens You Pick</span>
+        <h3>A straight answer, with no reason to steer you</h3>
+        <p>No commission. No bonus. No quota. A board-certified surgeon with no financial stake in which lens you choose — so what you hear is built to help you understand, not to move you toward any particular option.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="how" id="how">
-  <p class="section-eyebrow">How it works</p>
-  <h2 class="section-headline">Education before the consultation. Clarity at the chair.</h2>
-  <p class="section-body">ClarityIQ is a voice-first patient education platform. Patients complete a personalized conversation before their appointment — arriving with a lens preference their surgeon can confirm.</p>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-title">Patient receives a link</div>
-      <div class="step-body">Before their surgical consultation, the patient receives a text or email with their ClarityIQ link. No app download. No login.</div>
-      <div class="step-connector"></div>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-title">Guided voice conversation</div>
-      <div class="step-body">ClarityIQ asks about their lifestyle and vision goals, educates them on their options, and answers questions — in plain language, at their pace.</div>
-      <div class="step-connector"></div>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-title">Summary to the surgeon</div>
-      <div class="step-body">The patient arrives with a lens preference summary. The surgeon reviews an informed patient — not an uninformed one.</div>
+<section class="how">
+  <div class="wrap how-inner">
+    <span class="eyebrow">How ClarityIQ Works</span>
+    <h2>Built From a Curated Library, Not the Open Internet</h2>
+    <p>ClarityIQ isn't a general chatbot improvising its way through your questions. Every fact it can share — every lens option, every consideration — comes from a single library built and personally reviewed against FDA documentation and clinical sources, not the open internet.</p>
+    <p>That's what keeps the conversation accurate instead of improvised: it can only tell you what's actually in that library. Nothing about your case is guessed at.</p>
+    <div class="how-callout">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      <p>One of the only education experiences built entirely around IOL decisions — not a general assistant repurposed for healthcare, and not left to guess when a question falls outside what's known.</p>
     </div>
   </div>
 </section>
 
-<!-- FOR PRACTICES -->
-<section class="practices">
-  <div class="practices-inner">
-    <div>
-      <p class="section-eyebrow">For your practice</p>
-      <h2 class="section-headline">Shift the surgeon's role from convincing to confirming.</h2>
-      <div class="benefits">
-        <div class="benefit">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="1.8" stroke-linecap="round">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-            </svg>
+<!-- 3. OFFER -->
+<section class="offer" id="offer">
+  <div class="wrap">
+    <span class="eyebrow">The IOL Clarity Session</span>
+    <div class="offer-panel">
+      <div>
+        <h2>One Guided Conversation. Everything You Need to Walk In Ready.</h2>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="f-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <div class="f-title">A Conversation Built Around You</div>
+            <div class="f-desc">Covers the full range of available lens options, guided by your actual goals — not a script.</div>
           </div>
-          <div>
-            <div class="benefit-title">Higher premium IOL adoption</div>
-            <div class="benefit-body">Patients who understand their options are more likely to choose the option that fits their life — including premium lenses.</div>
+          <div class="feature-card">
+            <div class="f-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 15h6M9 11h6"/></svg></div>
+            <div class="f-title">Your Personalized Summary</div>
+            <div class="f-desc">A clear, printable summary you bring straight to your consult.</div>
           </div>
-        </div>
-        <div class="benefit">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="1.8" stroke-linecap="round">
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12 6 12 12 16 14"/>
-            </svg>
+          <div class="feature-card">
+            <div class="f-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+            <div class="f-title">The Full ClarityIQ Library</div>
+            <div class="f-desc">The IOL Comparison Chart, the Options framework guide, and the Pre-Consult Prep guide — yours to keep.</div>
           </div>
-          <div>
-            <div class="benefit-title">Shorter, more effective consultations</div>
-            <div class="benefit-body">Surgeons spend less time on basic education and more time on clinical decision-making with an already-informed patient.</div>
+          <div class="feature-card">
+            <div class="f-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <div class="f-title">A Full 12 Months of Access</div>
+            <div class="f-desc">Revisit your summary anytime — or repeat the full conversation if your goals or questions change, at no extra cost.</div>
           </div>
-        </div>
-        <div class="benefit">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="1.8" stroke-linecap="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
+          <div class="feature-card">
+            <div class="f-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 016.6-8.6 8.5 8.5 0 015.9 5.9A22 22 0 0112 15z"/></svg></div>
+            <div class="f-title">Every Future Upgrade, Included</div>
+            <div class="f-desc">As ClarityIQ grows and adds new features, your session grows with it — at no extra cost.</div>
           </div>
-          <div>
-            <div class="benefit-title">No additional staff required</div>
-            <div class="benefit-body">ClarityIQ runs before the patient arrives. Your team does nothing differently — except see more prepared patients.</div>
+          <div class="feature-card">
+            <div class="f-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><path d="M12 2l2.5 2.5L18 4l.5 3.5L22 9l-2 3 2 3-3.5 1.5L18 20l-3.5-.5L12 22l-2.5-2.5L6 20l-.5-3.5L2 15l2-3-2-3 3.5-1.5L6 4l3.5.5L12 2z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <div class="f-title">Backed by a Full Guarantee</div>
+            <div class="f-desc">If it doesn't leave you clear and confident, you get every dollar back.</div>
           </div>
         </div>
       </div>
+      <div class="price-box">
+        <svg class="lens-motif" width="180" height="180" viewBox="0 0 180 180" fill="none">
+          <circle cx="90" cy="90" r="88" stroke="#1D9E75" stroke-width="1.5"/>
+          <circle cx="90" cy="90" r="60" stroke="#1D9E75" stroke-width="1.5"/>
+          <circle cx="90" cy="90" r="32" stroke="#1D9E75" stroke-width="1.5"/>
+        </svg>
+        <div class="price">$499</div>
+        <div class="price-note">one-time · no subscription</div>
+        <!-- TODO(blocked): Stripe Payment Link for "IOL Clarity Session" $499 not yet created — swap href once Martin sends the URL -->
+        <a href="#" class="btn btn-primary">Begin Your Session</a>
+        <ul class="trust-mini">
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>12 months of access, included</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>30-day money-back guarantee</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Built and curated by a practicing surgeon</li>
+        </ul>
+      </div>
     </div>
-
-    <div class="practices-quote">
-      <div class="quote-bar"></div>
-      <p class="quote-text">"The goal isn't to sell a lens. The goal is to make sure the patient understands what they're choosing — and what they're choosing not to pursue."</p>
-      <p class="quote-attr">ClarityIQ design principle</p>
+    <div class="offer-guarantee">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="1.8"><path d="M12 2l2.5 2.5L18 4l.5 3.5L22 9l-2 3 2 3-3.5 1.5L18 20l-3.5-.5L12 22l-2.5-2.5L6 20l-.5-3.5L2 15l2-3-2-3 3.5-1.5L6 4l3.5.5L12 2z"/><path d="M9 12l2 2 4-4"/></svg>
+      <p><strong>We're so confident this will leave you clear and confident, not more confused, that we guarantee it!</strong> Complete the full IOL Clarity Session — if you don't walk away with a clear, confident summary to bring to your surgeon within your first 30 days, you get every dollar back. We'll ask a few questions about what didn't work so we can keep improving, but it won't hold up your refund.</p>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section" id="early-access">
-  <div class="cta-inner" style="max-width:520px">
-    <h2 class="cta-headline">Request early access for your practice.</h2>
-    <p class="cta-body">We're working with a small number of ophthalmology practices for the first trials. Tell us about your practice and we'll reach out to discuss fit.</p>
-    <form class="cta-form-full" action="https://formspree.io/f/xaqgkwwq" method="POST">
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Full name *</label>
-          <input type="text" name="name" class="cta-input" placeholder="Dr. Jane Smith" required>
+<!-- 4. SAMPLE -->
+<section class="sample">
+  <div class="wrap" style="text-align:center;">
+    <span class="eyebrow">Everything Covered in Your Session</span>
+    <h2>Here's What You Walk Away With</h2>
+    <div class="sample-grid">
+      <div>
+        <ul class="inventory-list">
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>A full walkthrough of your vision goals — what matters most to your day-to-day life</li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>Education on cataract surgery itself — what to expect before, during, and after</li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>A complete review of every IOL option available to you</li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>A guided walk-through of your personal pathway among those options</li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>As much time as you need to ask questions and go deeper on what matters to you</li>
+        </ul>
+        <p class="inventory-closer">And you walk away with a personalized summary of your goals — plus customized questions to bring to your surgeon.</p>
+      </div>
+      <div>
+        <div class="device-frame">
+          <div class="device-bar">
+            <span class="device-dot"></span><span class="device-dot"></span><span class="device-dot"></span>
+          </div>
+          <div class="sample-doc">
+            <span class="sample-flag">Sample — for illustration only</span>
+            <h3 class="doc-title">ClarityIQ Personal Summary</h3>
+            <div class="doc-sub">Prepared for: Sample Patient · Ref #CIQ-08842</div>
+
+            <div class="sample-field">
+              <div class="f-label">What matters most to you</div>
+              <div class="f-body">Reading comfortably without glasses, gardening in bright sun without glare.</div>
+            </div>
+
+            <div class="sample-field">
+              <div class="f-label">Lens categories reviewed</div>
+              <div class="f-body">Monofocal, toric, multifocal, EDOF, light adjustable</div>
+            </div>
+
+            <div class="sample-field">
+              <div class="f-label">Topics covered</div>
+              <div class="f-body">Astigmatism, vision tradeoffs, glare &amp; halos, adjustment period, cost basics</div>
+            </div>
+
+            <div class="sample-field">
+              <div class="f-label">Questions for your surgeon</div>
+              <ul>
+                <li>How does my astigmatism affect my options?</li>
+                <li>What's my realistic adjustment period?</li>
+              </ul>
+            </div>
+
+            <div class="confidence-row">
+              <div class="mini-dial">
+                <svg viewBox="0 0 84 84">
+                  <circle class="track" cx="42" cy="42" r="35"/>
+                  <circle class="fill" cx="42" cy="42" r="35"/>
+                </svg>
+                <div class="mini-dial-num">9/10</div>
+              </div>
+              <div>
+                <div class="f-label" style="margin-bottom:2px;">Confidence shift</div>
+                <div class="f-body">3/10 → 9/10</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label class="form-label">Practice name *</label>
-          <input type="text" name="practice" class="cta-input" placeholder="Smith Eye Center" required>
+        <div class="device-caption">What your summary looks like</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. GUARANTEE -->
+<section class="guarantee">
+  <div class="wrap guarantee-inner">
+    <svg class="seal" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="1.8"><path d="M12 2l2.5 2.5L18 4l.5 3.5L22 9l-2 3 2 3-3.5 1.5L18 20l-3.5-.5L12 22l-2.5-2.5L6 20l-.5-3.5L2 15l2-3-2-3 3.5-1.5L6 4l3.5.5L12 2z"/><path d="M9 12l2 2 4-4"/></svg>
+    <h2>The IOL Clarity Session Guarantee</h2>
+    <p>If you complete the full IOL Clarity Session and don't walk away with a clear, confident summary to bring to your surgeon, we'll refund you completely within the first 30 days. We'll ask a few questions about what didn't work — that helps us keep improving — but it won't hold up your refund. This is education meant to be genuinely useful, not a purchase you have to hope pays off.</p>
+  </div>
+</section>
+
+<!-- 6. CTA REPEAT -->
+<section class="cta-repeat">
+  <div class="wrap">
+    <h2>Ready to Walk Into Your Consult With Clarity?</h2>
+    <p>If you already have a consult on the calendar, the earlier you do this, the more time you have to actually use what you learn — sit with it, think of follow-up questions, feel settled before you're in the chair. There's no upside to waiting until the day of.</p>
+    <a href="#offer" class="btn btn-primary">Begin Your IOL Clarity Session — $499</a>
+  </div>
+</section>
+
+<!-- 7. DOWNSELL -->
+<section class="downsell">
+  <div class="wrap">
+    <div class="downsell-panel">
+      <h3>Want to Start Smaller?</h3>
+      <p>If you're only weighing one type of lens, or just want to try the conversation format first, the IOL Clarity Starter covers a single lens category in one focused session, with your own personalized summary included.</p>
+      <ul>
+        <li>— One guided conversation on a single lens category</li>
+        <li>— Your personalized summary</li>
+      </ul>
+      <!-- TODO(blocked): Stripe Payment Link for "IOL Clarity Starter" $99 not yet created — swap href once Martin sends the URL -->
+      <a href="#" class="btn btn-secondary">Try the IOL Clarity Starter — $99</a>
+    </div>
+  </div>
+</section>
+
+<!-- 8. OBJECTIONS -->
+<section class="faq">
+  <div class="wrap" style="text-align:center;">
+    <span class="eyebrow">Common Questions</span>
+    <h2>Before You Begin</h2>
+    <div class="faq-list" style="text-align:left;">
+      <details class="faq-item">
+        <summary>Is this medical advice? <span class="chev">+</span></summary>
+        <p>No. ClarityIQ is an educational conversation, not a diagnosis or treatment recommendation. Nothing here replaces your surgeon's evaluation of your eyes and your medical history — this is meant to prepare you for that conversation, not replace it.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Will it tell me which lens to get? <span class="chev">+</span></summary>
+        <p>No — and that's intentional. We don't have access to your eye exam, your medical history, or the clinical details that go into that decision. What we can do is make sure you understand your options clearly enough that the conversation with your surgeon is easier and more productive.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is this actually AI? <span class="chev">+</span></summary>
+        <p>Yes. You'll be speaking with a guided AI conversation, not a human. We tell you this clearly before you begin, because we think that's the honest way to do it — not something to bury in fine print.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What happens to what I say? <span class="chev">+</span></summary>
+        <p>Nothing is recorded or stored. No audio, no transcript. Your summary is generated and lives on your device — you choose whether and how to share it.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What if I'm not satisfied? <span class="chev">+</span></summary>
+        <p>The IOL Clarity Session is backed by a guarantee: if you complete the full program and don't come away with a clear, confident summary, you'll be refunded in full within your first 30 days. We'll ask a few questions about what didn't work so we can improve, but that won't hold up your refund. The IOL Clarity Starter doesn't currently include this guarantee.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- 9. FOUNDER -->
+<section class="founder">
+  <div class="wrap">
+    <span class="eyebrow">Who's Behind This</span>
+    <div class="founder-grid">
+      <div>
+        <img class="founder-photo" src="founder-photo.jpg" alt="Dr. Martin de la Presa">
+        <div class="badges">
+          <span class="badge">Board-certified ophthalmic surgeon</span>
+          <span class="badge">Fellowship-trained — cornea, cataract &amp; refractive surgery</span>
+          <span class="badge">12,000+ cataract procedures performed</span>
+          <span class="badge">Primary Investigator, active IOL clinical research</span>
         </div>
       </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Your role *</label>
-          <select name="role" class="cta-input cta-select" required>
-            <option value="" disabled selected>Select your role</option>
-            <option value="surgeon">Surgeon</option>
-            <option value="administrator">Practice Administrator</option>
-            <option value="owner">Practice Owner</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Email *</label>
-          <input type="email" name="email" class="cta-input" placeholder="your@practice.com" required>
-        </div>
+      <div class="founder-copy">
+        <h3 style="margin-bottom:20px;">"You shouldn't have to make this decision with fifteen minutes and a list of unfamiliar words."</h3>
+        <p>Choosing your lens isn't like choosing glasses. Once it's in, it's in — for the rest of your life. Most people are asked to make that call in a rushed fifteen-minute window at their surgical consult, often hearing about their options for the very first time.</p>
+        <p>I'm Dr. Martin de la Presa, a board-certified, fellowship-trained cornea, cataract, and refractive surgeon who has performed more than 12,000 cataract procedures. Over those years, I kept watching the same thing happen: a patient, dilated and a little anxious, hearing words like "trifocal" or "toric" for the first time — and being expected to weigh a permanent decision in that same moment.</p>
+        <p class="pivot">I built ClarityIQ so that moment doesn't have to be the first time.</p>
+        <p>Today, I'm also a Primary Investigator on active clinical research into next-generation lens technology — so what you'll hear here reflects what's actually being studied and refined right now, not something written once and left on a shelf.</p>
+        <p>You shouldn't have to make this decision with fifteen minutes and a list of unfamiliar words. Now you don't have to.</p>
       </div>
-      <div class="form-group" style="margin-bottom:16px">
-        <label class="form-label">What interests you about ClarityIQ?</label>
-        <textarea name="message" class="cta-input cta-textarea" placeholder="Tell us about your practice and what you're hoping to achieve..." rows="3"></textarea>
-      </div>
-      <button type="submit" class="cta-submit" style="width:100%;padding:14px">Request early access</button>
+    </div>
+  </div>
+</section>
+
+<!-- 11. COMPARE -->
+<section class="compare">
+  <div class="wrap" style="text-align:center;">
+    <span class="eyebrow">Compare Your Options</span>
+    <h2>Everything, Side by Side</h2>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Free Guides</th>
+            <th>IOL Clarity Starter</th>
+            <th class="col-premium"><span class="ribbon">Recommended</span>IOL Clarity Session</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Personalized questionnaire</td>
+            <td><span class="dash">—</span></td>
+            <td><span class="check">✓</span></td>
+            <td class="col-premium"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>IOL library &amp; guides</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+            <td class="col-premium"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Guided IOL pathway</td>
+            <td>PDF only</td>
+            <td>1 lens category</td>
+            <td class="col-premium"><span class="check">✓</span> All categories</td>
+          </tr>
+          <tr>
+            <td>Live AI conversation</td>
+            <td><span class="dash">—</span></td>
+            <td>1 session</td>
+            <td class="col-premium"><span class="check">✓</span> Unlimited, 12 mo.</td>
+          </tr>
+          <tr>
+            <td>Personalized summary</td>
+            <td><span class="dash">—</span></td>
+            <td><span class="check">✓</span></td>
+            <td class="col-premium"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Future upgrades included</td>
+            <td><span class="dash">—</span></td>
+            <td><span class="dash">—</span></td>
+            <td class="col-premium"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Money-back guarantee</td>
+            <td><span class="dash">—</span></td>
+            <td><span class="dash">—</span></td>
+            <td class="col-premium"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Price</td>
+            <td class="tier-price">$0</td>
+            <td class="tier-price">$99</td>
+            <td class="col-premium tier-price">$499</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 10. EXIT CAPTURE -->
+<section class="exit">
+  <div class="wrap">
+    <h2>Not Ready Yet? Start With the Free Guides.</h2>
+    <p>Get the IOL Comparison Chart, the Options framework guide, and the Pre-Consult Prep guide sent straight to your email — no cost, no obligation.</p>
+    <form class="exit-form" action="https://formspree.io/f/mlgqlorn" method="POST">
+      <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
+      <button type="submit" class="btn btn-primary">Send Me the Free Guides</button>
     </form>
-    <p class="cta-note">For ophthalmology practices only. No commitment. No pitch. Just a conversation.</p>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <a href="/" class="footer-logo">
-    <div class="nav-mark">
-      <svg viewBox="0 0 16 16" fill="none">
-        <circle cx="8" cy="8" r="3" fill="white"/>
-        <path d="M8 2V4M8 12V14M2 8H4M12 8H14" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-    </div>
-    <span class="footer-name">ClarityIQ</span>
-  </a>
-  <div class="footer-links">
-    <a href="/terms.html">Terms of Service</a>
-    <a href="/privacy.html">Privacy Policy</a>
+<footer class="site-footer">
+  <div class="wrap">
+    ClarityIQ · DLP Ventures, LLC · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html#refund-policy">Refund Policy</a>
   </div>
-  <p class="footer-copy">© 2026 ClarityIQ. All rights reserved.</p>
 </footer>
-
-<script>
-// Forms powered by Formspree — replace xaqgkwwq with your actual Formspree form ID
-</script>
 
 </body>
 </html>
