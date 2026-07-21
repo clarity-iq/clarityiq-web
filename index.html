@@ -302,7 +302,7 @@
     <div>
       <h1>You Don't Get a Do-Over on This Decision</h1>
       <p class="lead">Once your natural lens is replaced, that choice is permanent — no six-month exchange like a bad pair of glasses. Most patients hear terms like "toric" and "multifocal" for the first time in a rushed fifteen-minute consult, then have to decide. ClarityIQ gives you a private, guided conversation first — on your own time, at your own pace — so you walk into that appointment already understanding what you're choosing between.</p>
-      <a href="#offer" class="btn btn-primary">Begin Your IOL Clarity Session — $499</a>
+      <a href="#offer" class="btn btn-primary" data-checkout-tier="session">Begin Your IOL Clarity Session — $499</a>
       <div class="trust-line">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
         Built by a board-certified cataract surgeon with no financial stake in which lens you choose. No audio or transcript is ever stored.
@@ -424,8 +424,7 @@
         </svg>
         <div class="price">$499</div>
         <div class="price-note">one-time · no subscription</div>
-        <!-- TODO(blocked): Stripe Payment Link for "IOL Clarity Session" $499 not yet created — swap href once Martin sends the URL -->
-        <a href="#" class="btn btn-primary">Begin Your Session</a>
+        <a href="#" class="btn btn-primary" data-checkout-tier="session">Begin Your Session</a>
         <ul class="trust-mini">
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>12 months of access, included</li>
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>30-day money-back guarantee</li>
@@ -524,7 +523,7 @@
   <div class="wrap">
     <h2>Ready to Walk Into Your Consult With Clarity?</h2>
     <p>If you already have a consult on the calendar, the earlier you do this, the more time you have to actually use what you learn — sit with it, think of follow-up questions, feel settled before you're in the chair. There's no upside to waiting until the day of.</p>
-    <a href="#offer" class="btn btn-primary">Begin Your IOL Clarity Session — $499</a>
+    <a href="#offer" class="btn btn-primary" data-checkout-tier="session">Begin Your IOL Clarity Session — $499</a>
   </div>
 </section>
 
@@ -538,8 +537,7 @@
         <li>— One guided conversation on a single lens category</li>
         <li>— Your personalized summary</li>
       </ul>
-      <!-- TODO(blocked): Stripe Payment Link for "IOL Clarity Starter" $99 not yet created — swap href once Martin sends the URL -->
-      <a href="#" class="btn btn-secondary">Try the IOL Clarity Starter — $99</a>
+      <a href="#" class="btn btn-secondary" data-checkout-tier="starter">Try the IOL Clarity Starter — $99</a>
     </div>
   </div>
 </section>
@@ -684,9 +682,44 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    ClarityIQ · DLP Ventures, LLC · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html#refund-policy">Refund Policy</a>
+    ClarityIQ · DLP Ventures, LLC · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a>
   </div>
 </footer>
+
+<script>
+// Stripe Checkout — buttons tagged data-checkout-tier="session"|"starter"
+const PROXY_URL = 'https://clarityiq-proxy.dlpventures13.workers.dev';
+const CLIENT_KEY = '58e955745eaf504e679cf0d00f8d63311cb8e5e486006a50';
+
+document.querySelectorAll('[data-checkout-tier]').forEach(btn => {
+  btn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const tier = btn.getAttribute('data-checkout-tier');
+    const originalText = btn.textContent;
+    btn.textContent = 'Redirecting to checkout…';
+    btn.style.pointerEvents = 'none';
+
+    try {
+      const res = await fetch(PROXY_URL + '/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-ClarityIQ-Key': CLIENT_KEY,
+        },
+        body: JSON.stringify({ tier }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.url) throw new Error(data.error || 'Checkout could not be started');
+      window.location.href = data.url;
+    } catch (err) {
+      btn.textContent = originalText;
+      btn.style.pointerEvents = '';
+      alert("Sorry, we couldn't start checkout just now. Please try again in a moment.");
+      console.error('Checkout error:', err);
+    }
+  });
+});
+</script>
 
 </body>
 </html>
