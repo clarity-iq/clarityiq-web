@@ -41,11 +41,8 @@ nav {
   border-bottom: 1px solid var(--rule);
 }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.nav-mark {
-  width: 26px; height: 26px; border-radius: 8px;
-  background: var(--green); display: flex; align-items: center; justify-content: center;
-}
-.nav-mark svg { width: 15px; height: 15px; }
+.nav-mark { width: 26px; height: 26px; flex-shrink: 0; }
+.nav-mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .nav-name { font-family: var(--serif); font-size: 46px; color: var(--ink); letter-spacing: -0.01em; }
 .nav-back { font-size: 14px; color: var(--ink-3); text-decoration: none; }
 .nav-back:hover { color: var(--green-dk); }
@@ -94,10 +91,7 @@ footer {
 <nav>
   <a href="/" class="nav-logo">
     <div class="nav-mark">
-      <svg viewBox="0 0 16 16" fill="none">
-        <circle cx="8" cy="8" r="3" fill="white"/>
-        <path d="M8 2V4M8 12V14M2 8H4M12 8H14" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
+      <img src="logo-mark.png" alt="">
     </div>
     <span class="nav-name">ClarityIQ</span>
   </a>
@@ -140,10 +134,7 @@ footer {
 <footer>
   <a href="/" class="footer-logo">
     <div class="nav-mark">
-      <svg viewBox="0 0 16 16" fill="none">
-        <circle cx="8" cy="8" r="3" fill="white"/>
-        <path d="M8 2V4M8 12V14M2 8H4M12 8H14" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
+      <img src="logo-mark.png" alt="">
     </div>
     <span class="footer-name">ClarityIQ</span>
   </a>
