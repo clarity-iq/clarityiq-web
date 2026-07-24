@@ -276,13 +276,13 @@
   .exit { background: var(--ink); color: var(--surface); text-align: center; }
   .exit h2 { color: var(--white); margin-bottom: 12px; }
   .exit p { color: #c7c5bd; max-width: 480px; margin: 0 auto 30px; }
-  .exit-form { display: flex; gap: 10px; max-width: 420px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
-  .exit-form input[type=email] {
-    flex: 1; min-width: 220px; padding: 14px 16px; border-radius: 8px; border: 1px solid #3a3a38;
+  .exit-form { display: flex; gap: 10px; max-width: 540px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+  .exit-form input[type=email], .exit-form input[type=text] {
+    flex: 1; min-width: 160px; padding: 14px 16px; border-radius: 8px; border: 1px solid #3a3a38;
     background: #1c1c1a; color: var(--white); font-family: var(--sans); font-size: 15px;
   }
-  .exit-form input[type=email]::placeholder { color: #8a887f; }
-  .exit-form input[type=email]:focus-visible { outline: 2px solid var(--green); }
+  .exit-form input[type=email]::placeholder, .exit-form input[type=text]::placeholder { color: #8a887f; }
+  .exit-form input[type=email]:focus-visible, .exit-form input[type=text]:focus-visible { outline: 2px solid var(--green); }
   .exit-form-note { margin-top: 14px; font-size: 13.5px; color: #c7c5bd; min-height: 1em; }
   .exit-form-note.success { color: #6EE7B7; }
   .exit-form-note.error { color: #FCA5A5; }
@@ -678,6 +678,7 @@
     <h2>Not Ready Yet? Start With the Free Guides.</h2>
     <p>Get the IOL Comparison Chart, the Options framework guide, and the Pre-Consult Prep guide sent straight to your email — no cost, no obligation.</p>
     <form class="exit-form" id="guides-form">
+      <input type="text" name="first_name" id="guides-first-name" placeholder="First name" required aria-label="First name">
       <input type="email" name="email" id="guides-email" placeholder="you@email.com" required aria-label="Email address">
       <button type="submit" class="btn btn-primary">Send Me the Free Guides</button>
     </form>
@@ -731,9 +732,11 @@ document.querySelectorAll('[data-checkout-tier]').forEach(btn => {
 const guidesForm = document.getElementById('guides-form');
 guidesForm.addEventListener('submit', async (e) => {
   e.preventDefault();
+  const firstNameInput = document.getElementById('guides-first-name');
   const emailInput = document.getElementById('guides-email');
   const note = document.getElementById('guides-form-note');
   const btn = guidesForm.querySelector('button[type=submit]');
+  const firstName = firstNameInput.value.trim();
   const email = emailInput.value.trim();
 
   note.textContent = '';
@@ -749,7 +752,7 @@ guidesForm.addEventListener('submit', async (e) => {
         'Content-Type': 'application/json',
         'X-ClarityIQ-Key': CLIENT_KEY,
       },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email, first_name: firstName }),
     });
     if (!res.ok) throw new Error('Subscribe failed');
     note.textContent = "You're in — check your inbox for the guides.";
