@@ -283,6 +283,9 @@
   }
   .exit-form input[type=email]::placeholder { color: #8a887f; }
   .exit-form input[type=email]:focus-visible { outline: 2px solid var(--green); }
+  .exit-form-note { margin-top: 14px; font-size: 13.5px; color: #c7c5bd; min-height: 1em; }
+  .exit-form-note.success { color: #6EE7B7; }
+  .exit-form-note.error { color: #FCA5A5; }
 
   footer.site-footer { background: var(--ink); color: #8a887f; padding: 28px 0; text-align: center; font-size: 12.5px; border-top: 1px solid #2a2a28; }
   footer.site-footer a { color: #b8b6ae; text-decoration: underline; }
@@ -674,10 +677,11 @@
   <div class="wrap">
     <h2>Not Ready Yet? Start With the Free Guides.</h2>
     <p>Get the IOL Comparison Chart, the Options framework guide, and the Pre-Consult Prep guide sent straight to your email — no cost, no obligation.</p>
-    <form class="exit-form" action="https://formspree.io/f/mlgqlorn" method="POST">
-      <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
+    <form class="exit-form" id="guides-form">
+      <input type="email" name="email" id="guides-email" placeholder="you@email.com" required aria-label="Email address">
       <button type="submit" class="btn btn-primary">Send Me the Free Guides</button>
     </form>
+    <p class="exit-form-note" id="guides-form-note" aria-live="polite"></p>
   </div>
 </section>
 
@@ -719,6 +723,46 @@ document.querySelectorAll('[data-checkout-tier]').forEach(btn => {
       console.error('Checkout error:', err);
     }
   });
+});
+
+// Free guides signup — posts to the Worker (not MailerLite directly; the
+// MailerLite API key is a server-side secret, same reasoning as Stripe/
+// SendGrid). MailerLite's automation handles delivery of the PDF links.
+const guidesForm = document.getElementById('guides-form');
+guidesForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const emailInput = document.getElementById('guides-email');
+  const note = document.getElementById('guides-form-note');
+  const btn = guidesForm.querySelector('button[type=submit]');
+  const email = emailInput.value.trim();
+
+  note.textContent = '';
+  note.className = 'exit-form-note';
+  btn.disabled = true;
+  const originalText = btn.textContent;
+  btn.textContent = 'Sending…';
+
+  try {
+    const res = await fetch(PROXY_URL + '/mailerlite-subscribe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-ClarityIQ-Key': CLIENT_KEY,
+      },
+      body: JSON.stringify({ email }),
+    });
+    if (!res.ok) throw new Error('Subscribe failed');
+    note.textContent = "You're in — check your inbox for the guides.";
+    note.classList.add('success');
+    guidesForm.reset();
+  } catch (err) {
+    note.textContent = "Sorry, that didn't go through. Please try again in a moment.";
+    note.classList.add('error');
+    console.error('Guides signup error:', err);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = originalText;
+  }
 });
 </script>
 
