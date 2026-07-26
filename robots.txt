@@ -2,3 +2,51 @@ User-agent: *
 Disallow: /terms.html
 Disallow: /privacy.html
 Disallow: /guides/
+
+# AI crawlers — explicitly allowed (same disallow list as everyone else, not
+# blanket-blocked). A missing rule here is the common default that silently
+# zeroes out visibility on that platform regardless of content quality, so
+# these are listed out even though the "*" block above would already permit
+# them by omission.
+
+User-agent: GPTBot
+Disallow: /terms.html
+Disallow: /privacy.html
+Disallow: /guides/
+
+User-agent: ChatGPT-User
+Disallow: /terms.html
+Disallow: /privacy.html
+Disallow: /guides/
+
+User-agent: OAI-SearchBot
+Disallow: /terms.html
+Disallow: /privacy.html
+Disallow: /guides/
+
+User-agent: PerplexityBot
+Disallow: /terms.html
+Disallow: /privacy.html
+Disallow: /guides/
+
+User-agent: ClaudeBot
+Disallow: /terms.html
+Disallow: /privacy.html
+Disallow: /guides/
+
+User-agent: Claude-User
+Disallow: /terms.html
+Disallow: /privacy.html
+Disallow: /guides/
+
+User-agent: Applebot
+Disallow: /terms.html
+Disallow: /privacy.html
+Disallow: /guides/
+
+User-agent: Applebot-Extended
+Disallow: /terms.html
+Disallow: /privacy.html
+Disallow: /guides/
+
+Sitemap: https://clarityiq.ai/sitemap.xml

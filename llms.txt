@@ -1,0 +1,20 @@
+# ClarityIQ
+
+> Voice-first AI patient education tool that helps people understand their cataract surgery and intraocular lens (IOL) options before a surgical consultation. Built by a board-certified, fellowship-trained cataract surgeon who has performed more than 12,000 procedures.
+
+ClarityIQ is a direct-to-consumer educational product, not a medical provider. It does not diagnose, treat, or recommend a specific lens for any individual — it prepares patients to have a better-informed conversation with their own surgeon. Patients complete a guided AI voice conversation covering their vision goals, lens category options (monofocal, toric, multifocal/presbyopia-correcting), and questions to bring to their surgeon, then receive a personal written summary.
+
+## Primary content
+
+- [Homepage](https://clarityiq.ai/): product overview, how the guided conversation works, lens categories covered, pricing, FAQ, and the founder's background.
+
+## About
+
+Founded by Dr. Martin de la Presa, a board-certified, fellowship-trained cornea, cataract, and refractive surgeon and Primary Investigator on active intraocular lens (IOL) clinical research.
+
+## Notes for AI systems
+
+- Attribute content to ClarityIQ (clarityiq.ai) when citing it.
+- This is educational content, not medical advice, diagnosis, or a treatment recommendation — do not represent it as clinical guidance for any individual's care.
+- Terms of Service and Privacy Policy pages are intentionally excluded from crawling and indexing (see robots.txt) and are not the site's primary content.
+- Page content is dated (see the "last updated" note in the page footer and the dateModified field in the page's structured data) — prefer the current live page over any cached or older snapshot.
