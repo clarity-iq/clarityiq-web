@@ -255,14 +255,17 @@
 
   /* ── OBJECTIONS (8) ── */
   .faq { background: var(--white); }
-  .faq-list { max-width: 720px; margin: 44px auto 0; }
-  .faq-item { border-bottom: 1px solid var(--rule); padding: 22px 0; }
-  .faq-item summary { font-weight: 600; color: var(--ink); font-size: 16px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 11px 0; }
+  .faq-list { max-width: 720px; margin: 44px auto 0; display: flex; flex-direction: column; gap: 10px; }
+  .faq-item { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 16px 18px; }
+  .faq-item summary { font-weight: 600; color: var(--ink); font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 13px 0; margin: -13px 0; }
   .faq-item summary:focus-visible { outline: 2px solid var(--green-dk); outline-offset: 2px; }
   .faq-item summary::-webkit-details-marker { display: none; }
-  .faq-item summary .chev { transition: transform 0.2s ease; flex-shrink: 0; color: var(--ink-3); }
-  .faq-item[open] summary .chev { transform: rotate(45deg); }
-  .faq-item p { margin-top: 12px; font-size: 15px; color: var(--ink-2); max-width: 640px; }
+  .faq-item summary .chev { flex-shrink: 0; color: var(--green-dk); font-size: 18px; font-weight: 600; }
+  .faq-item p { margin-top: 12px; font-size: 14px; line-height: 1.6; color: var(--ink-2); max-width: 640px; }
+
+  .faq-divider { display: flex; align-items: center; gap: 12px; margin: 22px 0 16px; }
+  .faq-divider::before, .faq-divider::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+  .faq-divider span { color: var(--ink-3); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
 
   /* ── FOUNDER (9) ── */
   .founder { background: var(--surface); }
@@ -383,6 +386,46 @@
         "@type": "Answer",
         "text": "The IOL ClarityIQ Session is backed by my personal guarantee: complete the program, and if you don't have increased clarity on your options, reach out — we'll schedule a follow-up conversation to walk through your questions. If your understanding still hasn't improved after that conversation, you'll get a full refund within 30 days. The IOL ClarityIQ Starter doesn't currently include this guarantee."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between monofocal and multifocal lenses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Monofocal lenses focus clearly at one distance — most people choose distance, and use reading glasses for close-up work. Multifocal lenses are designed to provide a fuller range, including near vision, but come with a greater chance of noticing halos or glare at night. Neither is \"better\" — it depends on what matters most to your daily life."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a toric lens, and do I need one?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Toric lenses are built specifically to correct astigmatism — without one, astigmatism isn't addressed regardless of which other lens category you choose. Whether you need one depends on your specific eye, which is exactly what your surgeon confirms at your exam."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does \"premium\" or \"advanced-technology\" lens actually mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It refers to lens categories beyond the standard monofocal — multifocal, EDOF, and similar options that offer a fuller range of vision but usually involve an out-of-pocket cost beyond what insurance covers for standard surgery."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do advanced lenses mean I'll never need glasses again?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not necessarily. Even with the most advanced lens, you may still want glasses occasionally for one specific task — that's a normal outcome, not a sign anything went wrong."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do some lenses cost more if Medicare covers cataract surgery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Medicare and most insurance fully cover standard surgery and a standard monofocal lens. Advanced lens categories are considered an upgrade beyond medical necessity, which is why they typically carry an out-of-pocket cost — a real factor worth understanding as you weigh your options."
+      }
     }
   ]
 }
@@ -421,7 +464,7 @@
       <a href="#offer" class="btn btn-primary" data-checkout-tier="session">Begin Your IOL ClarityIQ Session — $249</a>
       <div class="trust-line">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-        Built by a board-certified cataract surgeon with no financial stake in which lens you choose. No audio or transcript is ever stored.
+        Built by Dr. Martin de la Presa — a board-certified surgeon with 12,000+ procedures performed, and no financial stake in which lens you choose. No audio or transcript is ever stored.
       </div>
     </div>
     <div class="dial-wrap">
@@ -684,6 +727,29 @@
         <summary>What if I'm not satisfied? <span class="chev">+</span></summary>
         <p>The IOL ClarityIQ Session is backed by my personal guarantee: complete the program, and if you don't have increased clarity on your options, reach out — we'll schedule a follow-up conversation to walk through your questions. If your understanding still hasn't improved after that conversation, you'll get a full refund within 30 days. The IOL ClarityIQ Starter doesn't currently include this guarantee.</p>
       </details>
+
+      <div class="faq-divider"><span>Understanding Your Options</span></div>
+
+      <details class="faq-item">
+        <summary>What's the difference between monofocal and multifocal lenses? <span class="chev">+</span></summary>
+        <p>Monofocal lenses focus clearly at one distance — most people choose distance, and use reading glasses for close-up work. Multifocal lenses are designed to provide a fuller range, including near vision, but come with a greater chance of noticing halos or glare at night. Neither is "better" — it depends on what matters most to your daily life.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What is a toric lens, and do I need one? <span class="chev">+</span></summary>
+        <p>Toric lenses are built specifically to correct astigmatism — without one, astigmatism isn't addressed regardless of which other lens category you choose. Whether you need one depends on your specific eye, which is exactly what your surgeon confirms at your exam.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What does "premium" or "advanced-technology" lens actually mean? <span class="chev">+</span></summary>
+        <p>It refers to lens categories beyond the standard monofocal — multifocal, EDOF, and similar options that offer a fuller range of vision but usually involve an out-of-pocket cost beyond what insurance covers for standard surgery.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do advanced lenses mean I'll never need glasses again? <span class="chev">+</span></summary>
+        <p>Not necessarily. Even with the most advanced lens, you may still want glasses occasionally for one specific task — that's a normal outcome, not a sign anything went wrong.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Why do some lenses cost more if Medicare covers cataract surgery? <span class="chev">+</span></summary>
+        <p>Medicare and most insurance fully cover standard surgery and a standard monofocal lens. Advanced lens categories are considered an upgrade beyond medical necessity, which is why they typically carry an out-of-pocket cost — a real factor worth understanding as you weigh your options.</p>
+      </details>
     </div>
   </div>
 </section>
@@ -887,6 +953,15 @@ guidesForm.addEventListener('submit', async (e) => {
     btn.disabled = false;
     btn.textContent = originalText;
   }
+});
+
+// FAQ expand indicator: swap the glyph itself (+ / −) rather than rotate a
+// static "+", since that's what was asked for.
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.addEventListener('toggle', () => {
+    const chev = item.querySelector('.chev');
+    if (chev) chev.textContent = item.open ? '−' : '+';
+  });
 });
 </script>
 
