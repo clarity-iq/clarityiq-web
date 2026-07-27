@@ -272,13 +272,20 @@
   /* ── DOWNSELL (7) ── */
   .downsell { background: var(--surface-2); }
   .downsell-panel {
-    max-width: 640px; margin: 0 auto; background: var(--white); border: 1px solid var(--rule);
-    border-radius: 16px; padding: 40px; text-align: center;
+    max-width: 640px; margin: 0 auto; background: linear-gradient(180deg, var(--green-lt) 0%, var(--surface) 100%);
+    border: 1.5px solid var(--green); border-radius: 16px; padding: 40px; text-align: center;
   }
   .downsell-panel h3 { margin-bottom: 12px; }
   .downsell-panel p { font-size: 15px; margin-bottom: 20px; }
+  .downsell-panel .includes-label {
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700;
+    color: var(--green-dk); margin-bottom: 14px;
+  }
   .downsell-panel ul { list-style: none; text-align: left; max-width: 320px; margin: 0 auto 26px; }
-  .downsell-panel li { font-size: 14.5px; padding: 8px 0; color: var(--ink-2); display: flex; gap: 10px; }
+  .downsell-panel li {
+    font-size: 14.5px; padding: 8px 0; color: var(--ink); display: flex; align-items: flex-start; gap: 10px;
+  }
+  .downsell-panel li::before { content: "✓"; color: var(--green-dk); font-weight: 700; flex-shrink: 0; }
 
   /* ── OBJECTIONS (8) ── */
   .faq { background: var(--white); }
@@ -718,12 +725,15 @@
   <div class="wrap">
     <div class="downsell-panel">
       <h3>Want to Start Smaller?</h3>
-      <p>If you're only weighing one type of lens, or just want to try the conversation format first, the IOL ClarityIQ Starter covers a single lens category in one focused session, with your own personalized summary included.</p>
+      <p>If you're not ready for a full side-by-side of every lens option, or just want to try the conversation format first, the IOL ClarityIQ Starter gets you a real guided conversation — with the option to upgrade into full lens exploration anytime during your session.</p>
+      <div class="includes-label">Included</div>
       <ul>
-        <li>— One guided conversation on a single lens category</li>
-        <li>— Your personalized summary</li>
+        <li>A guided AI conversation (1 session)</li>
+        <li>The full ClarityIQ library &amp; guides</li>
+        <li>A personalized questionnaire</li>
+        <li>Your personalized summary</li>
       </ul>
-      <a href="#" class="btn btn-secondary" data-checkout-tier="starter">Try the IOL ClarityIQ Starter — $99</a>
+      <a href="#" class="btn btn-primary" data-checkout-tier="starter">Try the IOL ClarityIQ Starter — $99</a>
     </div>
   </div>
 </section>
