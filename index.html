@@ -323,6 +323,7 @@
   table.compare-table .col-premium { background: var(--green-lt); }
   table.compare-table th.col-premium { background: var(--green-dk); color: var(--white); position: relative; }
   table.compare-table .tier-price { font-family: var(--serif); font-size: 20px; color: var(--ink); }
+  .live-price .price-was { opacity: 0.55; font-weight: 400; margin-right: 6px; }
   table.compare-table .check { color: var(--green-dk); }
   table.compare-table .dash { color: var(--ink-4); }
   .ribbon { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 2px; }
@@ -495,7 +496,7 @@
     <div>
       <h1>You Don't Get a Do-Over on This Decision</h1>
       <p class="lead">Once your natural lens is replaced, that choice is permanent — no six-month exchange like a bad pair of glasses. Most people hear terms like "toric" and "multifocal" for the first time in a rushed fifteen-minute consult, then have to decide. ClarityIQ gives you a private, guided conversation first — on your own time, at your own pace — so you walk into that appointment already understanding what you're choosing between.</p>
-      <a href="#offer" class="btn btn-primary" data-checkout-tier="session">Begin Your IOL ClarityIQ Session — $249</a>
+      <a href="#offer" class="btn btn-primary" data-checkout-tier="session">Begin Your IOL ClarityIQ Session — <span class="live-price" data-tier="session">$249</span></a>
       <div class="trust-line">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
         Built by Dr. Martin de la Presa — a board-certified surgeon with 12,000+ procedures performed, and no financial stake in which lens you choose. No audio or transcript is ever stored.
@@ -561,7 +562,7 @@
     <span class="eyebrow">How ClarityIQ Works</span>
     <h2>Built From a Curated Library, Not the Open Internet</h2>
     <p>ClarityIQ isn't a general chatbot improvising its way through your questions. Every fact it can share — every lens option, every consideration — comes from a single library built and personally reviewed against FDA documentation and clinical sources, not the open internet.</p>
-    <p>That's what keeps the conversation accurate instead of improvised: it can only tell you what's actually in that library. Nothing about your case is guessed at.</p>
+    <p>That's what keeps the conversation accurate instead of improvised: it can only tell you what's actually in that library.</p>
     <div class="how-callout">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
       <p>One of the only education experiences built entirely around IOL decisions — not a general assistant repurposed for healthcare, and not left to guess when a question falls outside what's known.</p>
@@ -733,7 +734,7 @@
         <li>A personalized questionnaire</li>
         <li>Your personalized summary</li>
       </ul>
-      <a href="#" class="btn btn-primary" data-checkout-tier="starter">Try the IOL ClarityIQ Starter — $99</a>
+      <a href="#" class="btn btn-primary" data-checkout-tier="starter">Try the IOL ClarityIQ Starter — <span class="live-price" data-tier="starter">$99</span></a>
     </div>
   </div>
 </section>
@@ -878,8 +879,8 @@
           <tr>
             <td>Price</td>
             <td class="tier-price">$0</td>
-            <td class="tier-price">$99</td>
-            <td class="col-premium tier-price">$249</td>
+            <td class="tier-price"><span class="live-price" data-tier="starter">$99</span></td>
+            <td class="col-premium tier-price"><span class="live-price" data-tier="session">$249</span></td>
           </tr>
         </tbody>
       </table>
@@ -920,6 +921,27 @@
 // Stripe Checkout — buttons tagged data-checkout-tier="session"|"starter"
 const PROXY_URL = 'https://clarityiq-proxy.dlpventures13.workers.dev';
 const CLIENT_KEY = '58e955745eaf504e679cf0d00f8d63311cb8e5e486006a50';
+
+// Live pricing-ladder price — public endpoint, no key required. Replaces
+// the static "$X" fallback text already in the HTML with struck-through
+// original + current price once fetched; on any failure (or full price,
+// where original == current) the static fallback just stays as-is, so a
+// failed fetch never breaks the page.
+fetch(PROXY_URL + '/get-rung-price')
+  .then(res => res.ok ? res.json() : Promise.reject())
+  .then(data => {
+    document.querySelectorAll('.live-price').forEach(el => {
+      const tier = el.getAttribute('data-tier');
+      const base = data.base[tier];
+      const current = data.current[tier];
+      if (data.rung === 'full' || base === current) {
+        el.textContent = '$' + current;
+      } else {
+        el.innerHTML = '<s class="price-was">$' + base + '</s> $' + current;
+      }
+    });
+  })
+  .catch(() => {});
 
 document.querySelectorAll('[data-checkout-tier]').forEach(btn => {
   btn.addEventListener('click', async (e) => {
