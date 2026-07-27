@@ -12,7 +12,8 @@
 <meta property="og:url" content="https://clarityiq.ai/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"></noscript>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -760,7 +761,7 @@
     <span class="eyebrow">Who's Behind This</span>
     <div class="founder-grid">
       <div>
-        <img class="founder-photo" src="founder-photo.jpg" alt="Dr. Martin de la Presa">
+        <img class="founder-photo" src="founder-photo.jpg" alt="Dr. Martin de la Presa" width="1080" height="1200" loading="lazy">
         <div class="badges">
           <span class="badge">Board-certified ophthalmic surgeon</span>
           <span class="badge">Fellowship-trained — cornea, cataract &amp; refractive surgery</span>
