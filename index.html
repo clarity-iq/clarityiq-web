@@ -17,6 +17,32 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* Metric-matched local fallbacks (CLS fix) — sized/shaped to occupy the
+     same box as the real webfont, computed from each font's actual
+     hhea/OS2 metrics (DM Serif Display and Inter extracted directly from
+     the served .woff2 files; Georgia/Arial use the standard published
+     reference metrics) via the standard size-adjust/ascent-override/
+     descent-override formula. Purpose is matching layout box size during
+     the swap window, not visual fidelity -- if Georgia/Arial aren't
+     installed, these simply fail to match and the stack falls through to
+     the plain fallback below, same as before this change. */
+  @font-face {
+    font-family: 'DM Serif Display Fallback';
+    src: local('Georgia');
+    size-adjust: 120.66%;
+    ascent-override: 85.86%;
+    descent-override: 27.76%;
+    line-gap-override: 0%;
+  }
+  @font-face {
+    font-family: 'Inter Fallback';
+    src: local('Arial');
+    size-adjust: 108.3%;
+    ascent-override: 89.45%;
+    descent-override: 22.27%;
+    line-gap-override: 0%;
+  }
+
   :root {
     --green:      #1D9E75;
     --green-dk:   #0f6e56;
@@ -29,8 +55,8 @@
     --surface:    #fafaf7;
     --surface-2:  #f0ede8;
     --white:      #ffffff;
-    --serif:      'DM Serif Display', Georgia, serif;
-    --sans:       'Inter', -apple-system, sans-serif;
+    --serif:      'DM Serif Display', 'DM Serif Display Fallback', Georgia, serif;
+    --sans:       'Inter', 'Inter Fallback', -apple-system, sans-serif;
     --max: 1080px;
   }
 
@@ -449,7 +475,7 @@
 
 <header class="nav">
   <div class="wrap nav-inner">
-    <div class="logo"><img src="logo-mark.png" alt="" class="logo-mark-img">ClarityIQ</div>
+    <div class="logo"><img src="logo-mark.png" alt="" class="logo-mark-img" width="500" height="440">ClarityIQ</div>
     <a href="#offer" class="btn btn-secondary btn-small">Begin Your Session</a>
   </div>
 </header>
