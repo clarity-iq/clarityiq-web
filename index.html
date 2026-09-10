@@ -165,6 +165,13 @@
   .value-card .num { font-family: var(--serif); font-size: 15px; color: var(--green-dk); margin-bottom: 10px; display: block; }
   .value-card p { font-size: 15.5px; margin-top: 10px; }
 
+  /* ── TESTIMONIALS ── */
+  .testimonials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 44px; }
+  @media (max-width: 760px) { .testimonials-grid { grid-template-columns: 1fr; } }
+  .testimonial-card { background: var(--white); border: 1px solid var(--rule); border-radius: 14px; padding: 32px; }
+  .testimonial-card p { font-family: var(--serif); font-size: 17px; line-height: 1.55; color: var(--ink); font-style: italic; }
+  .testimonial-card cite { display: block; margin-top: 16px; font-style: normal; font-size: 14px; color: var(--green-dk); font-weight: 600; }
+
   /* ── HOW IT WORKS ── */
   .how { background: var(--white); }
   .how-inner { max-width: 720px; }
@@ -568,6 +575,24 @@
     <div class="how-callout">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
       <p>One of the only education experiences built entirely around IOL decisions — not a general assistant repurposed for healthcare, and not left to guess when a question falls outside what's known.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2.7 TESTIMONIALS -->
+<section class="testimonials">
+  <div class="wrap">
+    <span class="eyebrow">Patient Feedback</span>
+    <h2>What Patients Are Saying</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p>"Very easy to use, answered all my questions!"</p>
+        <cite>— Donna</cite>
+      </div>
+      <div class="testimonial-card">
+        <p>"It was so informative that I had no more questions at the end. I felt more confident knowing all this information."</p>
+        <cite>— Dave</cite>
+      </div>
     </div>
   </div>
 </section>
