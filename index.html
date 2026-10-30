@@ -921,8 +921,117 @@
 
 <script>
 // Stripe Checkout — buttons tagged data-checkout-tier="session"|"starter"
-const PROXY_URL = 'https://clarityiq-proxy.dlpventures13.workers.dev';
+// Test-only API base override: a local test harness may set
+// window.CIQ_TEST_API_BASE to a localhost URL before the page loads. Nothing
+// on the live site sets it, and any non-localhost value is ignored.
+function ciqApiBase(liveBase) {
+  try {
+    const o = window.CIQ_TEST_API_BASE;
+    if (typeof o === 'string' && /^http:\/\/(127\.0\.0\.1|localhost)(:\d{1,5})?$/.test(o)) return o;
+  } catch (e) {}
+  return liveBase;
+}
+const PROXY_URL = ciqApiBase('https://clarityiq-proxy.dlpventures13.workers.dev');
 const CLIENT_KEY = '58e955745eaf504e679cf0d00f8d63311cb8e5e486006a50';
+
+// ── Funnel source tag (Tracking patch A, Phase 4) ───────────────────────────
+// First-touch source for the funnel view (Reset Plan v2 §2). Read from the
+// link: utm_source/utm_medium/utm_campaign/utm_content, or the short forms
+// ?src=linkedin / ?ref=dr-smith; else the referring site's host name (never
+// the full URL); else "direct". Kept in this browser's localStorage for 30
+// days (key ciq_src). Not a cookie, no personal data: only short lowercase
+// tags. First touch wins, except an explicit tag replaces an untagged
+// (direct/referrer) source, and "internal" (Martin/testers) always wins.
+// Every step is wrapped so a storage or parsing failure never breaks the page.
+const CIQ_SRC_KEY = 'ciq_src';
+const CIQ_SRC_TTL_MS = 30 * 24 * 60 * 60 * 1000;
+function ciqTag(v) {
+  return String(v == null ? '' : v).toLowerCase().slice(0, 80).replace(/[^\w.\-\/]/g, '');
+}
+function ciqStorage(kind) {
+  try {
+    const s = window[kind];
+    s.setItem('__ciq_t', '1');
+    s.removeItem('__ciq_t');
+    return s;
+  } catch (e) { return null; }
+}
+const CIQ_SRC_STATE = (function () {
+  try {
+    const p = new URLSearchParams(location.search);
+    let refHost = '';
+    try { refHost = document.referrer ? new URL(document.referrer).hostname.toLowerCase() : ''; } catch (e) {}
+    // Our own pages and the Stripe checkout return are not sources.
+    if (/(^|\.)clarityiq\.ai$|(^|\.)stripe\.com$/.test(refHost)) refHost = '';
+    const utmSource = ciqTag(p.get('utm_source'));
+    const short = ciqTag(p.get('src'));
+    const ref = ciqTag(p.get('ref'));
+    const tag = utmSource || short || ref;
+    const src = {
+      utm_source: tag || ciqTag(refHost) || 'direct',
+      utm_medium: ciqTag(p.get('utm_medium')) || (utmSource || short ? '' : ref ? 'ref' : refHost ? 'referral' : 'none'),
+      utm_campaign: ciqTag(p.get('utm_campaign')),
+      utm_content: ciqTag(p.get('utm_content')),
+      landing_path: ciqTag(location.pathname) || '/',
+    };
+    if (ref) src.ref = ref;
+    const fresh = { v: 1, at: Date.now(), tagged: !!tag, src: src };
+    const store = ciqStorage('localStorage');
+    if (!store) return fresh;
+    let saved = null;
+    try { saved = JSON.parse(store.getItem(CIQ_SRC_KEY) || 'null'); } catch (e) { saved = null; }
+    const savedOk = saved && saved.v === 1 && saved.src && typeof saved.src.utm_source === 'string' &&
+      typeof saved.at === 'number' && Date.now() - saved.at < CIQ_SRC_TTL_MS;
+    const keep = savedOk && !(fresh.tagged && (!saved.tagged || src.utm_source === 'internal'));
+    if (keep) return saved;
+    store.setItem(CIQ_SRC_KEY, JSON.stringify(fresh));
+    return fresh;
+  } catch (e) {
+    return { v: 1, at: Date.now(), tagged: false, src: { utm_source: 'unknown' } };
+  }
+})();
+const CIQ_SRC = CIQ_SRC_STATE.src;
+
+// Funnel events to the Worker's POST /event (names: landing, cta_click).
+// sendBeacon (text/plain, no preflight, survives page navigation), falling
+// back to fetch keepalive. Fire-and-forget: never awaited, never shown, never
+// blocks a click. Body: { name, path, cta?, tier?, src } (well under 2 KB).
+function ciqEvent(name, extra) {
+  try {
+    const body = JSON.stringify(Object.assign({ name: name, path: ciqTag(location.pathname) || '/' }, extra || {}, { src: CIQ_SRC }));
+    const url = PROXY_URL + '/event';
+    let sent = false;
+    try { sent = !!(navigator.sendBeacon && navigator.sendBeacon(url, new Blob([body], { type: 'text/plain' }))); } catch (e) {}
+    if (!sent) fetch(url, { method: 'POST', body: body, keepalive: true, mode: 'no-cors', headers: { 'Content-Type': 'text/plain' } }).catch(function () {});
+  } catch (e) {}
+}
+// True the first time a key is seen in this browser tab session.
+function ciqOnce(key) {
+  try {
+    const s = ciqStorage('sessionStorage');
+    if (!s) return true;
+    if (s.getItem(key)) return false;
+    s.setItem(key, '1');
+    return true;
+  } catch (e) { return true; }
+}
+// Stage 1: one "landing" per browser session (reloads and the Stripe
+// cancel return don't count again).
+if (ciqOnce('ciq_landed')) ciqEvent('landing');
+// Carry the source to the app: any link to app.clarityiq.ai gets the utm_*
+// tags added at click time (only tags the link doesn't already have).
+document.addEventListener('click', function (e) {
+  try {
+    const a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    const u = new URL(a.href, location.href);
+    if (u.hostname !== 'app.clarityiq.ai') return;
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (k) {
+      if (CIQ_SRC[k] && !u.searchParams.has(k)) u.searchParams.set(k, CIQ_SRC[k]);
+    });
+    a.href = u.toString();
+  } catch (err) {}
+}, true);
 
 // Live pricing-ladder price — public endpoint, no key required. Replaces
 // the static "$X" fallback text already in the HTML with struck-through
@@ -949,6 +1058,8 @@ document.querySelectorAll('[data-checkout-tier]').forEach(btn => {
   btn.addEventListener('click', async (e) => {
     e.preventDefault();
     const tier = btn.getAttribute('data-checkout-tier');
+    // Stage 2 (CTA click), once per tab session per CTA; never blocks checkout.
+    if (ciqOnce('ciq_cta:checkout:' + tier)) ciqEvent('cta_click', { cta: 'checkout', tier: tier });
     const originalText = btn.textContent;
     btn.textContent = 'Redirecting to checkout…';
     btn.style.pointerEvents = 'none';
@@ -960,7 +1071,7 @@ document.querySelectorAll('[data-checkout-tier]').forEach(btn => {
           'Content-Type': 'application/json',
           'X-ClarityIQ-Key': CLIENT_KEY,
         },
-        body: JSON.stringify({ tier }),
+        body: JSON.stringify({ tier, src: CIQ_SRC }),
       });
       const data = await res.json();
       if (!res.ok || !data.url) throw new Error(data.error || 'Checkout could not be started');
@@ -986,6 +1097,8 @@ guidesForm.addEventListener('submit', async (e) => {
   const btn = guidesForm.querySelector('button[type=submit]');
   const firstName = firstNameInput.value.trim();
   const email = emailInput.value.trim();
+  // Stage 2 (CTA click) for "Send Me the Free Guides". No email in events.
+  if (ciqOnce('ciq_cta:guides')) ciqEvent('cta_click', { cta: 'guides' });
 
   note.textContent = '';
   note.className = 'exit-form-note';
@@ -1000,7 +1113,7 @@ guidesForm.addEventListener('submit', async (e) => {
         'Content-Type': 'application/json',
         'X-ClarityIQ-Key': CLIENT_KEY,
       },
-      body: JSON.stringify({ email, first_name: firstName }),
+      body: JSON.stringify({ email, first_name: firstName, src: CIQ_SRC }),
     });
     if (!res.ok) throw new Error('Subscribe failed');
     note.textContent = "You're in — check your inbox for the guides.";
