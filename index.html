@@ -142,7 +142,7 @@
   .dial-track { fill: none; stroke: var(--rule); stroke-width: 14; }
   .dial-fill { fill: none; stroke: var(--green); stroke-width: 14; stroke-linecap: round;
     stroke-dasharray: 628; stroke-dashoffset: 628; animation: dial-in 1.6s ease 0.3s forwards; }
-  @keyframes dial-in { to { stroke-dashoffset: 63; } }
+  @keyframes dial-in { to { stroke-dashoffset: 0; } }
   .dial-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
   .dial-num { font-family: var(--serif); font-size: 44px; color: var(--ink); line-height: 1; }
   .dial-label { font-size: 12px; color: var(--ink-3); margin-top: 6px; text-align: center; max-width: 140px; }
@@ -546,11 +546,11 @@
           <circle class="dial-fill" cx="110" cy="110" r="100"/>
         </svg>
         <div class="dial-center">
-          <div class="dial-num">9/10</div>
-          <div class="dial-label">confidence after one session</div>
+          <div class="dial-num">6</div>
+          <div class="dial-label">guided steps, at your own pace</div>
         </div>
       </div>
-      <div class="dial-caption">The average person starts at 3/10 confidence in understanding their options. This is where they end.</div>
+      <div class="dial-caption">A private, guided conversation. Education only, not a substitute for your eye surgeon's advice.</div>
     </div>
   </div>
 </section>
@@ -729,11 +729,11 @@
                   <circle class="track" cx="42" cy="42" r="35"/>
                   <circle class="fill" cx="42" cy="42" r="35"/>
                 </svg>
-                <div class="mini-dial-num">9/10</div>
+                <div class="mini-dial-num">✓</div>
               </div>
               <div>
-                <div class="f-label" style="margin-bottom:2px;">Confidence shift</div>
-                <div class="f-body">3/10 → 9/10</div>
+                <div class="f-label" style="margin-bottom:2px;">Your confidence, before and after</div>
+                <div class="f-body">Your own two ratings, side by side</div>
               </div>
             </div>
           </div>
@@ -1223,6 +1223,7 @@ function ciqCloseSurvey() {
 document.getElementById('sv-close').addEventListener('click', ciqCloseSurvey);
 svModal.addEventListener('click', e => { if (e.target === svModal) ciqCloseSurvey(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && svModal.classList.contains('open')) ciqCloseSurvey(); });
+svForm.addEventListener('change', () => { svError.textContent = ''; });
 svForm.addEventListener('submit', async e => {
   e.preventDefault();
   const fd = new FormData(svForm);
