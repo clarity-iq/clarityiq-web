@@ -104,47 +104,61 @@ footer {
 
 <main class="legal-wrap">
   <h1>Privacy Policy</h1>
-  <p class="legal-meta">ClarityIQ &nbsp;·&nbsp; Effective date: July 24, 2026 &nbsp;·&nbsp; Operated by DLP Ventures, LLC, a Wyoming limited liability company (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;ClarityIQ&rdquo;)</p>
+  <!-- TBD at launch: replace "TBD at launch" below with the ship date (the day this merges and goes live), e.g. "November 3, 2026". Previous version: July 24, 2026. -->
+  <p class="legal-meta">ClarityIQ &nbsp;·&nbsp; Effective date: TBD at launch &nbsp;·&nbsp; Operated by DLP Ventures, LLC, a Wyoming limited liability company (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;ClarityIQ&rdquo;)</p>
 
   <h2>1. Our Approach</h2>
-  <p>ClarityIQ is built to collect and retain as little personal information as possible. Conversation content is processed in real time only to generate a one-time educational summary. We do not retain the conversation, the summary, or any related content after the session ends.</p>
+  <p>ClarityIQ is built to collect and keep as little personal information as possible. Conversation content is processed in real time only to generate a one-time educational summary. We do not keep the conversation, the summary, or related content after the session ends. During our free phase, we also ask a few short questions before and after a session to help us improve the service. ClarityIQ is education, not medical care, and using it does not create a doctor-patient relationship.</p>
 
   <h2>2. What We Collect</h2>
   <p>We collect the following categories of information:</p>
   <ul>
-    <li><strong>Information you provide directly:</strong> email address (when you request free guides or purchase a paid session).</li>
-    <li><strong>Payment information:</strong> processed securely by our payment provider. We do not directly collect or store card details.</li>
-    <li><strong>Transient conversation content:</strong> during a paid session, the content of your conversation is processed in real time solely to generate a personalized educational summary. This content is not retained after the session ends.</li>
-    <li><strong>Anonymous usage information:</strong> limited technical data about how sessions are used, collected in a form that does not identify you.</li>
+    <li><strong>Information you provide directly:</strong> your email address, when you request free guides, get or purchase a session, or choose to receive a follow-up message.</li>
+    <li><strong>Payment information:</strong> processed by our payment provider (Stripe). We do not collect or store card details.</li>
+    <li><strong>Free access codes:</strong> a code we issue so you can start a free session.</li>
+    <li><strong>Before-session questions (required to get a free code):</strong> where you are in the process (just learning, surgery planned, date set, or helping someone else), how confident you feel (0&ndash;10), what matters most to you (distance, reading, cost, night driving, or not sure), and, optionally, how you heard about us.</li>
+    <li><strong>After-session questions (optional):</strong> how confident you feel (0&ndash;10), how likely you are to recommend us (0&ndash;10), what you might pay for a session (a price range), what was unclear, whether anything didn&rsquo;t work, and, if you check the consent box, your email for one follow-up message.</li>
+    <li><strong>Transient conversation content:</strong> during a session, free or paid, what you say is processed in real time only to generate your educational summary. It is not kept after the session ends.</li>
+    <li><strong>Usage and analytics information:</strong> limited technical events about how people move through the site (for example, visiting the home page, starting a session, or starting checkout), collected through Cloudflare, including Cloudflare Web Analytics. We use this in aggregate and do not use it to build profiles of individuals.</li>
   </ul>
 
-  <h2>3. What We Do Not Collect or Retain</h2>
-  <p>We do not build or maintain a health record or profile tied to your identity. We do not retain audio, transcripts, conversation content, or the generated summary after the session ends and the one-time email has been sent. Our email providers are configured so that message-body content is not retained after successful delivery.</p>
+  <h2 id="survey">About the survey</h2>
+  <p>The survey is for education and product improvement only. Your answers are not a medical or health record, and we do not use them to give medical advice. Please don&rsquo;t include medical details (diagnoses, test results, medications, or doctors&rsquo; names) in the free-text boxes.</p>
+
+  <h2>3. What We Do Not Collect or Keep</h2>
+  <p>We do not build or keep a health record or profile tied to your identity. We do not keep audio, transcripts, conversation content, or the generated summary after the session ends and the one-time email is sent. Our voice AI provider is set to keep no conversation data, and session recording is turned off.</p>
+  <!-- Martin to confirm: email-body retention for each email provider. The old sentence ("Our email providers are configured so that message-body content is not retained after successful delivery") was removed because it can't be verified now (Resend is gone; MailerLite keeps campaign content). Add a provider-specific line back only once confirmed. -->
 
   <h2>4. How We Use Information</h2>
   <p>We use the information we collect to:</p>
   <ul>
-    <li>Operate and deliver the ClarityIQ service (including generating and emailing your one-time summary);</li>
-    <li>Process payments and provide customer support;</li>
-    <li>Communicate with you about your purchase or free resources when appropriate;</li>
-    <li>Understand aggregate usage patterns so we can improve the tool over time.</li>
+    <li>Run and deliver ClarityIQ, including issuing free access codes and generating and emailing your one-time summary;</li>
+    <li>Process payments and provide support;</li>
+    <li>Send free resources you asked for, and, only if you agreed, one follow-up message after your session;</li>
+    <li>Improve the service, using survey answers and aggregate usage patterns.</li>
   </ul>
+  <p>Survey answers are used only to improve ClarityIQ. We do not sell them or use them for advertising. An email you give in the after-session survey is used only for the one follow-up message you agreed to.</p>
 
   <h2>5. Sharing</h2>
-  <p>We do not sell your personal information. We use standard service providers (payment processing, conversational AI infrastructure, transactional email, and hosting) who are contractually required to protect your information and to use it only to provide their services to us. We do not share conversation content or summaries with any third party for their own purposes.</p>
+  <p>We do not sell your personal information, including survey answers. We use service providers to run ClarityIQ: payment processing (Stripe), voice conversation (ElevenLabs), generating the session summary (Anthropic), email sign-ups (MailerLite), transactional email (SendGrid), and hosting, data storage, and analytics (Cloudflare). They may use your information only to provide their services to us. We do not share conversation content, summaries, or survey answers with anyone for their own purposes.</p>
+  <!-- Martin to confirm: each provider's terms support "contractually required" (the old wording); until then the policy says "may use your information only to provide their services to us". SendGrid added: the Worker sends access-code, summary and guides emails through it (live secret SENDGRID_API_KEY). -->
 
   <h2>6. Retention</h2>
   <ul>
-    <li><strong>Conversation content and generated summaries:</strong> not retained after the session ends and the one-time email is sent.</li>
-    <li><strong>Email address and payment records:</strong> retained as ordinary commercial records for tax, accounting, customer-support, and legal-compliance purposes.</li>
-    <li><strong>Anonymous usage data:</strong> retained in aggregate form only.</li>
+    <li><strong>Conversation content and summaries:</strong> not kept after the session ends and the one-time email is sent.</li>
+    <li><strong>Survey answers and free access codes:</strong> kept for up to 12 months, then deleted automatically.</li>
+    <li><strong>Follow-up email from the survey:</strong> deleted after the follow-up message is sent, or after 12 months if it isn&rsquo;t, whichever comes first.</li>
+    <li><strong>Usage and analytics events:</strong> kept in aggregate, without names or email addresses, for as long as our analytics provider keeps them.</li>
+    <li><strong>Email address and payment records from purchases:</strong> kept as ordinary business records for tax, accounting, support, and legal purposes.</li>
   </ul>
+  <!-- Implementation: survey answers and free-code records use a 12-month KV expiry (deleted automatically). Deleting a follow-up email right after the one message is sent is a manual step for Martin. Martin to confirm the 12-month period. -->
 
   <h2>7. Your Rights and Choices</h2>
-  <p>You may request that we delete the email address and related commercial records we hold about you by contacting us at <a href="mailto:support@clarityiq.ai">support@clarityiq.ai</a>. We will respond to verified requests in accordance with applicable law. Because we do not retain conversation content or summaries, there is no stored health-related content to access or delete after the session ends.</p>
+  <p>You may ask us to delete your email address, your survey answers, and related records by contacting <a href="mailto:support@clarityiq.ai">support@clarityiq.ai</a>. If you agreed to a follow-up message, you can withdraw that consent at any time by replying to the message or contacting us. We will respond to verified requests as applicable law requires. Because we do not keep conversation content or summaries, there is no stored conversation to access or delete after a session ends.</p>
 
   <h2>8. Washington Consumer Health Data Notice</h2>
-  <p>If you are a Washington resident, please note the following: during a paid session, conversation content that relates to your health interests, concerns, or questions about cataract lens options is processed in real time to generate a one-time educational summary. This processing is limited to providing the service you requested. We do not retain this content after the session ends. We do not sell consumer health data. For questions or to exercise rights under the Washington My Health My Data Act, contact us at <a href="mailto:support@clarityiq.ai">support@clarityiq.ai</a>.</p>
+  <p>If you live in Washington: during a session, free or paid, conversation content about your interests, concerns, or questions about cataract lens options is processed in real time to generate a one-time educational summary and is not kept afterward. Some survey answers (for example, whether surgery is planned and what matters most to you) may count as consumer health data. We collect them with your consent, use them only to improve the service, keep them for up to 12 months, share them only with the service providers listed above, and never sell them. To exercise your rights under the Washington My Health My Data Act, contact <a href="mailto:support@clarityiq.ai">support@clarityiq.ai</a>.</p>
+  <!-- Martin to confirm (lawyer): whether MHMDA needs a separate consent step or a standalone Consumer Health Data Privacy Policy link. -->
 
   <h2>9. Security</h2>
   <p>We use commercially reasonable administrative, technical, and physical safeguards designed to protect the limited information we process. No method of transmission or storage is completely secure.</p>
