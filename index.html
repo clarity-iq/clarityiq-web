@@ -358,6 +358,11 @@
   .price-note-sm { display: block; font-family: var(--sans); font-size: 12px; color: var(--ink-3); }
   .free-line { font-size: 14.5px; color: var(--ink-2); margin-top: 10px; }
   .cta-repeat .free-line { color: inherit; opacity: 0.85; }
+  .free-anchor { opacity: 0.6; margin-right: 4px; }
+  .free-pass { font-weight: 600; color: var(--green-dk); }
+  .cta-repeat .free-pass { color: inherit; }
+  .price-box .price-anchor { font-family: var(--serif); font-size: 24px; color: #8a887f; line-height: 1; margin-bottom: 6px; }
+  .price-box .price-pass { font-size: 38px; line-height: 1.1; }
   .ciq-modal { position: fixed; inset: 0; background: rgba(15,15,14,0.55); display: none; align-items: flex-start; justify-content: center; z-index: 1000; overflow-y: auto; padding: 24px 12px; }
   .ciq-modal.open { display: flex; }
   .ciq-modal-card { background: var(--white); color: var(--ink); border-radius: 16px; max-width: 560px; width: 100%; padding: 28px 26px 22px; box-shadow: 0 20px 60px rgba(0,0,0,0.25); position: relative; }
@@ -533,7 +538,7 @@
       <p class="hero-subhead">A private conversation that turns confusion into confidence — before you're in the chair.</p>
       <p class="lead">Most people hear terms like "toric" and "multifocal" for the first time in a rushed fifteen-minute consult, then have to decide. ClarityIQ gives you a private, guided conversation first — on your own time, at your own pace — so you walk into that appointment already understanding what you're choosing between.</p>
       <a href="#offer" class="btn btn-primary" data-checkout-tier="session"><span data-hide-when-free>Begin Your IOL ClarityIQ Session<span class="price-sep" hidden> — <span class="live-price" data-tier="session"></span></span></span><span data-show-when-free>Start your free session</span></a>
-      <p class="free-line" data-show-when-free>Free during launch, normally <span class="live-base" data-tier="session">$249</span>.</p>
+      <p class="free-line" data-show-when-free><s class="free-anchor live-base" data-tier="session">$249</s> <strong class="free-pass">Free launch pass</strong> · Earn your pass by answering a 2-minute survey.</p>
       <div class="trust-line">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
         Built by Dr. Martin de la Presa — a board-certified surgeon with 12,000+ procedures performed, and no financial stake in which lens you choose. No audio or transcript is ever stored.
@@ -634,15 +639,20 @@
             <div class="f-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
             <div class="f-title" data-hide-when-free>A Full 6 Months of Access</div>
             <div class="f-desc" data-hide-when-free>Repeat the full conversation as many times as you'd like within 6 months, if your goals or questions change — at no extra cost.</div>
-            <div class="f-title" data-show-when-free>One Free Session During Launch</div>
-            <div class="f-desc" data-show-when-free>Your free code covers one completed conversation, used within 7 days.</div>
+            <div class="f-title" data-show-when-free>Your Free Launch Pass</div>
+            <div class="f-desc" data-show-when-free>Your pass covers one completed conversation, used within 7 days.</div>
           </div>
           <div class="feature-card">
             <div class="f-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 016.6-8.6 8.5 8.5 0 015.9 5.9A22 22 0 0112 15z"/></svg></div>
             <div class="f-title">Every Future Upgrade, Included</div>
             <div class="f-desc">As ClarityIQ grows and adds new features, your session grows with it — at no extra cost.</div>
           </div>
-          <div class="feature-card">
+          <div class="feature-card" data-show-when-free>
+            <div class="f-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="f-title">No Stake in Your Choice</div>
+            <div class="f-desc">Built by a surgeon with no financial stake in which lens you choose. Education only.</div>
+          </div>
+          <div class="feature-card" data-hide-when-free>
             <div class="f-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><path d="M12 2l2.5 2.5L18 4l.5 3.5L22 9l-2 3 2 3-3.5 1.5L18 20l-3.5-.5L12 22l-2.5-2.5L6 20l-.5-3.5L2 15l2-3-2-3 3.5-1.5L6 4l3.5.5L12 2z"/><path d="M9 12l2 2 4-4"/></svg></div>
             <div class="f-title">Backed by a Full Guarantee</div>
             <div class="f-desc">If it doesn't leave you with increased understanding, you get every dollar back.</div>
@@ -656,18 +666,19 @@
           <circle cx="90" cy="90" r="32" stroke="#1D9E75" stroke-width="1.5"/>
         </svg>
         <div class="price" data-hide-when-free><span class="live-price" data-tier="session"><span class="price-pending">Price shown at checkout</span></span></div>
-        <div class="price" data-show-when-free>Free</div>
+        <div class="price-anchor" data-show-when-free><s class="live-base" data-tier="session">$249</s></div>
+        <div class="price price-pass" data-show-when-free>Free launch pass</div>
         <div class="price-note" data-hide-when-free>one-time · no subscription</div>
-        <div class="price-note" data-show-when-free>Free during launch, normally <span class="live-base" data-tier="session">$249</span>.</div>
+        <div class="price-note" data-show-when-free>Earn your pass by answering a 2-minute survey.</div>
         <a href="#" class="btn btn-primary" data-checkout-tier="session"><span data-hide-when-free>Begin Your Session</span><span data-show-when-free>Start your free session</span></a>
         <ul class="trust-mini">
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span data-hide-when-free>6 months of access, included</span><span data-show-when-free>One completed session, within 7 days</span></li>
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Backed by my personal guarantee — increased understanding, or your money back.</li>
+          <li data-hide-when-free><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Backed by my personal guarantee — increased understanding, or your money back.</li>
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Built and curated by a practicing surgeon</li>
         </ul>
       </div>
     </div>
-    <div class="offer-guarantee">
+    <div class="offer-guarantee" data-hide-when-free>
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="1.8"><path d="M12 2l2.5 2.5L18 4l.5 3.5L22 9l-2 3 2 3-3.5 1.5L18 20l-3.5-.5L12 22l-2.5-2.5L6 20l-.5-3.5L2 15l2-3-2-3 3.5-1.5L6 4l3.5.5L12 2z"/><path d="M9 12l2 2 4-4"/></svg>
       <p><strong>I'm so confident this will increase your understanding that I'll back it personally:</strong> complete the program, and if it hasn't, reach out — we'll schedule a follow-up conversation to work through it with Dr. de la Presa. Understanding still hasn't improved after that conversation? Full refund, no hoops.</p>
     </div>
@@ -745,7 +756,7 @@
 </section>
 
 <!-- 5. GUARANTEE -->
-<section class="guarantee">
+<section class="guarantee" data-hide-when-free>
   <div class="wrap guarantee-inner">
     <svg class="seal" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="1.8"><path d="M12 2l2.5 2.5L18 4l.5 3.5L22 9l-2 3 2 3-3.5 1.5L18 20l-3.5-.5L12 22l-2.5-2.5L6 20l-.5-3.5L2 15l2-3-2-3 3.5-1.5L6 4l3.5.5L12 2z"/><path d="M9 12l2 2 4-4"/></svg>
     <h2>The IOL ClarityIQ Session Guarantee</h2>
@@ -759,7 +770,7 @@
     <h2>Ready to Walk Into Your Consult With ClarityIQ?</h2>
     <p>Once your natural lens is replaced, that choice is permanent — no six-month exchange like a bad pair of glasses. If you already have a consult on the calendar, the earlier you do this, the more time you have to actually use what you learn — sit with it, think of follow-up questions, feel settled before you're in the chair. There's no upside to waiting until the day of.</p>
     <a href="#offer" class="btn btn-primary" data-checkout-tier="session"><span data-hide-when-free>Begin Your IOL ClarityIQ Session<span class="price-sep" hidden> — <span class="live-price" data-tier="session"></span></span></span><span data-show-when-free>Start your free session</span></a>
-    <p class="free-line" data-show-when-free>Free during launch, normally <span class="live-base" data-tier="session">$249</span>.</p>
+    <p class="free-line" data-show-when-free><s class="free-anchor live-base" data-tier="session">$249</s> <strong class="free-pass">Free launch pass</strong> · Earn your pass by answering a 2-minute survey.</p>
   </div>
 </section>
 
@@ -803,7 +814,7 @@
         <summary>What happens to what I say? <span class="chev">+</span></summary>
         <p>Nothing is recorded or stored. No audio, no transcript. Your summary is generated, shown to you once, and emailed to you once — we don't retain the conversation or the summary after that.</p>
       </details>
-      <details class="faq-item">
+      <details class="faq-item" data-hide-when-free>
         <summary>What if I'm not satisfied? <span class="chev">+</span></summary>
         <p>The IOL ClarityIQ Session is backed by my personal guarantee: complete the program, and if you don't have increased clarity on your options, reach out — we'll schedule a follow-up conversation to walk through your questions with Dr. de la Presa. If your understanding still hasn't improved after that conversation, you'll get a full refund within 30 days.<span data-hide-when-free> The IOL ClarityIQ Starter doesn't currently include this guarantee.</span></p>
       </details>
@@ -912,7 +923,7 @@
             <td class="col-starter"><span class="dash">—</span></td>
             <td class="col-premium"><span class="check">✓</span></td>
           </tr>
-          <tr>
+          <tr data-hide-when-free>
             <td>Money-Back Guarantee</td>
             <td><span class="dash">—</span></td>
             <td class="col-starter"><span class="dash">—</span></td>
@@ -922,7 +933,7 @@
             <td>Price</td>
             <td class="tier-price">$0</td>
             <td class="col-starter tier-price"><span class="live-price" data-tier="starter"><span class="price-pending">At checkout</span></span></td>
-            <td class="col-premium tier-price"><span data-hide-when-free><span class="live-price" data-tier="session"><span class="price-pending">At checkout</span></span></span><span data-show-when-free>Free <span class="price-note-sm">during launch, normally <span class="live-base" data-tier="session">$249</span></span></span></td>
+            <td class="col-premium tier-price"><span data-hide-when-free><span class="live-price" data-tier="session"><span class="price-pending">At checkout</span></span></span><span data-show-when-free><s class="free-anchor live-base" data-tier="session">$249</s> Free <span class="price-note-sm">launch pass, earned with a 2-minute survey</span></span></td>
           </tr>
         </tbody>
       </table>
@@ -956,8 +967,8 @@
 <div class="ciq-modal" id="before-survey" role="dialog" aria-modal="true" aria-labelledby="sv-title" hidden>
   <div class="ciq-modal-card">
     <button type="button" class="ciq-modal-close" id="sv-close" aria-label="Close">×</button>
-    <h2 id="sv-title">Before your free session</h2>
-    <p class="sub">Four quick questions (under a minute). They're how we get your free code to you, and they help us improve ClarityIQ.</p>
+    <h2 id="sv-title">Get your free launch pass</h2>
+    <p class="sub">Earn your pass by answering a 2-minute survey: four quick questions. Your answers help us improve ClarityIQ, and your free code arrives right after.</p>
     <form id="sv-form" novalidate>
       <fieldset class="sv-q">
         <legend>Where are you right now?</legend>
@@ -1120,7 +1131,7 @@ document.addEventListener('click', function (e) {
 // Live pricing-ladder price — public endpoint, no key required.
 // free-phase-bundle: the static HTML shows NO price ("Price shown at
 // checkout"), so a failed lookup can never show a wrong one. On success:
-//  - free rung: html.ciq-free shows "Free during launch, normally $249",
+//  - free rung: html.ciq-free shows "~~$249~~ Free launch pass" + "Earn your pass by answering a 2-minute survey",
 //    buttons read "Start your free session", Starter/Upgrade are hidden and
 //    the session button opens the before-session survey first.
 //  - paid rungs: the exact charged price (display strings from the Worker,
