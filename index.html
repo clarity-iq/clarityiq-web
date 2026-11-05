@@ -997,7 +997,7 @@
   <div class="ciq-modal-card">
     <button type="button" class="ciq-modal-close" id="sv-close" aria-label="Close">×</button>
     <h2 id="sv-title">Get your free launch pass</h2>
-    <p class="sub">Earn your pass by answering a 2-minute survey: three quick questions. Your answers help us improve ClarityIQ, and your launch pass code arrives right after.</p>
+    <p class="sub">Earn your pass by answering a 2-minute survey: four quick questions. Your answers help us improve ClarityIQ, and your launch pass code arrives right after.</p>
     <form id="sv-form" novalidate>
       <fieldset class="sv-q">
         <legend>Where are you right now?</legend>
@@ -1006,8 +1006,12 @@
           <label><input type="radio" name="stage" value="surgery_planned"><span>Surgery being planned</span></label>
           <label><input type="radio" name="stage" value="date_set"><span>Surgery date set</span></label>
           <label><input type="radio" name="stage" value="helping_someone"><span>Helping someone else</span></label>
-          <label><input type="radio" name="stage" value="already_had_surgery"><span>Already had surgery</span></label>
         </div>
+      </fieldset>
+      <fieldset class="sv-q">
+        <legend>How confident do you feel today about understanding your lens options? (0–10)</legend>
+        <div class="sv-opts sv-scale" id="sv-confidence"></div>
+        <div class="sv-scale-ends"><span>0 = not at all</span><span>10 = completely</span></div>
       </fieldset>
       <fieldset class="sv-q">
         <legend>What matters most to you?</legend>
@@ -1019,22 +1023,11 @@
           <label><input type="radio" name="matters" value="not_sure"><span>Not sure yet</span></label>
         </div>
       </fieldset>
-      <fieldset class="sv-q">
-        <legend>How did you hear about ClarityIQ? <span style="font-weight:400;color:var(--ink-3)">(optional)</span></legend>
-        <div class="sv-opts" id="sv-heard-opts">
-          <label><input type="radio" name="heard" value="eye_doctor"><span>Eye doctor or surgeon</span></label>
-          <label><input type="radio" name="heard" value="friend_family"><span>Friend or family</span></label>
-          <label><input type="radio" name="heard" value="search"><span>Online search</span></label>
-          <label><input type="radio" name="heard" value="social"><span>Social media</span></label>
-          <label><input type="radio" name="heard" value="forum"><span>Online group or forum</span></label>
-          <label><input type="radio" name="heard" value="other"><span>Other</span></label>
-        </div>
-        <div id="sv-heard-other-wrap" hidden style="margin-top:10px;">
-          <label class="sv-label" for="sv-heard-other" style="font-weight:400;">Where? (optional)</label>
-          <input type="text" id="sv-heard-other" name="heard_other" maxlength="200" autocomplete="off">
-          <div class="sv-hint">Please don't include names, phone numbers, or health details.</div>
-        </div>
-      </fieldset>
+      <div class="sv-q">
+        <label class="sv-label" for="sv-heard">How did you hear about ClarityIQ? <span style="font-weight:400;color:var(--ink-3)">(optional)</span></label>
+        <input type="text" id="sv-heard" name="heard" maxlength="200" autocomplete="off">
+        <div class="sv-hint">Please don't include names, phone numbers, or health details.</div>
+      </div>
       <div class="sv-error" id="sv-error" role="alert"></div>
       <p class="sv-consent">By continuing, you agree that your answers are used to improve ClarityIQ, as described in our <a href="/privacy.html#survey" target="_blank" rel="noopener">Privacy Policy</a>.</p>
       <button type="submit" class="btn btn-primary" id="sv-submit">Continue to my launch pass</button>
@@ -1246,11 +1239,14 @@ const svModal = document.getElementById('before-survey');
 const svForm = document.getElementById('sv-form');
 const svError = document.getElementById('sv-error');
 let svTrigger = null;
-// Survey merge v1: confidence is asked once, in the app (1-10), not here.
-document.getElementById('sv-heard-opts').addEventListener('change', () => {
-  const other = svForm.querySelector('input[name=heard][value=other]').checked;
-  document.getElementById('sv-heard-other-wrap').hidden = !other;
-});
+(function () {
+  const box = document.getElementById('sv-confidence');
+  for (let i = 0; i <= 10; i++) {
+    const l = document.createElement('label');
+    l.innerHTML = '<input type="radio" name="confidence" value="' + i + '"' + (i === 0 ? ' required' : '') + '><span>' + i + '</span>';
+    box.appendChild(l);
+  }
+})();
 function ciqOpenSurvey(trigger) {
   svTrigger = trigger;
   svError.textContent = '';
@@ -1271,10 +1267,8 @@ svForm.addEventListener('change', () => { svError.textContent = ''; });
 svForm.addEventListener('submit', async e => {
   e.preventDefault();
   const fd = new FormData(svForm);
-  const stage = fd.get('stage'), matters = fd.get('matters');
-  if (!stage || !matters) { svError.textContent = 'Please answer the first two questions.'; return; }
-  const heard = fd.get('heard') || '';
-  const heardOther = heard === 'other' ? String(fd.get('heard_other') || '').trim().slice(0, 200) : '';
+  const stage = fd.get('stage'), conf = fd.get('confidence'), matters = fd.get('matters');
+  if (!stage || conf == null || !matters) { svError.textContent = 'Please answer the first three questions.'; return; }
   const submit = document.getElementById('sv-submit');
   const label = submit.textContent;
   submit.disabled = true; submit.textContent = 'One moment…'; svError.textContent = '';
@@ -1282,7 +1276,7 @@ svForm.addEventListener('submit', async e => {
     const res = await fetch(PROXY_URL + '/survey/before', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-ClarityIQ-Key': CLIENT_KEY },
-      body: JSON.stringify({ stage, matters, ...(heard ? { heard } : {}), ...(heardOther ? { heard_other: heardOther } : {}), consent: true }),
+      body: JSON.stringify({ stage, confidence: parseInt(conf, 10), matters, heard: String(fd.get('heard') || '').slice(0, 200), consent: true }),
     });
     const data = await res.json().catch(() => ({}));
     if (res.status === 429) throw new Error('Too many tries from this connection. Please try again in an hour.');
