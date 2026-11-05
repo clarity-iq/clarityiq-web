@@ -116,8 +116,9 @@ footer {
     <li><strong>Information you provide directly:</strong> your email address, when you request free guides, get or purchase a session, or choose to receive a follow-up message.</li>
     <li><strong>Payment information:</strong> processed by our payment provider (Stripe). We do not collect or store card details.</li>
     <li><strong>Free access codes:</strong> a code we issue so you can start a free session.</li>
-    <li><strong>Before-session questions (required to get a free code):</strong> where you are in the process (just learning, surgery planned, date set, or helping someone else), how confident you feel (0&ndash;10), what matters most to you (distance, reading, cost, night driving, or not sure), and, optionally, how you heard about us.</li>
-    <li><strong>After-session questions (optional):</strong> how confident you feel (0&ndash;10), how likely you are to recommend us (0&ndash;10), what you might pay for a session (a price range), what was unclear, whether anything didn&rsquo;t work, and, if you check the consent box, your email for one follow-up message.</li>
+    <li><strong>Before-session questions (required to get a free code):</strong> where you are in the process (just learning, surgery planned, date set, helping someone else, or already had surgery), what matters most to you (distance, reading, cost, night driving, or not sure), and, optionally, how you heard about us (a short list, or your own words if you pick &ldquo;Other&rdquo;).</li>
+    <li><strong>In-app questions before the conversation:</strong> your age range, whether a cataract consultation is scheduled (not asked again if you already told us where you are in the process), how confident you feel about understanding your lens options and their trade-offs (1&ndash;10), and which kind of lens you are leaning toward, if any. Along with these we keep a session progress record: a random session code (not your name or email), which parts of the conversation were reached, and how long it lasted.</li>
+    <li><strong>After-session questions (optional):</strong> the same confidence question again (1&ndash;10), how prepared you feel to talk with your surgeon (1&ndash;10), how the voice sounded, whether you would have paid for the session and roughly how much, what helped most, how likely you are to recommend us (0&ndash;10), what was unclear, whether anything didn&rsquo;t work, and, if you check the consent box, your email for one follow-up message. If a conversation ends before the summary, we may instead ask one short question about why it ended.</li>
     <li><strong>Transient conversation content:</strong> during a session, free or paid, what you say is processed in real time only to generate your educational summary. It is not kept after the session ends.</li>
     <li><strong>Usage and analytics information:</strong> limited technical events about how people move through the site (for example, visiting the home page, starting a session, or starting checkout), collected through Cloudflare, including Cloudflare Web Analytics. We use this in aggregate and do not use it to build profiles of individuals.</li>
   </ul>
@@ -146,12 +147,12 @@ footer {
   <h2>6. Retention</h2>
   <ul>
     <li><strong>Conversation content and summaries:</strong> not kept after the session ends and the one-time email is sent.</li>
-    <li><strong>Survey answers and free access codes:</strong> kept for up to 12 months, then deleted automatically.</li>
+    <li><strong>Survey answers, in-app questions, session progress records, and free access codes:</strong> kept for up to 12 months, then deleted automatically.</li>
     <li><strong>Follow-up email from the survey:</strong> deleted after the follow-up message is sent, or after 12 months if it isn&rsquo;t, whichever comes first.</li>
     <li><strong>Usage and analytics events:</strong> kept in aggregate, without names or email addresses, for as long as our analytics provider keeps them.</li>
     <li><strong>Email address and payment records from purchases:</strong> kept as ordinary business records for tax, accounting, support, and legal purposes.</li>
   </ul>
-  <!-- Implementation: survey answers and free-code records use a 12-month KV expiry (deleted automatically). Deleting a follow-up email right after the one message is sent is a manual step for Martin. Martin to confirm the 12-month period. -->
+  <!-- Implementation: survey answers, app session/anomaly telemetry records (survey merge v1) and free-code records use a 12-month KV expiry (deleted automatically). Consent-log records (disclosure acknowledged) have no expiry yet: Martin to decide. Deleting a follow-up email right after the one message is sent is a manual step for Martin. Martin to confirm the 12-month period. -->
 
   <h2>7. Your Rights and Choices</h2>
   <p>You may ask us to delete your email address, your survey answers, and related records by contacting <a href="mailto:support@clarityiq.ai">support@clarityiq.ai</a>. If you agreed to a follow-up message, you can withdraw that consent at any time by replying to the message or contacting us. We will respond to verified requests as applicable law requires. Because we do not keep conversation content or summaries, there is no stored conversation to access or delete after a session ends.</p>
