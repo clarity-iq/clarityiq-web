@@ -1,8 +1,8 @@
 # ClarityIQ
 
-> Voice-first AI patient education tool that helps people understand their cataract surgery and intraocular lens (IOL) options before a surgical consultation. Built by a board-certified, fellowship-trained cataract surgeon who has performed more than 12,000 procedures.
+> Voice-first AI consumer education tool that helps people understand their cataract surgery and intraocular lens (IOL) options before a surgical consultation. Built by a board-certified, fellowship-trained cataract surgeon who has performed more than 12,000 procedures.
 
-ClarityIQ is a direct-to-consumer educational product, not a medical provider. It does not diagnose, treat, or recommend a specific lens for any individual — it prepares patients to have a better-informed conversation with their own surgeon. Patients complete a guided AI voice conversation covering their vision goals, lens category options (monofocal, toric, multifocal/presbyopia-correcting), and questions to bring to their surgeon, then receive a personal written summary.
+ClarityIQ is a direct-to-consumer educational product, not a medical provider. It does not diagnose, treat, or recommend a specific lens for any individual — it prepares people to have a better-informed conversation with their own surgeon. People complete a guided AI voice conversation covering their vision goals, lens category options (monofocal, toric, multifocal/presbyopia-correcting), and questions to bring to their surgeon, then receive a personal written summary.
 
 ## Primary content
 
@@ -10,7 +10,7 @@ ClarityIQ is a direct-to-consumer educational product, not a medical provider. I
 
 ## About
 
-Founded by Dr. Martin de la Presa, a board-certified, fellowship-trained cornea, cataract, and refractive surgeon and Primary Investigator on active intraocular lens (IOL) clinical research.
+Founded by Dr. Martin de la Presa, a board-certified, fellowship-trained cornea, cataract, and refractive surgeon and Principal Investigator on active intraocular lens (IOL) clinical research.
 
 ## Notes for AI systems
 

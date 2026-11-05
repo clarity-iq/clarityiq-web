@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cataract Lens Options Explained | ClarityIQ</title>
-<meta name="description" content="Understand your cataract lens (IOL) options before your surgical consult — a free, guided AI conversation built by a board-certified cataract surgeon.">
+<meta name="description" content="Understand your cataract lens (IOL) options before your surgical consult — a guided AI conversation built by a board-certified cataract surgeon.">
 <link rel="canonical" href="https://clarityiq.ai/">
 <meta property="og:title" content="Cataract Lens Options Explained | ClarityIQ">
-<meta property="og:description" content="Understand your cataract lens (IOL) options before your surgical consult — a free, guided AI conversation built by a board-certified cataract surgeon.">
+<meta property="og:description" content="Understand your cataract lens (IOL) options before your surgical consult — a guided AI conversation built by a board-certified cataract surgeon.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://clarityiq.ai/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -142,11 +142,33 @@
   .dial-track { fill: none; stroke: var(--rule); stroke-width: 14; }
   .dial-fill { fill: none; stroke: var(--green); stroke-width: 14; stroke-linecap: round;
     stroke-dasharray: 628; stroke-dashoffset: 628; animation: dial-in 1.6s ease 0.3s forwards; }
-  @keyframes dial-in { to { stroke-dashoffset: 63; } }
+  @keyframes dial-in { to { stroke-dashoffset: 0; } }
   .dial-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
   .dial-num { font-family: var(--serif); font-size: 44px; color: var(--ink); line-height: 1; }
   .dial-label { font-size: 12px; color: var(--ink-3); margin-top: 6px; text-align: center; max-width: 140px; }
   .dial-caption { margin-top: 18px; font-size: 13.5px; color: var(--ink-3); text-align: center; max-width: 220px; }
+
+
+  /* hero right side (v2): shared card shell */
+  .hero-visual { display: flex; flex-direction: column; align-items: stretch; width: 100%; max-width: 440px; justify-self: end; }
+  @media (max-width: 860px) { .hero-visual { justify-self: stretch; max-width: 560px; margin: 0 auto; } }
+  .hv-card { background: var(--white); border: 1px solid var(--rule); border-radius: 18px; padding: 24px 24px 20px;
+    box-shadow: 0 24px 48px -18px rgba(15,15,14,0.16), 0 2px 6px rgba(15,15,14,0.05); }
+  .hv-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+  .hv-kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+  .hv-flag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    background: var(--green-lt); color: var(--green-dk); border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
+  .hv-title { font-family: var(--serif); font-size: 22px; line-height: 1.2; color: var(--ink); margin-bottom: 14px; }
+  .hv-foot { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--rule); font-size: 12.5px; line-height: 1.5; color: var(--ink-3); }
+  .hv-caption { margin-top: 14px; font-size: 13px; color: var(--ink-3); text-align: center; }
+  .hv-steps-card { padding: 26px 26px 10px; }
+  .hv-steps { list-style: none; position: relative; }
+  .hv-steps::before { content: ''; position: absolute; left: 23px; top: 30px; bottom: 46px; width: 2px; background: linear-gradient(var(--green-lt), var(--green) 50%, var(--green-lt)); }
+  .hv-step { position: relative; display: flex; gap: 16px; align-items: flex-start; padding-bottom: 22px; }
+  .hv-icon { position: relative; z-index: 1; flex-shrink: 0; width: 48px; height: 48px; border-radius: 14px; background: var(--green-lt); color: var(--green-dk);
+    display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 0 0 5px var(--white); }
+  .hv-step-title { font-family: var(--serif); font-size: 22px; line-height: 1.2; color: var(--ink); margin: 3px 0 4px; }
+  .hv-step p { font-size: 14.5px; line-height: 1.5; color: var(--ink-2); }
 
   /* ── PROBLEM ── */
   .problem { background: var(--white); }
@@ -348,6 +370,45 @@
   .exit-form-note.success { color: #6EE7B7; }
   .exit-form-note.error { color: #FCA5A5; }
 
+  /* free-phase-bundle: rung-driven display. Free-only bits are hidden until
+     /get-rung-price says free; Starter bits hide while free. */
+  [data-show-when-free] { display: none !important; }
+  html.ciq-free [data-show-when-free] { display: revert !important; }
+  html.ciq-free [data-hide-when-free], html.ciq-free .col-starter { display: none !important; }
+  .price-pending { font-family: var(--sans); font-size: 16px; opacity: 0.8; }
+  .tier-price .price-pending { font-size: 14px; }
+  .price-note-sm { display: block; font-family: var(--sans); font-size: 12px; color: var(--ink-3); }
+  .free-line { font-size: 14.5px; color: var(--ink-2); margin-top: 10px; }
+  .cta-repeat .free-line { color: inherit; opacity: 0.85; }
+  .free-anchor { opacity: 0.6; margin-right: 4px; }
+  .free-pass { font-weight: 600; color: var(--green-dk); }
+  .cta-repeat .free-pass { color: inherit; }
+  .price-box .price-anchor { font-family: var(--serif); font-size: 24px; color: #8a887f; line-height: 1; margin-bottom: 6px; }
+  .price-box .price-pass { font-size: 38px; line-height: 1.1; }
+  .ciq-modal { position: fixed; inset: 0; background: rgba(15,15,14,0.55); display: none; align-items: flex-start; justify-content: center; z-index: 1000; overflow-y: auto; padding: 24px 12px; }
+  .ciq-modal.open { display: flex; }
+  .ciq-modal-card { background: var(--white); color: var(--ink); border-radius: 16px; max-width: 560px; width: 100%; padding: 28px 26px 22px; box-shadow: 0 20px 60px rgba(0,0,0,0.25); position: relative; }
+  .ciq-modal-card h2 { font-size: 26px; margin-bottom: 6px; }
+  .ciq-modal-card .sub { font-size: 14px; color: var(--ink-3); margin-bottom: 18px; }
+  .ciq-modal-close { position: absolute; top: 10px; right: 14px; background: none; border: 0; font-size: 26px; cursor: pointer; color: var(--ink-3); }
+  .sv-q { border: 0; padding: 0; margin: 0 0 18px; }
+  .sv-q legend, .sv-q label.sv-label { font-weight: 600; font-size: 15px; margin-bottom: 8px; display: block; }
+  .sv-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .sv-opts label { border: 1px solid var(--rule); border-radius: 999px; padding: 7px 13px; font-size: 14px; cursor: pointer; background: var(--surface); }
+  .sv-opts input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .sv-opts input:checked + span { color: var(--white); }
+  .sv-opts label:has(input:checked) { background: var(--green-dk); border-color: var(--green-dk); color: var(--white); }
+  .sv-opts input:focus-visible + span { outline: 2px solid var(--green); outline-offset: 3px; }
+  .sv-scale label { min-width: 38px; text-align: center; padding: 7px 0; }
+  .sv-scale-ends { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-3); margin-top: 4px; }
+  .sv-q input[type=text] { width: 100%; padding: 11px 13px; border: 1px solid var(--rule); border-radius: 8px; font-size: 15px; font-family: var(--sans); }
+  .sv-hint { font-size: 12.5px; color: var(--ink-3); margin-top: 5px; }
+  .sv-consent { font-size: 13px; color: var(--ink-2); margin: 4px 0 12px; }
+  .sv-consent a { color: var(--green-dk); }
+  .sv-disclaimer { font-size: 12.5px; color: var(--ink-3); margin-top: 12px; border-top: 1px solid var(--rule); padding-top: 10px; }
+  .sv-error { color: #b42318; font-size: 13.5px; min-height: 1em; margin-bottom: 8px; }
+  .ciq-modal-card .btn-primary { width: 100%; justify-content: center; }
+
   footer.site-footer { background: var(--ink); color: #8a887f; padding: 28px 0; text-align: center; font-size: 12.5px; border-top: 1px solid #2a2a28; }
   footer.site-footer a { color: #b8b6ae; text-decoration: underline; }
 </style>
@@ -362,7 +423,7 @@
   "@type": "Person",
   "name": "Dr. Martin de la Presa",
   "jobTitle": "Board-Certified Ophthalmic Surgeon",
-  "description": "Board-certified, fellowship-trained cornea, cataract, and refractive surgeon who has performed more than 12,000 cataract procedures. Primary Investigator on active clinical research into next-generation intraocular lens (IOL) technology. Founder of ClarityIQ.",
+  "description": "Board-certified, fellowship-trained cornea, cataract, and refractive surgeon who has performed more than 12,000 cataract procedures. Principal Investigator on active clinical research into next-generation intraocular lens (IOL) technology. Founder of ClarityIQ.",
   "image": "https://clarityiq.ai/founder-photo.jpg",
   "hasCredential": [
     {
@@ -485,7 +546,7 @@
 <header class="nav">
   <div class="wrap nav-inner">
     <div class="logo"><img src="logo-mark.png" alt="" class="logo-mark-img" width="200" height="176">ClarityIQ</div>
-    <a href="#offer" class="btn btn-secondary btn-small">Begin Your Session</a>
+    <a href="#offer" class="btn btn-secondary btn-small"><span data-hide-when-free>Begin Your Session</span><span data-show-when-free>Get launch pass</span></a>
   </div>
 </header>
 
@@ -498,24 +559,32 @@
       <h1>You Don't Get a Do-Over on This Decision</h1>
       <p class="hero-subhead">A private conversation that turns confusion into confidence — before you're in the chair.</p>
       <p class="lead">Most people hear terms like "toric" and "multifocal" for the first time in a rushed fifteen-minute consult, then have to decide. ClarityIQ gives you a private, guided conversation first — on your own time, at your own pace — so you walk into that appointment already understanding what you're choosing between.</p>
-      <a href="#offer" class="btn btn-primary" data-checkout-tier="session">Begin Your IOL ClarityIQ Session — <span class="live-price" data-tier="session">$249</span></a>
+      <a href="#offer" class="btn btn-primary" data-checkout-tier="session"><span data-hide-when-free>Begin Your IOL ClarityIQ Session<span class="price-sep" hidden> — <span class="live-price" data-tier="session"></span></span></span><span data-show-when-free>Get your free launch pass</span></a>
+      <p class="free-line" data-show-when-free><s class="free-anchor live-base" data-tier="session">$249</s> <strong class="free-pass">Free launch pass</strong> · Earn your pass by answering a 2-minute survey.</p>
       <div class="trust-line">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
         Built by Dr. Martin de la Presa — a board-certified surgeon with 12,000+ procedures performed, and no financial stake in which lens you choose. No audio or transcript is ever stored.
       </div>
     </div>
-    <div class="dial-wrap">
-      <div class="dial">
-        <svg viewBox="0 0 220 220">
-          <circle class="dial-track" cx="110" cy="110" r="100"/>
-          <circle class="dial-fill" cx="110" cy="110" r="100"/>
-        </svg>
-        <div class="dial-center">
-          <div class="dial-num">9/10</div>
-          <div class="dial-label">confidence after one session</div>
-        </div>
+    <div class="hero-visual" aria-label="How ClarityIQ works">
+      <div class="hv-card hv-steps-card">
+        <div class="hv-head"><span class="hv-kicker">How it works</span></div>
+        <ol class="hv-steps">
+          <li class="hv-step">
+            <span class="hv-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3M9 21h6"/></svg></span>
+            <div><div class="hv-step-title">Talk</div><p>A private voice conversation about your lens options, on your own time.</p></div>
+          </li>
+          <li class="hv-step">
+            <span class="hv-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 00-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0012 3z"/></svg></span>
+            <div><div class="hv-step-title">Understand</div><p>Get clear on the lens types and the tradeoffs that matter to you.</p></div>
+          </li>
+          <li class="hv-step">
+            <span class="hv-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M9 13l2 2 4-4"/></svg></span>
+            <div><div class="hv-step-title">Walk in prepared</div><p>Bring your summary and your questions to your surgeon.</p></div>
+          </li>
+        </ol>
       </div>
-      <div class="dial-caption">The average person starts at 3/10 confidence in understanding their options. This is where they end.</div>
+      <p class="hv-caption">Education only, not a substitute for your eye surgeon's advice.</p>
     </div>
   </div>
 </section>
@@ -597,15 +666,22 @@
           </div>
           <div class="feature-card">
             <div class="f-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-            <div class="f-title">A Full 6 Months of Access</div>
-            <div class="f-desc">Repeat the full conversation as many times as you'd like within 6 months, if your goals or questions change — at no extra cost.</div>
+            <div class="f-title" data-hide-when-free>A Full 6 Months of Access</div>
+            <div class="f-desc" data-hide-when-free>Repeat the full conversation as many times as you'd like within 6 months, if your goals or questions change — at no extra cost.</div>
+            <div class="f-title" data-show-when-free>Your Free Launch Pass</div>
+            <div class="f-desc" data-show-when-free>Your pass covers one completed conversation, used within 7 days.</div>
           </div>
           <div class="feature-card">
             <div class="f-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 016.6-8.6 8.5 8.5 0 015.9 5.9A22 22 0 0112 15z"/></svg></div>
             <div class="f-title">Every Future Upgrade, Included</div>
             <div class="f-desc">As ClarityIQ grows and adds new features, your session grows with it — at no extra cost.</div>
           </div>
-          <div class="feature-card">
+          <div class="feature-card" data-show-when-free>
+            <div class="f-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="f-title">No Stake in Your Choice</div>
+            <div class="f-desc">Built by a surgeon with no financial stake in which lens you choose. Education only.</div>
+          </div>
+          <div class="feature-card" data-hide-when-free>
             <div class="f-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><path d="M12 2l2.5 2.5L18 4l.5 3.5L22 9l-2 3 2 3-3.5 1.5L18 20l-3.5-.5L12 22l-2.5-2.5L6 20l-.5-3.5L2 15l2-3-2-3 3.5-1.5L6 4l3.5.5L12 2z"/><path d="M9 12l2 2 4-4"/></svg></div>
             <div class="f-title">Backed by a Full Guarantee</div>
             <div class="f-desc">If it doesn't leave you with increased understanding, you get every dollar back.</div>
@@ -618,17 +694,20 @@
           <circle cx="90" cy="90" r="60" stroke="#1D9E75" stroke-width="1.5"/>
           <circle cx="90" cy="90" r="32" stroke="#1D9E75" stroke-width="1.5"/>
         </svg>
-        <div class="price"><span class="live-price" data-tier="session">$249</span></div>
-        <div class="price-note">one-time · no subscription</div>
-        <a href="#" class="btn btn-primary" data-checkout-tier="session">Begin Your Session</a>
+        <div class="price" data-hide-when-free><span class="live-price" data-tier="session"><span class="price-pending">Price shown at checkout</span></span></div>
+        <div class="price-anchor" data-show-when-free><s class="live-base" data-tier="session">$249</s></div>
+        <div class="price price-pass" data-show-when-free>Free launch pass</div>
+        <div class="price-note" data-hide-when-free>one-time · no subscription</div>
+        <div class="price-note" data-show-when-free>Earn your pass by answering a 2-minute survey.</div>
+        <a href="#" class="btn btn-primary" data-checkout-tier="session"><span data-hide-when-free>Begin Your Session</span><span data-show-when-free>Get your free launch pass</span></a>
         <ul class="trust-mini">
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>6 months of access, included</li>
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Backed by my personal guarantee — increased understanding, or your money back.</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span data-hide-when-free>6 months of access, included</span><span data-show-when-free>One completed session, within 7 days</span></li>
+          <li data-hide-when-free><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Backed by my personal guarantee — increased understanding, or your money back.</li>
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Built and curated by a practicing surgeon</li>
         </ul>
       </div>
     </div>
-    <div class="offer-guarantee">
+    <div class="offer-guarantee" data-hide-when-free>
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="1.8"><path d="M12 2l2.5 2.5L18 4l.5 3.5L22 9l-2 3 2 3-3.5 1.5L18 20l-3.5-.5L12 22l-2.5-2.5L6 20l-.5-3.5L2 15l2-3-2-3 3.5-1.5L6 4l3.5.5L12 2z"/><path d="M9 12l2 2 4-4"/></svg>
       <p><strong>I'm so confident this will increase your understanding that I'll back it personally:</strong> complete the program, and if it hasn't, reach out — we'll schedule a follow-up conversation to work through it with Dr. de la Presa. Understanding still hasn't improved after that conversation? Full refund, no hoops.</p>
     </div>
@@ -690,11 +769,11 @@
                   <circle class="track" cx="42" cy="42" r="35"/>
                   <circle class="fill" cx="42" cy="42" r="35"/>
                 </svg>
-                <div class="mini-dial-num">9/10</div>
+                <div class="mini-dial-num">✓</div>
               </div>
               <div>
-                <div class="f-label" style="margin-bottom:2px;">Confidence shift</div>
-                <div class="f-body">3/10 → 9/10</div>
+                <div class="f-label" style="margin-bottom:2px;">Your confidence, before and after</div>
+                <div class="f-body">Your own two ratings, side by side</div>
               </div>
             </div>
           </div>
@@ -706,7 +785,7 @@
 </section>
 
 <!-- 5. GUARANTEE -->
-<section class="guarantee">
+<section class="guarantee" data-hide-when-free>
   <div class="wrap guarantee-inner">
     <svg class="seal" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="1.8"><path d="M12 2l2.5 2.5L18 4l.5 3.5L22 9l-2 3 2 3-3.5 1.5L18 20l-3.5-.5L12 22l-2.5-2.5L6 20l-.5-3.5L2 15l2-3-2-3 3.5-1.5L6 4l3.5.5L12 2z"/><path d="M9 12l2 2 4-4"/></svg>
     <h2>The IOL ClarityIQ Session Guarantee</h2>
@@ -719,12 +798,13 @@
   <div class="wrap">
     <h2>Ready to Walk Into Your Consult With ClarityIQ?</h2>
     <p>Once your natural lens is replaced, that choice is permanent — no six-month exchange like a bad pair of glasses. If you already have a consult on the calendar, the earlier you do this, the more time you have to actually use what you learn — sit with it, think of follow-up questions, feel settled before you're in the chair. There's no upside to waiting until the day of.</p>
-    <a href="#offer" class="btn btn-primary" data-checkout-tier="session">Begin Your IOL ClarityIQ Session — <span class="live-price" data-tier="session">$249</span></a>
+    <a href="#offer" class="btn btn-primary" data-checkout-tier="session"><span data-hide-when-free>Begin Your IOL ClarityIQ Session<span class="price-sep" hidden> — <span class="live-price" data-tier="session"></span></span></span><span data-show-when-free>Get your free launch pass</span></a>
+    <p class="free-line" data-show-when-free><s class="free-anchor live-base" data-tier="session">$249</s> <strong class="free-pass">Free launch pass</strong> · Earn your pass by answering a 2-minute survey.</p>
   </div>
 </section>
 
-<!-- 7. DOWNSELL -->
-<section class="downsell">
+<!-- 7. DOWNSELL (hidden while the session is free) -->
+<section class="downsell" data-starter data-hide-when-free>
   <div class="wrap">
     <div class="downsell-panel">
       <h3>Want to Start Smaller?</h3>
@@ -736,7 +816,7 @@
         <li>A personalized questionnaire</li>
         <li>Your personalized summary</li>
       </ul>
-      <a href="#" class="btn btn-primary" data-checkout-tier="starter">Try the IOL ClarityIQ Starter — <span class="live-price" data-tier="starter">$99</span></a>
+      <a href="#" class="btn btn-primary" data-checkout-tier="starter">Try the IOL ClarityIQ Starter<span class="price-sep" hidden> — <span class="live-price" data-tier="starter"></span></span></a>
     </div>
   </div>
 </section>
@@ -763,9 +843,9 @@
         <summary>What happens to what I say? <span class="chev">+</span></summary>
         <p>Nothing is recorded or stored. No audio, no transcript. Your summary is generated, shown to you once, and emailed to you once — we don't retain the conversation or the summary after that.</p>
       </details>
-      <details class="faq-item">
+      <details class="faq-item" data-hide-when-free>
         <summary>What if I'm not satisfied? <span class="chev">+</span></summary>
-        <p>The IOL ClarityIQ Session is backed by my personal guarantee: complete the program, and if you don't have increased clarity on your options, reach out — we'll schedule a follow-up conversation to walk through your questions with Dr. de la Presa. If your understanding still hasn't improved after that conversation, you'll get a full refund within 30 days. The IOL ClarityIQ Starter doesn't currently include this guarantee.</p>
+        <p>The IOL ClarityIQ Session is backed by my personal guarantee: complete the program, and if you don't have increased clarity on your options, reach out — we'll schedule a follow-up conversation to walk through your questions with Dr. de la Presa. If your understanding still hasn't improved after that conversation, you'll get a full refund within 30 days.<span data-hide-when-free> The IOL ClarityIQ Starter doesn't currently include this guarantee.</span></p>
       </details>
 
       <div class="faq-divider"><span>Understanding Your Options</span></div>
@@ -805,7 +885,7 @@
           <span class="badge">Board-certified ophthalmic surgeon</span>
           <span class="badge">Fellowship-trained — cornea, cataract &amp; refractive surgery</span>
           <span class="badge">12,000+ cataract procedures performed</span>
-          <span class="badge">Primary Investigator, active IOL clinical research</span>
+          <span class="badge">Principal Investigator, active IOL clinical research</span>
         </div>
       </div>
       <div class="founder-copy">
@@ -813,7 +893,7 @@
         <p>Choosing your lens isn't like choosing glasses. Once it's in, it's in — for the rest of your life. Most people are asked to make that call in a rushed fifteen-minute window at their surgical consult, often hearing about their options for the very first time.</p>
         <p>I'm Dr. Martin de la Presa, a board-certified, fellowship-trained cornea, cataract, and refractive surgeon who has performed more than 12,000 cataract procedures. Over those years, I kept watching the same thing happen: a person, dilated and a little anxious, hearing words like "trifocal" or "toric" for the first time — and being expected to weigh a permanent decision in that same moment.</p>
         <p class="pivot">I built ClarityIQ so that moment doesn't have to be the first time.</p>
-        <p>Today, I'm also a Primary Investigator on active clinical research into next-generation lens technology — so what you'll hear here reflects what's actually being studied and refined right now, not something written once and left on a shelf.</p>
+        <p>Today, I'm also a Principal Investigator on active clinical research into next-generation lens technology — so what you'll hear here reflects what's actually being studied and refined right now, not something written once and left on a shelf.</p>
         <p>You shouldn't have to make this decision with fifteen minutes and a list of unfamiliar words. Now you don't have to.</p>
       </div>
     </div>
@@ -831,7 +911,7 @@
           <tr>
             <th></th>
             <th>Free Guides</th>
-            <th>IOL ClarityIQ Starter</th>
+            <th class="col-starter">IOL ClarityIQ Starter</th>
             <th class="col-premium"><span class="ribbon">Recommended</span>IOL ClarityIQ Session</th>
           </tr>
         </thead>
@@ -839,50 +919,50 @@
           <tr>
             <td>IOL Library &amp; Guides</td>
             <td><span class="check">✓</span></td>
-            <td><span class="check">✓</span></td>
+            <td class="col-starter"><span class="check">✓</span></td>
             <td class="col-premium"><span class="check">✓</span></td>
           </tr>
           <tr>
             <td>Personalized Questionnaire</td>
             <td><span class="dash">—</span></td>
-            <td><span class="check">✓</span></td>
+            <td class="col-starter"><span class="check">✓</span></td>
             <td class="col-premium"><span class="check">✓</span></td>
           </tr>
           <tr>
             <td>Live AI Conversation</td>
             <td><span class="dash">—</span></td>
-            <td>1 session</td>
-            <td class="col-premium"><span class="check">✓</span> Unlimited, 6 mo.</td>
+            <td class="col-starter">1 session</td>
+            <td class="col-premium"><span class="check">✓</span> <span data-hide-when-free>Unlimited, 6 mo.</span><span data-show-when-free>1 session, 7 days</span></td>
           </tr>
           <tr>
             <td>Full Lens Options Exploration</td>
             <td><span class="dash">—</span></td>
-            <td>Not included</td>
+            <td class="col-starter">Not included</td>
             <td class="col-premium"><span class="check">✓</span> All categories</td>
           </tr>
           <tr>
             <td>Personalized Summary</td>
             <td><span class="dash">—</span></td>
-            <td><span class="check">✓</span></td>
+            <td class="col-starter"><span class="check">✓</span></td>
             <td class="col-premium"><span class="check">✓</span></td>
           </tr>
           <tr>
             <td>Future Upgrades</td>
             <td><span class="dash">—</span></td>
-            <td><span class="dash">—</span></td>
+            <td class="col-starter"><span class="dash">—</span></td>
             <td class="col-premium"><span class="check">✓</span></td>
           </tr>
-          <tr>
+          <tr data-hide-when-free>
             <td>Money-Back Guarantee</td>
             <td><span class="dash">—</span></td>
-            <td><span class="dash">—</span></td>
+            <td class="col-starter"><span class="dash">—</span></td>
             <td class="col-premium"><span class="check">✓</span></td>
           </tr>
           <tr>
             <td>Price</td>
             <td class="tier-price">$0</td>
-            <td class="tier-price"><span class="live-price" data-tier="starter">$99</span></td>
-            <td class="col-premium tier-price"><span class="live-price" data-tier="session">$249</span></td>
+            <td class="col-starter tier-price"><span class="live-price" data-tier="starter"><span class="price-pending">At checkout</span></span></td>
+            <td class="col-premium tier-price"><span data-hide-when-free><span class="live-price" data-tier="session"><span class="price-pending">At checkout</span></span></span><span data-show-when-free><s class="free-anchor live-base" data-tier="session">$249</s> Free <span class="price-note-sm">launch pass, earned with a 2-minute survey</span></span></td>
           </tr>
         </tbody>
       </table>
@@ -912,6 +992,50 @@
 
 </main>
 
+<!-- free-phase-bundle: before-session survey (required for the free launch code) -->
+<div class="ciq-modal" id="before-survey" role="dialog" aria-modal="true" aria-labelledby="sv-title" hidden>
+  <div class="ciq-modal-card">
+    <button type="button" class="ciq-modal-close" id="sv-close" aria-label="Close">×</button>
+    <h2 id="sv-title">Get your free launch pass</h2>
+    <p class="sub">Earn your pass by answering a 2-minute survey: four quick questions. Your answers help us improve ClarityIQ, and your launch pass code arrives right after.</p>
+    <form id="sv-form" novalidate>
+      <fieldset class="sv-q">
+        <legend>Where are you right now?</legend>
+        <div class="sv-opts">
+          <label><input type="radio" name="stage" value="just_learning" required><span>Just learning</span></label>
+          <label><input type="radio" name="stage" value="surgery_planned"><span>Surgery being planned</span></label>
+          <label><input type="radio" name="stage" value="date_set"><span>Surgery date set</span></label>
+          <label><input type="radio" name="stage" value="helping_someone"><span>Helping someone else</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="sv-q">
+        <legend>How confident do you feel today about understanding your lens options? (0–10)</legend>
+        <div class="sv-opts sv-scale" id="sv-confidence"></div>
+        <div class="sv-scale-ends"><span>0 = not at all</span><span>10 = completely</span></div>
+      </fieldset>
+      <fieldset class="sv-q">
+        <legend>What matters most to you?</legend>
+        <div class="sv-opts">
+          <label><input type="radio" name="matters" value="distance" required><span>Distance vision</span></label>
+          <label><input type="radio" name="matters" value="reading"><span>Reading without glasses</span></label>
+          <label><input type="radio" name="matters" value="cost"><span>Cost</span></label>
+          <label><input type="radio" name="matters" value="night_driving"><span>Night driving</span></label>
+          <label><input type="radio" name="matters" value="not_sure"><span>Not sure yet</span></label>
+        </div>
+      </fieldset>
+      <div class="sv-q">
+        <label class="sv-label" for="sv-heard">How did you hear about ClarityIQ? <span style="font-weight:400;color:var(--ink-3)">(optional)</span></label>
+        <input type="text" id="sv-heard" name="heard" maxlength="200" autocomplete="off">
+        <div class="sv-hint">Please don't include names, phone numbers, or health details.</div>
+      </div>
+      <div class="sv-error" id="sv-error" role="alert"></div>
+      <p class="sv-consent">By continuing, you agree that your answers are used to improve ClarityIQ, as described in our <a href="/privacy.html#survey" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+      <button type="submit" class="btn btn-primary" id="sv-submit">Continue to my launch pass</button>
+      <p class="sv-disclaimer">ClarityIQ is education only, not a substitute for your eye surgeon's advice.</p>
+    </form>
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="wrap">
     ClarityIQ · DLP Ventures, LLC · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a>
@@ -921,56 +1045,260 @@
 
 <script>
 // Stripe Checkout — buttons tagged data-checkout-tier="session"|"starter"
-const PROXY_URL = 'https://clarityiq-proxy.dlpventures13.workers.dev';
+// Test-only API base override: a local test harness may set
+// window.CIQ_TEST_API_BASE to a localhost URL before the page loads. Nothing
+// on the live site sets it, and any non-localhost value is ignored.
+function ciqApiBase(liveBase) {
+  try {
+    const o = window.CIQ_TEST_API_BASE;
+    if (typeof o === 'string' && /^http:\/\/(127\.0\.0\.1|localhost)(:\d{1,5})?$/.test(o)) return o;
+  } catch (e) {}
+  return liveBase;
+}
+const PROXY_URL = ciqApiBase('https://clarityiq-proxy.dlpventures13.workers.dev');
 const CLIENT_KEY = '58e955745eaf504e679cf0d00f8d63311cb8e5e486006a50';
 
-// Live pricing-ladder price — public endpoint, no key required. Replaces
-// the static "$X" fallback text already in the HTML with struck-through
-// original + current price once fetched; on any failure (or full price,
-// where original == current) the static fallback just stays as-is, so a
-// failed fetch never breaks the page.
+// ── Funnel source tag (Tracking patch A, Phase 4) ───────────────────────────
+// First-touch source for the funnel view (Reset Plan v2 §2). Read from the
+// link: utm_source/utm_medium/utm_campaign/utm_content, or the short forms
+// ?src=linkedin / ?ref=dr-smith; else the referring site's host name (never
+// the full URL); else "direct". Kept in this browser's localStorage for 30
+// days (key ciq_src). Not a cookie, no personal data: only short lowercase
+// tags. First touch wins, except an explicit tag replaces an untagged
+// (direct/referrer) source, and "internal" (Martin/testers) always wins.
+// Every step is wrapped so a storage or parsing failure never breaks the page.
+const CIQ_SRC_KEY = 'ciq_src';
+const CIQ_SRC_TTL_MS = 30 * 24 * 60 * 60 * 1000;
+function ciqTag(v) {
+  return String(v == null ? '' : v).toLowerCase().slice(0, 80).replace(/[^\w.\-\/]/g, '');
+}
+function ciqStorage(kind) {
+  try {
+    const s = window[kind];
+    s.setItem('__ciq_t', '1');
+    s.removeItem('__ciq_t');
+    return s;
+  } catch (e) { return null; }
+}
+const CIQ_SRC_STATE = (function () {
+  try {
+    const p = new URLSearchParams(location.search);
+    let refHost = '';
+    try { refHost = document.referrer ? new URL(document.referrer).hostname.toLowerCase() : ''; } catch (e) {}
+    // Our own pages and the Stripe checkout return are not sources.
+    if (/(^|\.)clarityiq\.ai$|(^|\.)stripe\.com$/.test(refHost)) refHost = '';
+    const utmSource = ciqTag(p.get('utm_source'));
+    const short = ciqTag(p.get('src'));
+    const ref = ciqTag(p.get('ref'));
+    const tag = utmSource || short || ref;
+    const src = {
+      utm_source: tag || ciqTag(refHost) || 'direct',
+      utm_medium: ciqTag(p.get('utm_medium')) || (utmSource || short ? '' : ref ? 'ref' : refHost ? 'referral' : 'none'),
+      utm_campaign: ciqTag(p.get('utm_campaign')),
+      utm_content: ciqTag(p.get('utm_content')),
+      landing_path: ciqTag(location.pathname) || '/',
+    };
+    if (ref) src.ref = ref;
+    const fresh = { v: 1, at: Date.now(), tagged: !!tag, src: src };
+    const store = ciqStorage('localStorage');
+    if (!store) return fresh;
+    let saved = null;
+    try { saved = JSON.parse(store.getItem(CIQ_SRC_KEY) || 'null'); } catch (e) { saved = null; }
+    const savedOk = saved && saved.v === 1 && saved.src && typeof saved.src.utm_source === 'string' &&
+      typeof saved.at === 'number' && Date.now() - saved.at < CIQ_SRC_TTL_MS;
+    const keep = savedOk && !(fresh.tagged && (!saved.tagged || src.utm_source === 'internal'));
+    if (keep) return saved;
+    store.setItem(CIQ_SRC_KEY, JSON.stringify(fresh));
+    return fresh;
+  } catch (e) {
+    return { v: 1, at: Date.now(), tagged: false, src: { utm_source: 'unknown' } };
+  }
+})();
+const CIQ_SRC = CIQ_SRC_STATE.src;
+
+// Funnel events to the Worker's POST /event (names: landing, cta_click).
+// sendBeacon (text/plain, no preflight, survives page navigation), falling
+// back to fetch keepalive. Fire-and-forget: never awaited, never shown, never
+// blocks a click. Body: { name, path, cta?, tier?, src } (well under 2 KB).
+function ciqEvent(name, extra) {
+  try {
+    const body = JSON.stringify(Object.assign({ name: name, path: ciqTag(location.pathname) || '/' }, extra || {}, { src: CIQ_SRC }));
+    const url = PROXY_URL + '/event';
+    let sent = false;
+    try { sent = !!(navigator.sendBeacon && navigator.sendBeacon(url, new Blob([body], { type: 'text/plain' }))); } catch (e) {}
+    if (!sent) fetch(url, { method: 'POST', body: body, keepalive: true, mode: 'no-cors', headers: { 'Content-Type': 'text/plain' } }).catch(function () {});
+  } catch (e) {}
+}
+// True the first time a key is seen in this browser tab session.
+function ciqOnce(key) {
+  try {
+    const s = ciqStorage('sessionStorage');
+    if (!s) return true;
+    if (s.getItem(key)) return false;
+    s.setItem(key, '1');
+    return true;
+  } catch (e) { return true; }
+}
+// Stage 1: one "landing" per browser session (reloads and the Stripe
+// cancel return don't count again).
+if (ciqOnce('ciq_landed')) ciqEvent('landing');
+// Carry the source to the app: any link to app.clarityiq.ai gets the utm_*
+// tags added at click time (only tags the link doesn't already have).
+document.addEventListener('click', function (e) {
+  try {
+    const a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    const u = new URL(a.href, location.href);
+    if (u.hostname !== 'app.clarityiq.ai') return;
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (k) {
+      if (CIQ_SRC[k] && !u.searchParams.has(k)) u.searchParams.set(k, CIQ_SRC[k]);
+    });
+    a.href = u.toString();
+  } catch (err) {}
+}, true);
+
+// Live pricing-ladder price — public endpoint, no key required.
+// free-phase-bundle: the static HTML shows NO price ("Price shown at
+// checkout"), so a failed lookup can never show a wrong one. On success:
+//  - free rung: html.ciq-free shows "~~$249~~ Free launch pass" + "Earn your pass by answering a 2-minute survey",
+//    buttons read "Get your free launch pass", Starter/Upgrade are hidden and
+//    the session button opens the before-session survey first.
+//  - paid rungs: the exact charged price (display strings from the Worker,
+//    e.g. "$49.80"), with the base price struck through when discounted.
+let CIQ_FREE = false;
+function ciqFmt(dollars) {
+  return '$' + (Math.round(dollars * 100) % 100 === 0 ? String(Math.round(dollars)) : dollars.toFixed(2));
+}
+function ciqApplyPrice(data) {
+  const disp = data.display || {};
+  const free = data.free === true;
+  CIQ_FREE = free;
+  document.documentElement.classList.toggle('ciq-free', free);
+  document.querySelectorAll('.live-base').forEach(el => {
+    const tier = el.getAttribute('data-tier');
+    const base = disp[tier + '_base'] || (data.base && data.base[tier] != null ? ciqFmt(data.base[tier]) : null);
+    if (base) el.textContent = base;
+  });
+  document.querySelectorAll('.live-price').forEach(el => {
+    const tier = el.getAttribute('data-tier');
+    const current = disp[tier] || (data.current_cents ? ciqFmt(data.current_cents[tier] / 100) : null);
+    const base = disp[tier + '_base'] || (data.base ? ciqFmt(data.base[tier]) : null);
+    if (!current) return;
+    if (!base || base === current) el.textContent = current;
+    else el.innerHTML = '<s class="price-was">' + base + '</s> ' + current;
+    const sep = el.closest('.price-sep');
+    if (sep) sep.hidden = false;
+  });
+}
 fetch(PROXY_URL + '/get-rung-price')
   .then(res => res.ok ? res.json() : Promise.reject())
-  .then(data => {
-    document.querySelectorAll('.live-price').forEach(el => {
-      const tier = el.getAttribute('data-tier');
-      const base = data.base[tier];
-      const current = data.current[tier];
-      if (data.rung === 'full' || base === current) {
-        el.textContent = '$' + current;
-      } else {
-        el.innerHTML = '<s class="price-was">$' + base + '</s> $' + current;
-      }
-    });
-  })
+  .then(data => { if (data && (data.display || data.current_cents)) ciqApplyPrice(data); })
   .catch(() => {});
+
+async function ciqStartCheckout(btn, tier, surveyId) {
+  const originalHtml = btn.innerHTML;
+  btn.textContent = 'Redirecting to checkout…';
+  btn.style.pointerEvents = 'none';
+  try {
+    const body = { tier, src: CIQ_SRC };
+    if (surveyId) body.survey_id = surveyId;
+    const res = await fetch(PROXY_URL + '/create-checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-ClarityIQ-Key': CLIENT_KEY },
+      body: JSON.stringify(body),
+    });
+    const data = await res.json();
+    if (data && data.error === 'survey_required') {
+      // The price switched to free after this page loaded: ask first.
+      btn.innerHTML = originalHtml; btn.style.pointerEvents = '';
+      CIQ_FREE = true; document.documentElement.classList.add('ciq-free');
+      ciqOpenSurvey(btn);
+      return;
+    }
+    if (data && data.error === 'starter_unavailable') {
+      btn.innerHTML = originalHtml; btn.style.pointerEvents = '';
+      alert('The Starter is paused while the full session is free during launch.');
+      CIQ_FREE = true; document.documentElement.classList.add('ciq-free');
+      return;
+    }
+    if (!res.ok || !data.url) throw new Error(data.error || 'Checkout could not be started');
+    window.location.href = data.url;
+  } catch (err) {
+    btn.innerHTML = originalHtml;
+    btn.style.pointerEvents = '';
+    alert("Sorry, we couldn't start checkout just now. Please try again in a moment.");
+    console.error('Checkout error:', err);
+  }
+}
+
+// ── Before-session survey (free launch) ─────────────────────────────────────
+// Required for the free code. Answers go to the Worker (POST /survey/before),
+// which returns a signed survey id; the free checkout needs it. No email,
+// name or code is collected here.
+const svModal = document.getElementById('before-survey');
+const svForm = document.getElementById('sv-form');
+const svError = document.getElementById('sv-error');
+let svTrigger = null;
+(function () {
+  const box = document.getElementById('sv-confidence');
+  for (let i = 0; i <= 10; i++) {
+    const l = document.createElement('label');
+    l.innerHTML = '<input type="radio" name="confidence" value="' + i + '"' + (i === 0 ? ' required' : '') + '><span>' + i + '</span>';
+    box.appendChild(l);
+  }
+})();
+function ciqOpenSurvey(trigger) {
+  svTrigger = trigger;
+  svError.textContent = '';
+  svModal.hidden = false;
+  svModal.classList.add('open');
+  const first = svModal.querySelector('input');
+  if (first) first.focus();
+}
+function ciqCloseSurvey() {
+  svModal.classList.remove('open');
+  svModal.hidden = true;
+  if (svTrigger) svTrigger.focus();
+}
+document.getElementById('sv-close').addEventListener('click', ciqCloseSurvey);
+svModal.addEventListener('click', e => { if (e.target === svModal) ciqCloseSurvey(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && svModal.classList.contains('open')) ciqCloseSurvey(); });
+svForm.addEventListener('change', () => { svError.textContent = ''; });
+svForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const fd = new FormData(svForm);
+  const stage = fd.get('stage'), conf = fd.get('confidence'), matters = fd.get('matters');
+  if (!stage || conf == null || !matters) { svError.textContent = 'Please answer the first three questions.'; return; }
+  const submit = document.getElementById('sv-submit');
+  const label = submit.textContent;
+  submit.disabled = true; submit.textContent = 'One moment…'; svError.textContent = '';
+  try {
+    const res = await fetch(PROXY_URL + '/survey/before', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-ClarityIQ-Key': CLIENT_KEY },
+      body: JSON.stringify({ stage, confidence: parseInt(conf, 10), matters, heard: String(fd.get('heard') || '').slice(0, 200), consent: true }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (res.status === 429) throw new Error('Too many tries from this connection. Please try again in an hour.');
+    if (!res.ok || !data.survey_id) throw new Error('Sorry, that didn\'t go through. Please try again in a moment.');
+    try { sessionStorage.setItem('ciq_sv', data.survey_id); } catch (x) {}
+    ciqCloseSurvey();
+    await ciqStartCheckout(svTrigger || submit, 'session', data.survey_id);
+  } catch (err) {
+    svError.textContent = err.message;
+  } finally {
+    submit.disabled = false; submit.textContent = label;
+  }
+});
 
 document.querySelectorAll('[data-checkout-tier]').forEach(btn => {
   btn.addEventListener('click', async (e) => {
     e.preventDefault();
     const tier = btn.getAttribute('data-checkout-tier');
-    const originalText = btn.textContent;
-    btn.textContent = 'Redirecting to checkout…';
-    btn.style.pointerEvents = 'none';
-
-    try {
-      const res = await fetch(PROXY_URL + '/create-checkout-session', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-ClarityIQ-Key': CLIENT_KEY,
-        },
-        body: JSON.stringify({ tier }),
-      });
-      const data = await res.json();
-      if (!res.ok || !data.url) throw new Error(data.error || 'Checkout could not be started');
-      window.location.href = data.url;
-    } catch (err) {
-      btn.textContent = originalText;
-      btn.style.pointerEvents = '';
-      alert("Sorry, we couldn't start checkout just now. Please try again in a moment.");
-      console.error('Checkout error:', err);
-    }
+    // Stage 2 (CTA click), once per tab session per CTA; never blocks checkout.
+    if (ciqOnce('ciq_cta:checkout:' + tier)) ciqEvent('cta_click', { cta: 'checkout', tier: tier });
+    if (CIQ_FREE && tier === 'session') { ciqOpenSurvey(btn); return; }
+    await ciqStartCheckout(btn, tier, null);
   });
 });
 
@@ -986,6 +1314,8 @@ guidesForm.addEventListener('submit', async (e) => {
   const btn = guidesForm.querySelector('button[type=submit]');
   const firstName = firstNameInput.value.trim();
   const email = emailInput.value.trim();
+  // Stage 2 (CTA click) for "Send Me the Free Guides". No email in events.
+  if (ciqOnce('ciq_cta:guides')) ciqEvent('cta_click', { cta: 'guides' });
 
   note.textContent = '';
   note.className = 'exit-form-note';
@@ -1000,7 +1330,7 @@ guidesForm.addEventListener('submit', async (e) => {
         'Content-Type': 'application/json',
         'X-ClarityIQ-Key': CLIENT_KEY,
       },
-      body: JSON.stringify({ email, first_name: firstName }),
+      body: JSON.stringify({ email, first_name: firstName, src: CIQ_SRC }),
     });
     if (!res.ok) throw new Error('Subscribe failed');
     note.textContent = "You're in — check your inbox for the guides.";
