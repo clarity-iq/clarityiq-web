@@ -7,6 +7,7 @@ ClarityIQ is a direct-to-consumer educational product, not a medical provider. I
 ## Primary content
 
 - [Homepage](https://clarityiq.ai/): product overview, how the guided conversation works, lens categories covered, pricing, FAQ, and the founder's background.
+- [How to choose a cataract lens](https://clarityiq.ai/which-lens-for-cataract-surgery): plain-language guide to each lens type (monofocal, monovision, toric, extended range, full range, light-adjustable), what it is designed to do, its trade-offs, and questions to ask a surgeon.
 
 ## About
 
