@@ -207,7 +207,7 @@
   .benefit-card p, .risk-item p, .addon-card p, .condition p { font-size: 17px; }
   .risks-list p { font-size: 17px; margin-bottom: 14px; }
   .risks-list p strong { color: var(--ink); }
-  .updated { font-size: 14px; color: #5f5d56; margin-top: -16px; margin-bottom: 10px; }
+  .updated { font-size: 14px; color: #5f5d56; margin-top: -16px; margin-bottom: 24px; }
   .glance {
     background: var(--surface);
     border: 1px solid var(--rule);
@@ -225,32 +225,6 @@
   .lens-fig .fig-title { display: block; font-family: var(--sans); font-weight: 600; font-size: 16.5px; color: var(--ink); margin-bottom: 2px; }
   .addon-card .lens-fig, .risks-list .lens-fig { margin: 16px 0 20px; }
 
-
-  .ciq-share-wrap { position: relative; display: inline-block; }
-  .share-inline { margin: 0 0 28px; }
-  .share-inline .ciq-share {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: var(--sans); font-weight: 600; font-size: 15.5px;
-    color: var(--green-dk); background: none; border: none; padding: 0;
-    cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
-  }
-  .share-inline .ciq-share:focus-visible { outline: 3px solid var(--green-dk); outline-offset: 3px; }
-  .cta-buttons .ciq-share-wrap { margin-top: 0; }
-  .btn.ciq-share { cursor: pointer; }
-  .ciq-share-menu {
-    position: absolute; z-index: 30; top: calc(100% + 8px); left: 0;
-    background: var(--white); border: 1px solid var(--rule); border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(15,15,14,0.12);
-    padding: 6px; min-width: 220px;
-  }
-  .ciq-share-menu [data-share-action] {
-    display: block; width: 100%; text-align: left;
-    font-family: var(--sans); font-size: 15px; line-height: 1.3;
-    padding: 10px 12px; background: none; border: none; border-radius: 6px;
-    color: var(--ink); text-decoration: none; cursor: pointer;
-  }
-  .ciq-share-menu [data-share-action]:hover,
-  .ciq-share-menu [data-share-action]:focus-visible { background: var(--surface); }
 </style>
 </head>
 <body>
@@ -267,9 +241,8 @@
 <h1>Cataract lens options: a plain-language guide</h1>
 <p class="byline">ClarityIQ · Reviewed by a board-certified ophthalmologist</p>
 <p class="updated">Last updated November 18, 2026.</p>
-<p class="share-inline ciq-share-wrap"><button type="button" class="ciq-share" data-share-surface="guide_which_lens">Send this to a family member</button></p>
 
-<p>During cataract surgery, the cloudy lens inside your eye is removed and replaced with an artificial lens. This new lens is called an intraocular lens, or IOL. The lens is meant to stay in your eye for the rest of your life, so it helps to understand your options before the lens is implanted.</p>
+<p>During cataract surgery, the cloudy lens inside your eye is removed and replaced with an artificial lens. This new lens is called an intraocular lens, or IOL. The lens is meant to stay in your eye for the rest of your life, so it helps to understand your options before your visit.</p>
 <p class="note">Every lens has trade-offs, and results vary by eye and by surgeon. Many people today reach their goal of depending less on glasses.</p>
 <p>Cataract surgery is designed to remove the cloudy lens. How much your vision improves also depends on the health of the rest of your eye. This guide starts with your goals, then what the three lens categories offer, then add-ons, risks, and what your own eyes may allow. It will not tell you which lens to pick. That choice belongs to you and your surgeon.</p>
 
@@ -531,14 +504,11 @@
 </ol>
 
 <section class="cta" aria-labelledby="cta-title">
-  <h2 id="cta-title">Want to talk it through before the lens is implanted?</h2>
-  <p>ClarityIQ is a guided voice conversation, built by a cataract surgeon, that walks you through these goals and lens categories at your own pace — before your consult, after it, or as a second look. You get a written summary to bring to your surgeon. Or start with our free guides, sent to your email.</p>
+  <h2 id="cta-title">Want to talk it through before your visit?</h2>
+  <p>ClarityIQ is a guided voice conversation, built by a cataract surgeon, that walks you through these goals and lens categories at your own pace. You get a written summary to bring to your surgeon. Or start with our free guides, sent to your email.</p>
   <div class="cta-buttons">
     <a href="/#offer" class="btn btn-primary" data-seo-cta="seo_session">See how a session works</a>
     <a href="/#guides-form" class="btn btn-secondary" data-seo-cta="seo_guides">Get the free guides</a>
-    <div class="ciq-share-wrap">
-      <button type="button" class="btn btn-secondary ciq-share" data-share-surface="guide_which_lens">Send this to a family member</button>
-    </div>
   </div>
 </section>
 
@@ -711,87 +681,6 @@ document.addEventListener('click', function (e) {
     const cta = a.getAttribute('data-seo-cta');
     if (ciqOnce('ciq_cta:' + cta)) ciqEvent('cta_click', { cta: cta });
   } catch (err) {}
-});
-
-// Share: Web Share API, with copy-link / email / SMS fallback.
-// Event name share_click; surface is sent in the existing `cta` field (no PII).
-// Prefill is education-only: no outcome claims, costs, or lens recommendations.
-const CIQ_SHARE_TITLE = 'ClarityIQ: cataract lens options';
-const CIQ_SHARE_TEXT = 'I thought you might want this. ClarityIQ helps people feel confident about cataract lens options at any point before the lens is implanted — before a consult, after it, or as a second look. Education only; it does not recommend a lens.';
-function ciqShareUrl() {
-  try {
-    const link = document.querySelector('link[rel="canonical"]');
-    if (link && link.href) return link.href;
-  } catch (e) {}
-  return location.origin + location.pathname;
-}
-function ciqShareMessage(url) { return CIQ_SHARE_TEXT + ' ' + url; }
-function ciqSmsHref(msg) {
-  const ios = /iPad|iPhone|iPod/.test(navigator.userAgent);
-  return (ios ? 'sms:&body=' : 'sms:?body=') + encodeURIComponent(msg);
-}
-async function ciqCopyText(text) {
-  try {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      await navigator.clipboard.writeText(text);
-      return true;
-    }
-  } catch (e) {}
-  try {
-    const ta = document.createElement('textarea');
-    ta.value = text; ta.setAttribute('readonly', '');
-    ta.style.position = 'fixed'; ta.style.left = '-9999px';
-    document.body.appendChild(ta); ta.select();
-    const ok = document.execCommand('copy');
-    document.body.removeChild(ta);
-    return ok;
-  } catch (e) { return false; }
-}
-function ciqCloseShareMenus() {
-  document.querySelectorAll('.ciq-share-menu').forEach(function (el) { el.remove(); });
-}
-function ciqShowShareFallback(wrap, url) {
-  ciqCloseShareMenus();
-  const msg = ciqShareMessage(url);
-  const menu = document.createElement('div');
-  menu.className = 'ciq-share-menu';
-  menu.setAttribute('role', 'menu');
-  menu.innerHTML =
-    '<button type="button" role="menuitem" data-share-action="copy">Copy link</button>' +
-    '<a role="menuitem" data-share-action="email" href="mailto:?subject=' + encodeURIComponent(CIQ_SHARE_TITLE) + '&body=' + encodeURIComponent(msg) + '">Email</a>' +
-    '<a role="menuitem" data-share-action="sms" href="' + ciqSmsHref(msg) + '">Text message</a>';
-  const copyBtn = menu.querySelector('[data-share-action="copy"]');
-  copyBtn.addEventListener('click', async function () {
-    const ok = await ciqCopyText(url);
-    copyBtn.textContent = ok ? 'Link copied' : 'Copy failed';
-  });
-  wrap.appendChild(menu);
-}
-async function ciqOnShareClick(btn) {
-  const surface = btn.getAttribute('data-share-surface') || 'unknown';
-  try { ciqEvent('share_click', { cta: surface }); } catch (e) {}
-  const url = ciqShareUrl();
-  const payload = { title: CIQ_SHARE_TITLE, text: CIQ_SHARE_TEXT, url: url };
-  if (navigator.share) {
-    try {
-      await navigator.share(payload);
-      return;
-    } catch (e) {
-      if (e && e.name === 'AbortError') return;
-    }
-  }
-  const wrap = btn.closest('.ciq-share-wrap') || btn.parentNode;
-  ciqShowShareFallback(wrap, url);
-}
-document.addEventListener('click', function (e) {
-  try {
-    const btn = e.target && e.target.closest ? e.target.closest('.ciq-share') : null;
-    if (btn) { e.preventDefault(); ciqOnShareClick(btn); return; }
-    if (!(e.target && e.target.closest && e.target.closest('.ciq-share-menu'))) ciqCloseShareMenus();
-  } catch (err) {}
-});
-document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape') ciqCloseShareMenus();
 });
 </script>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ce9fb7e2cbb04cedb4ca2fd92e56cb09"}'></script>
