@@ -372,6 +372,15 @@
   .exit-form-note { margin-top: 14px; font-size: 13.5px; color: #c7c5bd; min-height: 1em; }
   .exit-form-note.success { color: #6EE7B7; }
   .exit-form-note.error { color: #FCA5A5; }
+  .exit-or { display: flex; align-items: center; gap: 14px; max-width: 540px; margin: 8px auto 20px; color: #8a887f; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; }
+  .exit-or::before, .exit-or::after { content: ""; flex: 1; height: 1px; background: #3a3a38; }
+  .guide-card { max-width: 540px; margin: 0 auto; background: #1c1c1a; border: 1px solid #3a3a38; border-radius: 12px; padding: 22px 24px; text-align: center; }
+  .exit .guide-card p { margin: 0 auto; max-width: none; }
+  .exit .guide-card .guide-card-title { font-family: var(--serif); font-size: 22px; line-height: 1.25; color: var(--white); margin-bottom: 8px; }
+  .exit .guide-card .guide-card-text { font-size: 15px; color: #c7c5bd; margin-bottom: 14px; }
+  .guide-card-link { font-weight: 600; font-size: 16px; color: #6EE7B7; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .guide-card-link:hover { text-decoration-thickness: 2px; }
+  .guide-card-link:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-radius: 4px; }
 
   /* free-phase-bundle: rung-driven display. Free-only bits are hidden until
      /get-rung-price says free; Starter bits hide while free. */
@@ -990,6 +999,12 @@
       <button type="submit" class="btn btn-primary">Send Me the Free Guides</button>
     </form>
     <p class="exit-form-note" id="guides-form-note" aria-live="polite"></p>
+    <div class="exit-or" aria-hidden="true"><span>or</span></div>
+    <div class="guide-card">
+      <p class="guide-card-title">Prefer to read it online right now?</p>
+      <p class="guide-card-text">Our free lens guide walks through your goals, the lens types and their trade-offs, at your own pace. No email needed.</p>
+      <a href="/which-lens-for-cataract-surgery" class="guide-card-link">Read our free online lens guide <span aria-hidden="true">&rarr;</span></a>
+    </div>
   </div>
 </section>
 
