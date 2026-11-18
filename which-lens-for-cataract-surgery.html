@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How to Choose a Cataract Lens: A Plain-Language Guide | ClarityIQ</title>
-<meta name="description" content="Start with your vision goals, then see how the three cataract lens categories — monofocal, EDOF and full range — can address them. Education only, not a recommendation.">
+<meta name="description" content="Start with your vision goals, then see how the three cataract lens categories — monofocal, EDOF and full range — can address them, and what the trade-offs look like in FDA studies. Education only, not a recommendation.">
 <link rel="canonical" href="https://clarityiq.ai/which-lens-for-cataract-surgery">
 <meta property="og:title" content="How to Choose a Cataract Lens: A Plain-Language Guide | ClarityIQ">
-<meta property="og:description" content="Start with your vision goals, then the three cataract lens categories and how they fit together. Education only, written by a cataract surgeon.">
+<meta property="og:description" content="Start with your goals, then the three cataract lens categories, how they fit your goals, and the trade-offs. Education only, written by a cataract surgeon.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://clarityiq.ai/which-lens-for-cataract-surgery">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -27,7 +27,7 @@
    "name": "Is there one lens that's right for everyone?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "No. Each lens category is designed for different goals, and each trades something for something else. Which one is right for you depends on what you want to see without glasses, the health of your eyes, and your surgeon's exam."
+    "text": "No. Each lens category is designed for different goals, and each trades something for something else. Which one is right for you depends on what you want to see without glasses, how much halo, glare or contrast change you would accept, the health of your eyes, and your surgeon's exam."
    }
   },
   {
@@ -40,10 +40,18 @@
   },
   {
    "@type": "Question",
+   "name": "Do all lenses cause halos and glare?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. People in monofocal groups in FDA studies also reported some halos and glare, just usually fewer, and very few were very bothered. Full-range lenses have higher rates of noticing rings or rays around lights. In some studies most people were not very bothered; in others the share who were very or extremely bothered was higher. EDOF results vary by design. Ask your surgeon how that applies to the lenses you are considering."
+   }
+  },
+  {
+   "@type": "Question",
    "name": "Does insurance cover cataract lenses?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Coverage varies by lens type and by plan. Ask your surgeon's office for the cost of each option, per eye, in writing."
+    "text": "Cost and coverage differ by lens and by plan. Ask your surgeon's office for the cost of each option, per eye, in writing."
    }
   },
   {
@@ -105,6 +113,54 @@
   .disclaimer { font-size: 15px; color: #5f5d56; border-top: 1px solid var(--rule); padding-top: 16px; margin-top: 36px; }
   footer.site-footer { background: var(--ink); color: #8a887f; padding: 28px 0; text-align: center; font-size: 12.5px; margin-top: 40px; }
   footer.site-footer a { color: #b8b6ae; }
+
+  /* Category titles: larger than other h2/h3, with a short green underline so they read as separate sections. */
+  h2.category {
+    font-size: clamp(28px, 4vw, 38px);
+    line-height: 1.15;
+    margin: 40px 0 14px;
+    padding-bottom: 0;
+  }
+  h2.category::after {
+    content: "";
+    display: block;
+    width: 4.8em;
+    max-width: 40%;
+    height: 3px;
+    background: var(--green);
+    margin-top: 10px;
+    border-radius: 2px;
+  }
+  .goal-block {
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 18px 20px 8px;
+    margin: 0 0 18px;
+  }
+  .goal-block h3 { margin-top: 0; }
+  .branch {
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 16px 20px 4px;
+    margin: 0 0 16px;
+  }
+  .branch h3 { margin-top: 0; font-size: 20px; }
+  .tradeoff-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 18px 20px 8px;
+    margin: 0 0 20px;
+  }
+  .tradeoff-card h3 {
+    margin-top: 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--green);
+  }
+  .tradeoff-card p { font-size: 17px; }
+  .cite { font-size: 14.5px; color: #5f5d56; }
+  .sources { font-size: 15px; }
+  .sources li { margin-bottom: 8px; }
 </style>
 </head>
 <body>
@@ -121,65 +177,140 @@
 <p class="byline">Written by Martin de la Presa, MD, a board-certified cornea, cataract and refractive surgeon. Last updated November 17, 2026.</p>
 
 <p>During cataract surgery, the cloudy lens inside your eye is removed and replaced with an artificial lens. This new lens is called an intraocular lens, or IOL. Before surgery, you'll be asked to choose which kind of lens you want. The lens is meant to stay in your eye for the rest of your life, so it helps to understand your options before your visit.</p>
-<p>This guide starts with your vision goals, then explains the three lens categories, then shows how goals and categories fit together, including a few add-ons and setups. It won't tell you which lens to pick. That choice belongs to you and your surgeon.</p>
+<p>This guide starts with two questions about your goals, then explains the three lens categories, then shows how those goals and categories fit together. A later section gathers the trade-offs — including halo, glare and contrast in dim light — with figures from FDA studies. It won't tell you which lens to pick. That choice belongs to you and your surgeon.</p>
 <p class="note">One honest rule for every lens below: the goal of cataract surgery is vision that is better than you have now. With any lens, you may still need glasses for your best vision.</p>
 
 <h2>Start with your goals</h2>
-<p>Before you look at lens categories, it helps to decide what matters to you. These questions are a starting point for your conversation with your surgeon:</p>
+<p>Before you look at lens categories, it helps to sit with two questions together. Your answers, plus the health of your eyes, shape most of the lens conversation with your surgeon.</p>
+
+<div class="goal-block">
+<h3>1. How much do you want to depend on glasses?</h3>
 <ul>
-  <li><strong>Far (distance):</strong> Do you want to drive, watch TV, read road signs, or see faces across the room without glasses?</li>
-  <li><strong>Arm's length:</strong> Do you want to see a computer screen, a car dashboard, or a cutting board without glasses?</li>
-  <li><strong>Near:</strong> Do you want to read a phone, a book, a menu, or small print without glasses?</li>
-  <li><strong>Night driving:</strong> How much do you drive at night, and how much would halos or glare around lights bother you?</li>
-  <li><strong>Glasses:</strong> How much would it bother you to wear glasses for some tasks?</li>
+  <li><strong>Low:</strong> you'd like to do most of your day without them.</li>
+  <li><strong>Don't mind:</strong> glasses are fine either way.</li>
+  <li><strong>Prefer glasses to handle the rest:</strong> you'd rather wear glasses for some tasks and keep the lens simpler.</li>
 </ul>
-<p>Your answers to these questions, together with the health of your eyes, shape most of the lens decision.</p>
+</div>
+
+<div class="goal-block">
+<h3>2. Which distances matter, and which matters most?</h3>
+<ul>
+  <li><strong>Far (distance):</strong> driving, watching TV, reading road signs, or seeing faces across the room.</li>
+  <li><strong>Arm's length:</strong> a computer screen, a car dashboard, or a cutting board.</li>
+  <li><strong>Near:</strong> a phone, a book, a menu, or small print.</li>
+</ul>
+<p>It also helps to note how much you drive at night, because that ties to the trade-offs in a later section.</p>
+</div>
+
+<p>Any of the three categories can be set for a single distance. A monofocal lens can be targeted for far, for arm's length, or for near. That is why a simple table that says "arm's length means EDOF" or "near means full range" is misleading. What usually matters is the combination of those two questions, not one distance on its own.</p>
 
 <h2>The 3 lens categories</h2>
-<p>Cataract lenses fall into three categories. Each is designed for different goals, and each trades something for something else. No category is better than the others in every situation. The right fit depends on your goals and your exam.</p>
+<p>Cataract lenses fall into three categories. Each is designed for different goals, and each trades something for something else. No category is better than the others in every situation. The right fit depends on your goals and your exam. Trade-offs for each category are gathered in the Trade-offs section below.</p>
 
-<h3>Monofocal lens (including enhanced monofocal)</h3>
-<p><strong>What it's designed to do:</strong> A monofocal lens is set for one distance, usually far. You can expect better vision than you have now at that distance, though you may still need glasses for your best vision there. For the other ranges, like arm's length and reading, you'll need glasses. This category also includes enhanced monofocal lenses, which are still monofocals, not a separate category. They are designed to stretch a little into arm's length. You'll still need glasses for near, and often for some arm's-length tasks.</p>
-<p><strong>Trade-offs:</strong> The final focus can land a little off target, and a monofocal lens doesn't correct astigmatism. Either one can blur vision at the chosen distance. Glasses usually take care of that. A monofocal lens is a well-established, complete option. Choosing it is a real decision, not a fallback.</p>
+<h2 class="category" id="monofocal">Monofocal lens (including enhanced monofocal)</h2>
+<p>A monofocal lens is set for one distance, usually far. You can expect better vision than you have now at that distance, though you may still need glasses for your best vision there. For the other ranges, like arm's length and reading, you'll need glasses.</p>
+<p>This category also includes enhanced monofocal lenses, which are still monofocals, not a separate category. They are designed to stretch a little into arm's length. You'll still need glasses for near, and often for some arm's-length tasks.</p>
+<p>A monofocal lens is a well-established, complete option. Choosing it is a real decision, not a fallback.</p>
 
-<h3>Extended range lens (EDOF)</h3>
-<p><strong>What it's designed to do:</strong> Extended depth of focus lenses are designed to cover distance and extend into arm's length. Many people can see a computer screen or a dashboard without glasses. You can expect better vision than now across that range, though you may still need glasses for your best vision.</p>
-<p><strong>Trade-offs:</strong> Reading glasses are still common for small print. Halos or glare at night are possible, usually milder than with full range lenses.</p>
+<h2 class="category" id="edof">Extended range lens (EDOF)</h2>
+<p>Extended depth of focus lenses are designed to cover distance and extend into arm's length. Many people can see a computer screen or a dashboard without glasses. You can expect better vision than now across that range, though you may still need glasses for your best vision. Reading glasses are still common for small print.</p>
 
-<h3>Full range lens (multifocal or trifocal)</h3>
-<p><strong>What it's designed to do:</strong> Full range lenses are designed to cover distance, arm's length and near. Many people can do most of their day (driving, computer, phone) without glasses. Some still keep readers for small print or dim light. Your surgeon can tell you how likely that is for your eyes.</p>
-<p><strong>Trade-offs:</strong> Halos or glare around lights at night are more common. Some people notice a little less contrast in dim light. For many people, halos become much less noticeable over the first few months as the brain adapts. A small number keep noticing them, which is worth asking about.</p>
+<h2 class="category" id="full-range">Full range lens (multifocal or trifocal)</h2>
+<p>Full range lenses are designed to cover distance, arm's length and near. Many people can do most of their day (driving, computer, phone) without glasses. Some still keep readers for small print or dim light. Your surgeon can tell you how likely that is for your eyes.</p>
 
 <h2>Matching goals to categories</h2>
-<p>This table uses the same format for every row. It is information, not a recommendation. No category is ranked, and no single lens is featured.</p>
-<div class="table-wrap">
-<table>
-  <thead><tr><th>Your goal</th><th>Categories that can address it</th><th>What to know</th></tr></thead>
-  <tbody>
-    <tr><td>Far without glasses</td><td>Monofocal, EDOF or full range</td><td>All three can be set for distance. With a monofocal, you'll need glasses for arm's length and near.</td></tr>
-    <tr><td>Arm's length without glasses</td><td>EDOF or full range</td><td>EDOF is designed for distance through arm's length. Full range is designed to include arm's length too. Monovision with monofocals is another way (see below).</td></tr>
-    <tr><td>Near without glasses</td><td>Full range</td><td>Full range is designed to include near. Monovision with monofocals is another way (see below). With a monofocal or EDOF set for distance, you'll need glasses for small print.</td></tr>
-    <tr><td>Night driving</td><td>Any of the three, with different trade-offs</td><td>Halos or glare at night are more common with full range lenses, and possible (usually milder) with EDOF.</td></tr>
-    <tr><td>Less dependence on glasses</td><td>Any category, plus the add-ons below if they apply</td><td>No category removes the need for glasses in every situation. A toric version of any category can also correct astigmatism.</td></tr>
-  </tbody>
-</table>
+<p>This section is information, not a recommendation. No category is ranked, and no single lens is featured. The branches below start from your glasses goal, then take into account which distances matter most.</p>
+
+<div class="branch">
+<h3>If your eye has meaningful astigmatism</h3>
+<p>Astigmatism means the front of the eye is shaped more like a football than a basketball. It can blur vision at every distance. A toric version of a lens is how that astigmatism is corrected inside the eye. Toric versions exist in every category: you can have a toric monofocal, a toric EDOF or a toric full-range lens.</p>
+<p>If your eye has enough regular astigmatism to benefit, correcting it inside the eye is how that blur is treated at the lens. This applies whether you want low dependence on glasses or you are fine wearing them. Glasses, if you wear them, often have less left to fix because some of the astigmatism has already been addressed in the eye.</p>
+<p>Not every eye benefits. If your astigmatism is small, irregular (an uneven shape on the front of the eye), or mainly in the back of the cornea, a toric may not help, or may not be the right tool. A toric also has to be lined up at an exact angle. It can rotate slightly after surgery, which can reduce the correction, and your surgeon may need to adjust it. Ask your surgeon whether your eye has enough regular astigmatism to benefit, and how they handle rotation.</p>
 </div>
-<p>The notes below are add-ons or setups, not separate lens categories. They are ways to help reach a goal, used with one of the three categories above.</p>
 
-<h3>Toric (an add-on, not a category)</h3>
-<p><strong>What it is:</strong> A toric lens corrects astigmatism. Astigmatism means the front of the eye is shaped more like a football than a basketball. It can blur vision at every distance. Toric versions exist in every category: you can have a toric monofocal, a toric EDOF or a toric full range lens. The aim is less dependence on glasses at the lens's focal point. You can expect better vision than now there, though you may still need glasses for your best vision.</p>
-<p><strong>Trade-offs:</strong> The lens has to be lined up at an exact angle. Uncommonly, it turns slightly after surgery, and your surgeon may need to adjust it. It's worth asking how your surgeon handles that.</p>
+<div class="branch">
+<h3>If you want low dependence on glasses</h3>
+<p>These goals usually involve an EDOF or full-range lens, or monovision: one monofocal eye set for far and the other for near or arm's length. Which of those fits depends on which distances matter most to you, and on how much halo, glare and contrast change you would accept. Those trade-offs are in the next section.</p>
+</div>
 
-<h3>Monovision (a setup, not a category)</h3>
-<p><strong>What it is:</strong> Monovision is a setup, not a lens category. One eye is set for distance and the other eye for near, usually with monofocal lenses. Together, the two eyes cover more of the range. It can also be a way to reach arm's-length or near goals while staying with monofocal lenses. You can expect better vision than now, though you may still need glasses for your best vision, such as for night driving or long reading.</p>
-<p><strong>Trade-offs:</strong> Each eye on its own misses the opposite end, and depth perception can be a little lower. Some people adjust easily and some never do. If you've never tried it, ask whether you can test it with contact lenses before surgery. A milder version, called mini-monovision, is also an option to ask about.</p>
+<div class="branch">
+<h3>If you don't mind wearing glasses either way</h3>
+<p>A monofocal lens (toric if your eye has enough astigmatism to benefit) keeps the optics simpler. EDOF, full-range and monovision are still options if you want them.</p>
+</div>
 
-<h3>Light-adjustable (a monofocal technique, not a category)</h3>
-<p><strong>What it is:</strong> A light-adjustable lens is a monofocal that can be fine-tuned after surgery. It uses a different technique, not its own category. Once your eye has healed, a special UV light treatment adjusts the lens power, and a final treatment locks it in. You can expect better vision than now at the range you and your surgeon choose, though you may still need glasses for your best vision.</p>
-<p><strong>Trade-offs:</strong> It takes several extra visits. You'll wear UV-protective glasses from surgery until the lens is locked in. Some medicines and eye conditions rule it out, so your surgeon will check.</p>
+<div class="branch">
+<h3>If you prefer glasses to handle the rest</h3>
+<p>A monofocal set for your most important distance (toric if your eye has enough astigmatism to benefit) is the usual match. You would wear glasses for the other distances.</p>
+</div>
 
 <h3>What about cost?</h3>
-<p>Coverage varies by lens type and by insurance plan. Ask your surgeon's office for the cost of each option, per eye, in writing.</p>
+<p>Cost and coverage differ by lens and by plan. Ask your surgeon's office for the cost of each option, per eye, in writing.</p>
+
+<h2 id="trade-offs">Trade-offs</h2>
+<p>There is a third question to sit with, alongside your glasses goal and your distances:</p>
+<p><strong>How much halo, glare and loss of contrast in dim light would you accept for more range without glasses?</strong></p>
+<p>These effects are real, but they should not be overblown or minimized. Most people notice more halos. Most aren't very bothered by them, and some are. Exact rates vary by lens design and by how the question was asked, so the figures in the cards below come from specific FDA studies, not from one combined average. People in the monofocal comparison groups also reported some halos and glare, just usually fewer.</p>
+
+<div class="tradeoff-card" id="tradeoff-monofocal">
+<h3>Monofocal, including enhanced monofocal</h3>
+<p><strong>Halo, glare and starbursts.</strong> Of the three categories, monofocal lenses had the lowest rates in these studies, but the rates are not zero. In the monofocal group of one full-range FDA study, about 23% of people noticed some halo (77% reported none), and fewer than 1% were "bothered very much" by halos, starbursts or glare.</p>
+<p class="cite">Source: AcrySof IQ PanOptix SSED, P040020/S087, Tables 20–21, 6 months, monofocal control arm.</p>
+<p><strong>Contrast in dim light.</strong> In these studies, the monofocal lens is the comparison point. US labels for enhanced monofocals say the effect of their optical design on contrast and visual disturbances has not been evaluated in clinical trials, so this page does not give separate percentages for them.</p>
+<p><strong>Other.</strong> The final focus can land a little off target. Glasses usually take care of that. A monofocal lens does not correct astigmatism unless it is a toric version.</p>
+</div>
+
+<div class="tradeoff-card" id="tradeoff-edof">
+<h3>Extended range (EDOF)</h3>
+<p><strong>Halo, glare and starbursts.</strong> This varies by design, so one number would be misleading.</p>
+<ul>
+  <li>In one EDOF FDA study, 1% to 2% of people reported very bothersome starbursts, halos, blurred vision or dark-area symptoms, and no one in the study had the lens removed for this. Severe ratings were close to the monofocal group: starbursts 3.8% vs 2.7%, halos 0.9% vs 0.9%, glare 0% vs 0%.</li>
+  <li>In another EDOF FDA study, 6.8% of people were "very bothered" by halos (vs 2.7% with the monofocal), 8.2% by starbursts (vs 4.1%), and 5.5% by glare (vs 3.4%).</li>
+  <li>In a third EDOF FDA study, spontaneous reports of halos, night glare and starbursts were 4.4% to 5.3%, close to the monofocal group (0.9% to 4.5%), and no one in the EDOF group reported those symptoms as severe.</li>
+</ul>
+<p class="cite">Sources: AcrySof IQ Vivity SSED and FDA information brochure, P930014/S126, Table 21 and p. 51; TECNIS Symfony SSED, P980040/S065, Table 18; TECNIS PureSee SSED, P980040/S176, p. 31 and Table 22.</p>
+<p><strong>Contrast in dim light.</strong> This also varies by design. The official label for one EDOF lens says most people who receive it are likely to have a significant loss of contrast compared with a monofocal, and should take care in dim light, including when driving at night. Another EDOF FDA study found no clinically meaningful difference in contrast from the monofocal control.</p>
+<p class="cite">Sources: Vivity directions for use / labeling, P930014/S126, Warnings; PureSee SSED, P980040/S176, p. 57.</p>
+<p><strong>Other.</strong> Reading glasses are still common for small print.</p>
+</div>
+
+<div class="tradeoff-card" id="tradeoff-full-range">
+<h3>Full range (multifocal or trifocal)</h3>
+<p><strong>Halo, glare and starbursts.</strong> More people notice rings or rays around lights than with a monofocal. In some studies, most of those people were not very bothered. In others, the share who were very or extremely bothered was higher.</p>
+<ul>
+  <li>In one full-range (trifocal) FDA study, about 64% of people noticed some halo, compared with about 23% in the monofocal group. Fewer than 5% said they were "bothered very much" by halos (2.4%), starbursts (4.8%) or glare (1.6%). The study text says most people described these as "not bothered at all" to "bothered somewhat." Severe ratings were higher than "bothered very much": halos 13%, starbursts 16%, glare 3%.</li>
+  <li>In the FDA study of another full-range lens, about 82% of people experienced halos when asked directly. 3.8% were "extremely bothered" and 9.9% were "very bothered." 5.3% were "extremely bothered" by starbursts. 8.1% had a symptom that interfered with daily activity for more than three months; one person in that study had the lens removed.</li>
+  <li>In a third full-range FDA study, 37% of people had halos "quite often or very often," compared with 7% in the monofocal group. 80% described their halos as "not at all" to "a little" bothersome; 7% called them very bothersome, and 6% called them severe.</li>
+</ul>
+<p class="cite">Sources: PanOptix SSED, P040020/S087, Tables 20–21 and FDA information brochure Tables 4–5; TECNIS Synergy SSED, P980040/S124, Tables 16–17 and p. 32; enVista Envy SSED, P240005, pp. 29 and 37.</p>
+<p><strong>Contrast in dim light.</strong> Full-range lenses often measure a bit lower than a monofocal in dim light, though the size of that difference is not the same in every study. One study called the binocular difference "not clinically meaningful" (and did not test each eye on its own). Another found contrast "generally lower," especially in high glare. A third found a meaningful difference favoring the monofocal in most test conditions. Several labels also say to take extra care when driving at night.</p>
+<p class="cite">Sources: PanOptix SSED, P040020/S087, p. 21; Synergy SSED, P980040/S124, p. 28; Envy SSED, P240005, p. 29; and the corresponding FDA information brochures or directions for use.</p>
+<p><strong>Other.</strong> Some people still keep readers for small print or dim light.</p>
+</div>
+
+<h3>Other trade-offs that aren't their own category</h3>
+
+<div class="tradeoff-card">
+<h3>Toric (an add-on, available in each category)</h3>
+<p><strong>Halo, glare and contrast.</strong> A toric version uses the same optical category as the non-toric lens it is based on. The extra trade-off is alignment, not a new kind of halo profile.</p>
+<p><strong>Other.</strong> The lens has to be lined up at an exact angle. It can rotate slightly after surgery, which can reduce the astigmatism correction, and your surgeon may need to adjust it. Official labeling for one toric lens notes that rotation off the intended axis can reduce the correction, and that a misalignment greater than 30 degrees may increase remaining astigmatism. In one FDA rotational study of a monofocal lens, 98.4% of people stayed within 10 degrees of the planned position at 6 months (mean change 2.27 degrees); one eye rotated 40 degrees after suspected trauma. That is one study, not a rate for every toric lens. Ask your surgeon how they handle rotation.</p>
+<p class="cite">Sources: Vivity toric labeling, P930014/S126, Warnings; Clareon SSED rotational sub-study, P190018.</p>
+</div>
+
+<div class="tradeoff-card">
+<h3>Monovision (a setup, usually with monofocals)</h3>
+<p>Monovision is a setup, not a lens category. One eye is set for distance and the other for near, or sometimes for arm's length (a milder version called mini-monovision). Together, the two eyes cover more of the range. You can expect better vision than now, though you may still need glasses for your best vision, such as for night driving or long reading.</p>
+<p><strong>Halo, glare and contrast.</strong> Because this is usually done with monofocal lenses, halo and glare rates follow the monofocal category more than the full-range category. The extra trade-offs are about how the two eyes work together.</p>
+<p><strong>Other.</strong> Each eye on its own misses the opposite end, and depth perception can be a little lower. Some people adjust easily and some never do. If you've never tried it, ask whether you can test it with contact lenses before surgery.</p>
+<p class="cite">A specific rate for the change in depth perception was not found in the FDA documents reviewed for this page.</p>
+</div>
+
+<div class="tradeoff-card">
+<h3>Light-adjustable (a monofocal technique, not a category)</h3>
+<p>A light-adjustable lens is a monofocal that can be fine-tuned after surgery. It uses a different technique, not its own category. Once your eye has healed, a special UV light treatment adjusts the lens power, and two final treatments lock it in. You can expect better vision than now at the range you and your surgeon choose, though you may still need glasses for your best vision.</p>
+<p><strong>Halo, glare and contrast.</strong> This page does not give a separate bothersomeness percentage for this technique from the FDA study, because a clean comparison table was not extracted for this draft.</p>
+<p><strong>Other.</strong> It takes several extra visits (adjustment treatments, then two lock-in treatments). You'll wear specified UV-protective glasses during all waking hours from surgery until 24 hours after the final lock-in. Some medicines and eye conditions rule it out — including some medicines that increase sensitivity to UV light, some that are hard on the retina, macular disease, a history of ocular herpes simplex, and nystagmus — so your surgeon will check.</p>
+<p class="cite">Source: Light Adjustable Lens SSED and professional labeling, P160055, Indications, Contraindications, and UV-protective eyewear instructions.</p>
+</div>
 
 <h2>Things about your eyes that can change your options</h2>
 <p>Your eyes matter as much as your wishes. Astigmatism, dry eye, macular or retina problems, glaucoma, past LASIK and the health of the cornea can all change which lenses are possible. That's why your measurements and exam matter more than anything you read online, including this page.</p>
@@ -187,9 +318,9 @@
 <h2>Questions to bring to your consult</h2>
 <ol>
   <li>Which lens categories are possible for my eyes, and why not the others?</li>
-  <li>Do I have astigmatism? How would it be corrected?</li>
+  <li>Do I have astigmatism? Is it regular, and is there enough for a toric lens to help?</li>
   <li>With each option, what will I still need glasses for?</li>
-  <li>What are the night-vision trade-offs with each option?</li>
+  <li>What are the halo, glare and dim-light trade-offs with each option?</li>
   <li>What does each option cost me, per eye?</li>
   <li>If the result isn't what I hoped, what are my options afterward?</li>
 </ol>
@@ -206,16 +337,31 @@
 <section class="faq" aria-labelledby="faq-title">
 <h2 id="faq-title">Frequently asked questions</h2>
 <h3>Is there one lens that&#x27;s right for everyone?</h3>
-<p>No. Each lens category is designed for different goals, and each trades something for something else. Which one is right for you depends on what you want to see without glasses, the health of your eyes, and your surgeon&#x27;s exam.</p>
+<p>No. Each lens category is designed for different goals, and each trades something for something else. Which one is right for you depends on what you want to see without glasses, how much halo, glare or contrast change you would accept, the health of your eyes, and your surgeon's exam.</p>
 <h3>Will I still need glasses after cataract surgery?</h3>
-<p>Maybe. With any lens, you can expect vision that is better than you have now, though you may still need glasses for your best vision. With a monofocal lens, you&#x27;ll need glasses for the ranges it isn&#x27;t set for. Full range lenses are designed so many people can do most of their day without glasses, but some still keep readers.</p>
+<p>Maybe. With any lens, you can expect vision that is better than you have now, though you may still need glasses for your best vision. With a monofocal lens, you'll need glasses for the ranges it isn't set for. Full range lenses are designed so many people can do most of their day without glasses, but some still keep readers.</p>
+<h3>Do all lenses cause halos and glare?</h3>
+<p>No. People in monofocal groups in FDA studies also reported some halos and glare, just usually fewer, and very few were very bothered. Full-range lenses have higher rates of noticing rings or rays around lights. In some studies most people were not very bothered; in others the share who were very or extremely bothered was higher. EDOF results vary by design. Ask your surgeon how that applies to the lenses you are considering.</p>
 <h3>Does insurance cover cataract lenses?</h3>
-<p>Coverage varies by lens type and by plan. Ask your surgeon&#x27;s office for the cost of each option, per eye, in writing.</p>
+<p>Cost and coverage differ by lens and by plan. Ask your surgeon's office for the cost of each option, per eye, in writing.</p>
 <h3>Can the lens be changed later?</h3>
-<p>Replacing a lens is possible, but it means another surgery with its own risks. It&#x27;s best to think of your choice as permanent.</p>
+<p>Replacing a lens is possible, but it means another surgery with its own risks. It's best to think of your choice as permanent.</p>
 <h3>Does ClarityIQ tell me which lens to choose?</h3>
 <p>No. ClarityIQ explains what each lens category is designed to do and its trade-offs, so you can have a better conversation with your surgeon. You and your surgeon make the choice together.</p>
 </section>
+
+<h2>Sources</h2>
+<p>The figures in the Trade-offs section come from these FDA documents. Studies used different questionnaires, so the percentages should not be averaged or ranked against each other.</p>
+<ul class="sources">
+  <li>AcrySof IQ PanOptix, PMA P040020/S087: <a href="https://www.accessdata.fda.gov/cdrh_docs/pdf4/P040020S087B.pdf">SSED</a> (Tables 20–21) and <a href="https://www.accessdata.fda.gov/cdrh_docs/pdf4/P040020S087C.pdf">FDA information brochure</a> (Tables 4–5).</li>
+  <li>TECNIS Synergy, PMA P980040/S124: <a href="https://www.accessdata.fda.gov/cdrh_docs/pdf/P980040S124B.pdf">SSED</a> (Tables 16–17, pp. 28 and 32).</li>
+  <li>enVista Envy, PMA P240005: <a href="https://www.accessdata.fda.gov/cdrh_docs/pdf24/P240005B.pdf">SSED</a> (pp. 29 and 37).</li>
+  <li>AcrySof IQ Vivity, PMA P930014/S126: <a href="https://www.accessdata.fda.gov/cdrh_docs/pdf/P930014S126B.pdf">SSED</a> (Table 21, p. 51) and <a href="https://www.accessdata.fda.gov/cdrh_docs/pdf/P930014S126C.pdf">labeling</a> (Warnings, including contrast and toric rotation).</li>
+  <li>TECNIS Symfony, PMA P980040/S065: <a href="https://www.accessdata.fda.gov/cdrh_docs/pdf/P980040S065B.pdf">SSED</a> (Tables 18–19).</li>
+  <li>TECNIS PureSee, PMA P980040/S176: <a href="https://www.accessdata.fda.gov/cdrh_docs/pdf/P980040S176B.pdf">SSED</a> (p. 31, Table 22, p. 57).</li>
+  <li>Clareon rotational sub-study, PMA P190018: <a href="https://www.accessdata.fda.gov/cdrh_docs/pdf19/P190018B.pdf">SSED</a>.</li>
+  <li>Light Adjustable Lens, PMA P160055: <a href="https://www.accessdata.fda.gov/cdrh_docs/pdf16/P160055B.pdf">SSED</a> and <a href="https://www.accessdata.fda.gov/cdrh_docs/pdf16/P160055D.pdf">professional labeling</a> (indications, contraindications, UV-protective eyewear).</li>
+</ul>
 
 <p class="disclaimer">This page is education, not medical advice. It doesn't diagnose anything or tell you which lens to choose, and it doesn't create a doctor-patient relationship. Your surgeon decides with you, based on your exam.</p>
 
