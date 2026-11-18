@@ -202,6 +202,22 @@
   .how-callout p { margin-top: 0; font-size: 16px; color: var(--ink-2); }
 
   /* ── OFFER (3) ── */
+  .guide-band { padding: 0; background: var(--white); }
+  .guide-band-inner { display: flex; align-items: center; justify-content: space-between; gap: 28px; max-width: 920px;
+    background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--green); border-radius: 14px; padding: 26px 30px; }
+  .guide-band h2 { font-size: clamp(24px, 3vw, 30px); line-height: 1.2; margin: 0 0 6px; }
+  .guide-band p { margin: 0; font-size: 16.5px; color: var(--ink-2); max-width: 440px; }
+  .guide-band-actions { display: flex; align-items: center; gap: 22px; flex-shrink: 0; }
+  .guide-band-link { font-weight: 600; font-size: 16px; color: var(--green-dk); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .guide-band-link:hover { text-decoration-thickness: 2px; }
+  .guide-band-outline { font-weight: 600; font-size: 15px; color: var(--green-dk); text-decoration: none; border: 1.5px solid var(--green-dk); border-radius: 8px; padding: 11px 18px; background: var(--white); }
+  .guide-band-outline:hover { background: var(--green-lt); }
+  .guide-band-link:focus-visible, .guide-band-outline:focus-visible { outline: 3px solid var(--green-dk); outline-offset: 3px; }
+  @media (max-width: 760px) {
+    .guide-band-inner { flex-direction: column; align-items: flex-start; gap: 18px; padding: 22px 20px; margin: 0 24px; }
+    .guide-band-actions { flex-direction: column; align-items: flex-start; gap: 14px; width: 100%; }
+    .guide-band-outline { width: 100%; text-align: center; box-sizing: border-box; }
+  }
   .offer { background: var(--white); }
   .offer-panel {
     background: var(--ink); color: var(--surface); border-radius: 20px; padding: 52px;
@@ -372,6 +388,15 @@
   .exit-form-note { margin-top: 14px; font-size: 13.5px; color: #c7c5bd; min-height: 1em; }
   .exit-form-note.success { color: #6EE7B7; }
   .exit-form-note.error { color: #FCA5A5; }
+  .exit-or { display: flex; align-items: center; gap: 14px; max-width: 540px; margin: 8px auto 20px; color: #8a887f; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; }
+  .exit-or::before, .exit-or::after { content: ""; flex: 1; height: 1px; background: #3a3a38; }
+  .guide-card { max-width: 540px; margin: 0 auto; background: #1c1c1a; border: 1px solid #3a3a38; border-radius: 12px; padding: 22px 24px; text-align: center; }
+  .exit .guide-card p { margin: 0 auto; max-width: none; }
+  .exit .guide-card .guide-card-title { font-family: var(--serif); font-size: 22px; line-height: 1.25; color: var(--white); margin-bottom: 8px; }
+  .exit .guide-card .guide-card-text { font-size: 15px; color: #c7c5bd; margin-bottom: 14px; }
+  .guide-card-link { font-weight: 600; font-size: 16px; color: #6EE7B7; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .guide-card-link:hover { text-decoration-thickness: 2px; }
+  .guide-card-link:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-radius: 4px; }
 
   /* free-phase-bundle: rung-driven display. Free-only bits are hidden until
      /get-rung-price says free; Starter bits hide while free. */
@@ -640,6 +665,20 @@
     <div class="how-callout">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
       <p>One of the only education experiences built entirely around IOL decisions — not a general assistant repurposed for healthcare, and not left to guess when a question falls outside what's known.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4.5 GUIDE INTERLUDE: free options for people not ready to decide -->
+<section class="guide-band" aria-labelledby="guide-band-title">
+  <div class="wrap guide-band-inner">
+    <div class="guide-band-copy">
+      <h2 id="guide-band-title">Not ready to decide yet?</h2>
+      <p>Start free. Read the lens guide online, or get the free guides by email.</p>
+    </div>
+    <div class="guide-band-actions">
+      <a href="/which-lens-for-cataract-surgery" class="guide-band-link" data-guide-cta="guide_online">Read the lens guide online <span aria-hidden="true">&rarr;</span></a>
+      <a href="#free-guides" class="guide-band-outline" data-guide-cta="guide_email">Email me the free guides</a>
     </div>
   </div>
 </section>
@@ -974,7 +1013,7 @@
 </section>
 
 <!-- 10. EXIT CAPTURE -->
-<section class="exit">
+<section class="exit" id="free-guides">
   <div class="wrap">
     <h2>Not Ready Yet? Start With the Free Guides.</h2>
     <p>Get the IOL Comparison Chart, the Options framework guide, and the Pre-Consult Prep guide sent straight to your email — no cost, no obligation.</p>
@@ -990,6 +1029,12 @@
       <button type="submit" class="btn btn-primary">Send Me the Free Guides</button>
     </form>
     <p class="exit-form-note" id="guides-form-note" aria-live="polite"></p>
+    <div class="exit-or" aria-hidden="true"><span>or</span></div>
+    <div class="guide-card">
+      <p class="guide-card-title">Prefer to read it online right now?</p>
+      <p class="guide-card-text">Our free lens guide walks through your goals, the lens types and their trade-offs, at your own pace. No email needed.</p>
+      <a href="/which-lens-for-cataract-surgery" class="guide-card-link">Read our free online lens guide <span aria-hidden="true">&rarr;</span></a>
+    </div>
   </div>
 </section>
 
@@ -1152,6 +1197,15 @@ function ciqOnce(key) {
 // Stage 1: one "landing" per browser session (reloads and the Stripe
 // cancel return don't count again).
 if (ciqOnce('ciq_landed')) ciqEvent('landing');
+// Guide interlude links: one cta_click per link per tab session (reuses ciqEvent).
+document.addEventListener('click', function (e) {
+  try {
+    const a = e.target && e.target.closest ? e.target.closest('a[data-guide-cta]') : null;
+    if (!a) return;
+    const cta = a.getAttribute('data-guide-cta');
+    if (ciqOnce('ciq_cta:' + cta)) ciqEvent('cta_click', { cta: cta });
+  } catch (err) {}
+});
 // Carry the source to the app: any link to app.clarityiq.ai gets the utm_*
 // tags added at click time (only tags the link doesn't already have).
 document.addEventListener('click', function (e) {
