@@ -40,7 +40,7 @@ You shouldn't have to make this decision with fifteen minutes and a list of unfa
 
 ## Short blurb (in-app, near "Begin conversation," reusable for social/marketing)
 
-> Built by Dr. Martin de la Presa, a board-certified surgeon actively researching next-generation lens technology — so you have real time to understand a permanent decision, before you're rushed through it.
+> Built by Dr. Martin de la Presa, a board-certified surgeon actively researching next-generation lens technology — so you have real time to understand a permanent decision, at any point before the lens is implanted.
 
 ---
 
