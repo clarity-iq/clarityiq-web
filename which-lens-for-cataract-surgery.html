@@ -207,6 +207,35 @@
   .benefit-card p, .risk-item p, .addon-card p, .condition p { font-size: 17px; }
   .risks-list p { font-size: 17px; margin-bottom: 14px; }
   .risks-list p strong { color: var(--ink); }
+
+  .viz {
+    margin: 8px 0 24px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 16px 12px 12px;
+  }
+  .viz-title {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+    margin: 0 0 12px;
+    line-height: 1.35;
+  }
+  .viz svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .viz figcaption {
+    font-size: 14px;
+    color: #5f5d56;
+    margin: 12px 0 0;
+    line-height: 1.45;
+  }
+  .addon-card .viz, .benefit-card .viz { background: var(--white); }
+
   .updated { font-size: 14px; color: #5f5d56; margin-top: -16px; margin-bottom: 24px; }
   .glance {
     background: var(--surface);
@@ -292,9 +321,80 @@
   <li>If monovision interests you — one eye set for far and the other for near or arm's length — ask whether you can try it with contact lenses first.</li>
 </ul>
 
+
+<figure class="viz" id="viz-goals">
+  <p class="viz-title" id="viz-goals-title">A path for the conversation, not a pick</p>
+  <svg role="img" aria-labelledby="viz-goals-title viz-goals-desc" viewBox="0 0 340 348" xmlns="http://www.w3.org/2000/svg" focusable="false">
+    <desc id="viz-goals-desc">A short decision path, for information only. First: how much do you want to depend on glasses? Options: low, don't mind, or prefer glasses. Next: which distance matters most? Options: far, arm's length, or near. Then: categories to ask your surgeon about — monofocal, EDOF, and full range. Your eye's health may change what's possible.</desc>
+    <rect x="8" y="0" width="324" height="40" rx="8" fill="#e1f5ee" stroke="#1D9E75" stroke-width="1"/>
+    <text x="170" y="25" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#0f0f0e">How much do you want to depend on glasses?</text>
+    <rect x="8" y="48" width="100" height="34" rx="17" fill="#ffffff" stroke="#1D9E75" stroke-width="1.5"/>
+    <text x="58" y="69" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f6e56">Low</text>
+    <rect x="120" y="48" width="100" height="34" rx="17" fill="#ffffff" stroke="#1D9E75" stroke-width="1.5"/>
+    <text x="170" y="69" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f6e56">Don't mind</text>
+    <rect x="232" y="48" width="100" height="34" rx="17" fill="#ffffff" stroke="#1D9E75" stroke-width="1.5"/>
+    <text x="282" y="69" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#0f6e56">Prefer glasses</text>
+    <line x1="170" y1="90" x2="170" y2="108" stroke="#0f6e56" stroke-width="1.75"/>
+    <polygon points="170,116 163,106 177,106" fill="#0f6e56"/>
+    <rect x="8" y="124" width="324" height="40" rx="8" fill="#e1f5ee" stroke="#1D9E75" stroke-width="1"/>
+    <text x="170" y="149" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f0f0e">Which distance matters most?</text>
+    <rect x="8" y="172" width="100" height="34" rx="17" fill="#ffffff" stroke="#1D9E75" stroke-width="1.5"/>
+    <text x="58" y="193" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f6e56">Far</text>
+    <rect x="120" y="172" width="100" height="34" rx="17" fill="#ffffff" stroke="#1D9E75" stroke-width="1.5"/>
+    <text x="170" y="193" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="600" fill="#0f6e56">Arm's length</text>
+    <rect x="232" y="172" width="100" height="34" rx="17" fill="#ffffff" stroke="#1D9E75" stroke-width="1.5"/>
+    <text x="282" y="193" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f6e56">Near</text>
+    <line x1="170" y1="214" x2="170" y2="232" stroke="#0f6e56" stroke-width="1.75"/>
+    <polygon points="170,240 163,230 177,230" fill="#0f6e56"/>
+    <rect x="8" y="248" width="324" height="40" rx="8" fill="#e1f5ee" stroke="#1D9E75" stroke-width="1"/>
+    <text x="170" y="273" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f0f0e">Categories to ask your surgeon about</text>
+    <text x="170" y="308" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f6e56">Monofocal · EDOF · Full range</text>
+    <text x="170" y="344" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="500" fill="#2b2a27">Your eye's health may change what's possible</text>
+  </svg>
+  <figcaption>This is information, not a recommendation.</figcaption>
+</figure>
+
 <h2 id="benefits">Benefits</h2>
 <p>Cataract lenses fall into three categories. Each is designed for different goals. No category is better than the others in every situation. The right fit depends on your goals and your exam. The same format is used for each category below. Add-ons and setups are in the next section, and risks that can apply with any lens are covered later on this page.</p>
 <p>Some references also describe accommodating lenses, which are designed to change focus with the eye's own focusing muscle. This page does not confirm whether any are on the US market now. Ask your surgeon if that type comes up.</p>
+
+
+<figure class="viz" id="viz-range">
+  <p class="viz-title" id="viz-range-title">Where each category is designed to focus</p>
+  <svg role="img" aria-labelledby="viz-range-title viz-range-desc" viewBox="0 0 340 232" xmlns="http://www.w3.org/2000/svg" focusable="false">
+    <desc id="viz-range-desc">Three horizontal bars, not to scale, showing where each lens category is designed to focus. A monofocal can be aimed at any one distance: far, arm's length, or near, shown as three faint options. An extended-range (EDOF) bar is shaded across far and arm's length. A full-range bar is shaded across far, arm's length, and near. Shading is not a claim about how well people see.</desc>
+    <!-- shared column labels -->
+    <text x="63" y="14" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="600" fill="#2b2a27">Far</text>
+    <text x="170" y="14" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="600" fill="#2b2a27">Arm's length</text>
+    <text x="277" y="14" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12" font-weight="600" fill="#2b2a27">Near</text>
+    <!-- Monofocal -->
+    <text x="10" y="38" text-anchor="start" font-family="Inter, -apple-system, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f0f0e">Monofocal</text>
+    <rect x="10" y="46" width="320" height="28" rx="7" fill="#ffffff" stroke="#e4e2da" stroke-width="1"/>
+    <!-- faint position options, same size, one in each third; inset so they don't look like a continuous range -->
+    <rect x="18" y="51" width="72" height="18" rx="4" fill="#e1f5ee" stroke="#1D9E75" stroke-width="1.25" stroke-dasharray="3 2"/>
+    <rect x="134" y="51" width="72" height="18" rx="4" fill="#e1f5ee" stroke="#1D9E75" stroke-width="1.25" stroke-dasharray="3 2"/>
+    <rect x="250" y="51" width="72" height="18" rx="4" fill="#e1f5ee" stroke="#1D9E75" stroke-width="1.25" stroke-dasharray="3 2"/>
+    <text x="126" y="64" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="10" font-weight="600" fill="#5f5d56">or</text>
+    <text x="242" y="64" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="10" font-weight="600" fill="#5f5d56">or</text>
+    <text x="170" y="90" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" fill="#5f5d56">A monofocal can be aimed at any one distance</text>
+    <!-- EDOF -->
+    <text x="10" y="116" text-anchor="start" font-family="Inter, -apple-system, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f0f0e">Extended range (EDOF)</text>
+    <rect x="10" y="124" width="320" height="28" rx="7" fill="#ffffff" stroke="#e4e2da" stroke-width="1"/>
+    <!-- shaded far + arm's length (two thirds), same bar style as full range -->
+    <rect x="12" y="126" width="210" height="24" rx="6" fill="#1D9E75"/>
+    <!-- faint zone ticks -->
+    <line x1="116.67" y1="124" x2="116.67" y2="152" stroke="#0f6e56" stroke-width="1" stroke-opacity="0.35"/>
+    <line x1="223.33" y1="124" x2="223.33" y2="152" stroke="#e4e2da" stroke-width="1"/>
+    <!-- Full range -->
+    <text x="10" y="178" text-anchor="start" font-family="Inter, -apple-system, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f0f0e">Full range</text>
+    <rect x="10" y="186" width="320" height="28" rx="7" fill="#ffffff" stroke="#e4e2da" stroke-width="1"/>
+    <rect x="12" y="188" width="316" height="24" rx="6" fill="#1D9E75"/>
+    <line x1="116.67" y1="186" x2="116.67" y2="214" stroke="#0f6e56" stroke-width="1" stroke-opacity="0.35"/>
+    <line x1="223.33" y1="186" x2="223.33" y2="214" stroke="#0f6e56" stroke-width="1" stroke-opacity="0.35"/>
+    <text x="170" y="228" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" fill="#5f5d56">Not to scale. Shading is not a result to expect.</text>
+  </svg>
+  <figcaption>Each bar uses the same scale line (far, arm's length, near). A monofocal is designed for one of those distances, shown as three faint options. An extended-range lens is designed to focus from far into arm's length. A full-range lens is designed to focus at far, arm's length, and near.</figcaption>
+</figure>
 
 <div class="benefit-card">
 <h3 class="category" id="monofocal">Monofocal lens</h3>
@@ -333,6 +433,34 @@
 <h3>Monovision</h3>
 <p>Monovision is a setup, usually with monofocal lenses, not a lens category. One eye is set for distance and the other for near, or sometimes for arm's length (a milder version called mini-monovision). Together, the two eyes cover more distances. You may still need glasses for some tasks, such as night driving or long reading.</p>
 <p>If you've never tried it, ask whether you can test it with contact lenses before surgery. A note on depth perception is in the Risks section.</p>
+
+<figure class="viz" id="viz-monovision">
+  <p class="viz-title" id="viz-monovision-title">How monovision is set up</p>
+  <svg role="img" aria-labelledby="viz-monovision-title viz-monovision-desc" viewBox="0 0 340 200" xmlns="http://www.w3.org/2000/svg" focusable="false">
+    <desc id="viz-monovision-desc">Two simple eye outlines side by side, not a drawing of a person. The left eye is set for far and the right eye is set for near. A bar underneath shows that together they cover more distances.</desc>
+    <!-- left eye -->
+    <circle cx="95" cy="58" r="40" fill="#ffffff" stroke="#0f6e56" stroke-width="2"/>
+    <circle cx="95" cy="58" r="22" fill="#e1f5ee" stroke="#1D9E75" stroke-width="1.5"/>
+    <circle cx="95" cy="58" r="9" fill="#0f6e56"/>
+    <text x="95" y="116" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f0f0e">One eye: far</text>
+    <!-- right eye -->
+    <circle cx="245" cy="58" r="40" fill="#ffffff" stroke="#0f6e56" stroke-width="2"/>
+    <circle cx="245" cy="58" r="22" fill="#e1f5ee" stroke="#1D9E75" stroke-width="1.5"/>
+    <circle cx="245" cy="58" r="9" fill="#0f6e56"/>
+    <text x="245" y="116" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="13" font-weight="600" fill="#0f0f0e">One eye: near</text>
+    <!-- plus -->
+    <text x="170" y="64" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="22" font-weight="500" fill="#1D9E75">+</text>
+    <!-- together bar -->
+    <rect x="20" y="136" width="300" height="26" rx="7" fill="#ffffff" stroke="#e4e2da" stroke-width="1"/>
+    <rect x="22" y="138" width="146" height="22" rx="6" fill="#0f6e56"/>
+    <rect x="172" y="138" width="146" height="22" rx="6" fill="#0f6e56"/>
+    <text x="95" y="154" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="600" fill="#ffffff">Far</text>
+    <text x="245" y="154" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="11" font-weight="600" fill="#ffffff">Near</text>
+    <text x="170" y="190" text-anchor="middle" font-family="Inter, -apple-system, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#2b2a27">Together they cover more distances</text>
+  </svg>
+  <figcaption>One eye is set for far and the other for near. A milder setup can set the second eye for arm's length instead.</figcaption>
+</figure>
+
 </div>
 
 <div class="addon-card">
