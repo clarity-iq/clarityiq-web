@@ -678,7 +678,7 @@ const CIQ_SRC = CIQ_INTERNAL
   ? Object.assign({}, CIQ_SRC_STATE.src, { utm_source: 'internal', utm_medium: 'flag' })
   : CIQ_SRC_STATE.src;
 
-// Funnel events to the Worker's POST /event (names: landing, cta_click).
+// Funnel events to the Worker's POST /event (names: landing, cta_click, share_click, scroll_depth, time_on_page).
 // sendBeacon (text/plain, no preflight, survives page navigation), falling
 // back to fetch keepalive. Fire-and-forget: never awaited, never shown, never
 // blocks a click. Body: { name, path, cta?, tier?, src } (well under 2 KB).
@@ -704,6 +704,61 @@ function ciqOnce(key) {
 // Stage 1: one "landing" per browser session (reloads and the Stripe
 // cancel return don't count again).
 if (ciqOnce('ciq_landed')) ciqEvent('landing');
+
+// Privacy-first engagement (Martin go, Nov 18): scroll_depth at 25/50/75/100
+// (each once per page view) and one time_on_page bucket on pagehide /
+// visibilitychange. Reuses ciqEvent; the percent or bucket goes in the
+// existing `cta` field (cleanTag-safe names: 25/50/75/100 and
+// 0-10s, 10-30s, 30-60s, 1-3m, 3m-plus). No cookies, no PII, no third party.
+// Internal visits already inherit CIQ_SRC (utm_source=internal).
+(function () {
+  try {
+    var start = Date.now();
+    var sentTime = false;
+    var sentDepth = {};
+    function ciqScrollPct() {
+      var el = document.documentElement;
+      var top = (window.pageYOffset || (el && el.scrollTop) || 0);
+      var scrollable = ((el && el.scrollHeight) || 0) - ((el && el.clientHeight) || 0);
+      if (scrollable <= 0) return 100;
+      var pct = Math.floor((top / scrollable) * 100);
+      if (pct < 0) return 0;
+      if (pct > 100) return 100;
+      return pct;
+    }
+    function ciqMaybeScroll() {
+      try {
+        var pct = ciqScrollPct();
+        var marks = [25, 50, 75, 100];
+        for (var i = 0; i < marks.length; i++) {
+          var m = marks[i];
+          if (pct >= m && !sentDepth[m]) {
+            sentDepth[m] = true;
+            ciqEvent('scroll_depth', { cta: String(m) });
+          }
+        }
+      } catch (e) {}
+    }
+    function ciqTimeBucket(ms) {
+      if (ms < 10000) return '0-10s';
+      if (ms < 30000) return '10-30s';
+      if (ms < 60000) return '30-60s';
+      if (ms < 180000) return '1-3m';
+      return '3m-plus';
+    }
+    function ciqSendTime() {
+      if (sentTime) return;
+      sentTime = true;
+      try { ciqEvent('time_on_page', { cta: ciqTimeBucket(Date.now() - start) }); } catch (e) {}
+    }
+    ciqMaybeScroll();
+    document.addEventListener('scroll', ciqMaybeScroll, { passive: true });
+    window.addEventListener('pagehide', ciqSendTime);
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') ciqSendTime();
+    });
+  } catch (e) {}
+})();
 // SEO page CTAs: one cta_click per CTA per tab session, tagged seo_session /
 // seo_guides so they don't consume the home page's own "guides" event.
 document.addEventListener('click', function (e) {
