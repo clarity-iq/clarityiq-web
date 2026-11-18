@@ -1169,23 +1169,7 @@ const CIQ_SRC_STATE = (function () {
     return { v: 1, at: Date.now(), tagged: false, src: { utm_source: 'unknown' } };
   }
 })();
-// Internal-visit flag: open any page with ?ciq_internal=1 to mark this
-// browser as ours (localStorage key ciq_internal, no expiry); ?ciq_internal=0
-// removes it. While set, every event, signup and checkout reports
-// utm_source "internal", which the Worker already keeps out of the funnel.
-const CIQ_INTERNAL = (function () {
-  try {
-    const store = ciqStorage('localStorage');
-    if (!store) return false;
-    const q = new URLSearchParams(location.search).get('ciq_internal');
-    if (q === '1') store.setItem('ciq_internal', '1');
-    else if (q === '0') store.removeItem('ciq_internal');
-    return store.getItem('ciq_internal') === '1';
-  } catch (e) { return false; }
-})();
-const CIQ_SRC = CIQ_INTERNAL
-  ? Object.assign({}, CIQ_SRC_STATE.src, { utm_source: 'internal', utm_medium: 'flag' })
-  : CIQ_SRC_STATE.src;
+const CIQ_SRC = CIQ_SRC_STATE.src;
 
 // Funnel events to the Worker's POST /event (names: landing, cta_click).
 // sendBeacon (text/plain, no preflight, survives page navigation), falling
