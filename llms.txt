@@ -2,7 +2,7 @@
 
 > Voice-first AI consumer education tool that helps people understand their cataract surgery and intraocular lens (IOL) options at any point before the lens is implanted. Built by a board-certified, fellowship-trained cataract surgeon who has performed more than 12,000 procedures.
 
-ClarityIQ is a direct-to-consumer educational product, not a medical provider. It does not diagnose, treat, or recommend a specific lens for any individual — it prepares people to have a better-informed conversation with their own surgeon. People complete a guided AI voice conversation covering their vision goals, lens category options (monofocal, toric, multifocal/presbyopia-correcting), and questions to bring to their surgeon, then receive a personal written summary.
+ClarityIQ is a direct-to-consumer educational product, not a medical provider. It does not diagnose, treat, or recommend a specific lens for any individual — it prepares people to have a better-informed conversation with their own surgeon. People complete a guided AI voice conversation covering their vision goals, lens category options (monofocal, EDOF, and multifocal/presbyopia-correcting), add-ons such as toric lenses, and questions to bring to their surgeon, then receive a personal written summary.
 
 ## Primary content
 
@@ -10,6 +10,7 @@ ClarityIQ is a direct-to-consumer educational product, not a medical provider. I
 - [Cataract lens options](https://clarityiq.ai/which-lens-for-cataract-surgery): plain-language guide that starts with vision goals, then the three lens categories (monofocal, EDOF, and full range), then add-ons and setups (toric, monovision, and light-adjustable), eye health, how lens power is chosen, risks, and recovery. Education only, not a recommendation.
 - [Monofocal vs multifocal vs EDOF lenses](https://clarityiq.ai/monofocal-vs-multifocal-vs-edof-lens): side-by-side comparison of the three cataract lens categories using one framework (what each aims for, trade-offs, who might ask about it), halos and neuroadaptation, and toric and monovision as related options. Education only, not a recommendation.
 - [Questions to ask your surgeon about cataract lenses](https://clarityiq.ai/questions-to-ask-cataract-surgeon): a written list of questions to take to the surgeon at any point before the lens is implanted — before the consult, after it, or as a second look. Covers goals, lens types, glasses, trade-offs, eye health, and what to do if the focus lands off target. Education only, not a recommendation.
+- [Toric lenses and astigmatism](https://clarityiq.ai/toric-lens-astigmatism-cataract-surgery): what a toric cataract lens is designed to do, how it can be added to monofocal, EDOF, and multifocal lenses, when it may not help, alignment and rotation, and other ways astigmatism is sometimes treated. Education only, not a recommendation.
 
 ## About
 
