@@ -29,7 +29,7 @@ body.ciq-a{margin:0}
 .ciq-a .pillbar{position:static;display:block;padding:0 0 14px;background:none;border:0;backdrop-filter:none}
 .ciq-a .pills{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding-top:2px;padding-bottom:4px}
 .ciq-a .pills::-webkit-scrollbar{display:none}
-.ciq-a .pill{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;padding:10px 18px;border-radius:999px;text-decoration:none;font-size:15px;font-weight:500;background:#fff;color:var(--forest);box-shadow:0 2px 10px rgba(31,61,44,.08);transition:transform .2s}
+.ciq-a .pill{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;padding:10px 18px;min-height:44px;border-radius:999px;text-decoration:none;font-size:15px;font-weight:500;background:#fff;color:var(--forest);box-shadow:0 2px 10px rgba(31,61,44,.08);transition:transform .2s}
 .ciq-a .pill .ic{color:var(--terra)}
 .ciq-a .pill:hover{transform:translateY(-2px)}
 .ciq-a .pill[aria-current=page]{background:var(--forest);color:#fff}
@@ -95,7 +95,9 @@ body.ciq-a{margin:0}
 .ciq-a article ol:not(.sources){list-style:none;padding-left:0;counter-reset:ciqn}
 .ciq-a article ol:not(.sources) > li{position:relative;padding-left:46px;margin-bottom:12px;counter-increment:ciqn}
 .ciq-a article ol:not(.sources) > li::before{content:counter(ciqn);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--forest);color:#fff;font-size:14px;font-weight:600;display:grid;place-items:center;line-height:1}
-.ciq-a .sources{font-size:15px;padding-left:22px}
+.ciq-a .sources{font-size:15px;padding-left:22px;overflow-wrap:anywhere}
+/* 44×44 CSS px hit area on the inline article share link; negative margin keeps the underline in place */
+.ciq-a .share-inline .ciq-share{min-height:44px;min-width:44px;padding:12px 8px;margin:-12px -8px -12px 0}
 
 /* legal pages */
 .ciq-a .legal-wrap{max-width:820px;margin:48px auto 80px;padding:48px 56px;background:#fff;border-radius:28px;box-shadow:var(--card-shadow)}
