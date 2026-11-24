@@ -907,10 +907,12 @@ svForm.addEventListener('submit', async e => {
   const label = submit.textContent;
   submit.disabled = true; submit.textContent = 'One moment…'; svError.textContent = '';
   try {
+    // src is the sanitized first-touch tag (same as checkout); the Worker
+    // writes it onto the survey_before funnel event. No email or name here.
     const res = await fetch(PROXY_URL + '/survey/before', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-ClarityIQ-Key': CLIENT_KEY },
-      body: JSON.stringify({ stage, matters, ...(heard ? { heard } : {}), ...(heardOther ? { heard_other: heardOther } : {}), consent: true }),
+      body: JSON.stringify({ stage, matters, ...(heard ? { heard } : {}), ...(heardOther ? { heard_other: heardOther } : {}), consent: true, src: CIQ_SRC }),
     });
     const data = await res.json().catch(() => ({}));
     if (res.status === 429) throw new Error('Too many tries from this connection. Please try again in an hour.');
