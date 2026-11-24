@@ -12,9 +12,6 @@ ClarityIQ is a direct-to-consumer educational product, not a medical provider. I
 - [Questions to ask your surgeon about cataract lenses](https://clarityiq.ai/questions-to-ask-cataract-surgeon): a written list of questions to take to the surgeon at any point before the lens is implanted — before the consult, after it, or as a second look. Covers goals, lens types, glasses, trade-offs, eye health, and what to do if the focus lands off target. Education only, not a recommendation.
 - [Toric lenses and astigmatism](https://clarityiq.ai/toric-lens-astigmatism-cataract-surgery): what a toric cataract lens is designed to do, how it can be added to monofocal, EDOF, and multifocal lenses, when it may not help, alignment and rotation, and other ways astigmatism is sometimes treated. Education only, not a recommendation.
 
-- [Halos and glare after cataract surgery](https://clarityiq.ai/halos-after-cataract-surgery): what halos and glare can feel like, how the evidence reads across monofocal, EDOF, and multifocal lenses, neuroadaptation, and warning signs to call your surgeon. Education only, not a recommendation.
-- [Monovision with cataract surgery](https://clarityiq.ai/monovision-cataract-surgery): what monovision and mini-monovision are designed to do, contact-lens trials, depth perception, and how people often compare monovision with EDOF and multifocal lenses. Education only, not a recommendation.
-
 ## About
 
 Founded by Dr. Martin de la Presa, a board-certified, fellowship-trained cornea, cataract, and refractive surgeon and Principal Investigator on active intraocular lens (IOL) clinical research.
