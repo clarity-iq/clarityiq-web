@@ -15,9 +15,6 @@ ClarityIQ is a direct-to-consumer educational product, not a medical provider. I
 - [Halos and glare after cataract surgery](https://clarityiq.ai/halos-after-cataract-surgery): what halos and glare can feel like, how the evidence reads across monofocal, EDOF, and multifocal lenses, neuroadaptation, and warning signs to call your surgeon. Education only, not a recommendation.
 - [Monovision with cataract surgery](https://clarityiq.ai/monovision-cataract-surgery): what monovision and mini-monovision are designed to do, contact-lens trials, depth perception, and how people often compare monovision with EDOF and multifocal lenses. Education only, not a recommendation.
 
-- [Cataract surgery after LASIK, PRK or RK](https://clarityiq.ai/cataract-surgery-after-lasik): why prior LASIK, PRK, or RK makes lens power harder to predict, how RK differs, what to bring to the consult, and questions to ask if the focus lands off the planned target. Education only, not a recommendation.
-- [Far or near? Choosing the focus for a monofocal lens](https://clarityiq.ai/distance-or-near-vision-cataract-surgery): a monofocal can be aimed at far, arm's length, or near; what that means if you currently read without glasses; and how this differs from monovision. Education only, not a recommendation.
-
 ## About
 
 Founded by Dr. Martin de la Presa, a board-certified, fellowship-trained cornea, cataract, and refractive surgeon and Principal Investigator on active intraocular lens (IOL) clinical research.
