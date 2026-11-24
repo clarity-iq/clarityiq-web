@@ -18,6 +18,9 @@ ClarityIQ is a direct-to-consumer educational product, not a medical provider. I
 - [Cataract surgery after LASIK, PRK or RK](https://clarityiq.ai/cataract-surgery-after-lasik): why prior LASIK, PRK, or RK makes lens power harder to predict, how RK differs, what to bring to the consult, and questions to ask if the focus lands off the planned target. Education only, not a recommendation.
 - [Far or near? Choosing the focus for a monofocal lens](https://clarityiq.ai/distance-or-near-vision-cataract-surgery): a monofocal can be aimed at far, arm's length, or near; what that means if you currently read without glasses; and how this differs from monovision. Education only, not a recommendation.
 
+- [The light-adjustable lens at cataract surgery](https://clarityiq.ai/light-adjustable-lens-cataract-surgery): how a light-adjustable monofocal is fine-tuned with UV light after surgery, the extra visits and specified UV-protective glasses, who may not be a fit, and what the FDA trial measured. Education only, not a recommendation.
+- [Planning the second eye in cataract surgery](https://clarityiq.ai/second-eye-cataract-surgery): why the two eyes are often done on separate days, how the first-eye result can guide the second, what the wait in between can feel like, and questions to ask. Education only, not a recommendation.
+
 ## About
 
 Founded by Dr. Martin de la Presa, a board-certified, fellowship-trained cornea, cataract, and refractive surgeon and Principal Investigator on active intraocular lens (IOL) clinical research.
