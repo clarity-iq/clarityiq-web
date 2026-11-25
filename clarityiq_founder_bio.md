@@ -22,7 +22,7 @@ Martin has a professional headshot ready to use. Place prominently near the top 
 ## Story — broken into short paragraphs for layout (2-3 sentences each, real whitespace between)
 
 **Paragraph 1:**
-Choosing your lens isn't like choosing glasses. Once it's in, it's in — for the rest of your life. Most people are asked to make that call in a rushed fifteen-minute window at their surgical consult, often hearing about their options for the very first time.
+Choosing your lens isn't like choosing glasses. Once it's in, it's in — for the rest of your life. Most people are asked to make that call in a rushed fifteen-minute window at their visit with their surgeon, often hearing about their options for the very first time.
 
 **Paragraph 2:**
 I'm Dr. Martin de la Presa, a board-certified, fellowship-trained cornea, cataract, and refractive surgeon who has performed more than 12,000 cataract procedures. Over those years, I kept watching the same thing happen: a person, dilated and a little anxious, hearing words like "trifocal" or "toric" for the first time — and being expected to weigh a permanent decision in that same moment.
