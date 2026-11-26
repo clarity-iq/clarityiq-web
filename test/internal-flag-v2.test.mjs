@@ -77,12 +77,30 @@ describe('internal flag v2 on every site page', () => {
         assert.equal(r.src.utm_source, 'internal');
         assert.equal(r.src.utm_medium, 'flag');
       });
-      test('?ciq_internal=0 clears both and untags', () => {
+      test('?ciq_internal=0 clears storage, turns the cookie off (0, 30 days) and untags', () => {
         const r = run(html, { url: 'https://clarityiq.ai/?ciq_internal=0', store: { ciq_internal: '1' }, cookies: ['ciq_internal=1'] });
         assert.equal(r.internal, false);
         assert.equal(r.data.has('ciq_internal'), false);
-        assert.equal(r.jar.size, 0);
+        assert.equal(r.jar.get('ciq_internal|clarityiq.ai').value, '0');
+        assert.ok(r.writes.find(s => s.startsWith('ciq_internal=0')).includes('Max-Age=2592000'));
         assert.notEqual(r.src.utm_source, 'internal');
+      });
+      test('off marker set on another page clears this origin and stays off', () => {
+        const r = run(html, { url: 'https://clarityiq.ai/', store: { ciq_internal: '1' }, cookies: ['ciq_internal=0'] });
+        assert.equal(r.internal, false);
+        assert.equal(r.data.has('ciq_internal'), false);
+        assert.equal(r.writes.length, 0);
+        assert.notEqual(r.src.utm_source, 'internal');
+      });
+      test('a flagged visit renews the cookie for another year', () => {
+        const r = run(html, { url: 'https://clarityiq.ai/', store: { ciq_internal: '1' }, cookies: ['ciq_internal=1'] });
+        assert.equal(r.internal, true);
+        assert.ok(r.writes.some(s => s.startsWith('ciq_internal=1') && s.includes('Max-Age=31536000')));
+      });
+      test('tapping ?ciq_internal=1 after being switched off turns it back on', () => {
+        const r = run(html, { url: 'https://clarityiq.ai/?ciq_internal=1', cookies: ['ciq_internal=0'] });
+        assert.equal(r.internal, true);
+        assert.equal(r.jar.get('ciq_internal|clarityiq.ai').value, '1');
       });
       test('no flag at all stays untagged and writes no cookie', () => {
         const r = run(html, { url: 'https://clarityiq.ai/' });
